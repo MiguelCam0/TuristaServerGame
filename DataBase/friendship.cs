@@ -12,11 +12,13 @@ namespace DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Player
+    public partial class friendship
     {
-        public int Id { get; set; }
-        public string Nickname { get; set; }
-        public string EMail { get; set; }
-        public string Password { get; set; }
+        public int id { get; set; }
+        public Nullable<int> player1_id { get; set; }
+        public Nullable<int> player2_id { get; set; }
+    
+        public virtual PlayerSet PlayerSet { get; set; }
+        public virtual PlayerSet PlayerSet1 { get; set; }
     }
 }

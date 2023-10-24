@@ -50,54 +50,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.Context.tt</DependentUpon>
+    <Compile Include="FriendRequest.cs">
+      <DependentUpon>TuristaMundialDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBaseModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="friendship.cs">
+      <DependentUpon>TuristaMundialDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBaseModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Player.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="PlayerSet.cs">
+      <DependentUpon>TuristaMundialDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="DataBaseModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataBaseModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="TuristaMundialDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TuristaMundialDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TuristaMundialDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TuristaMundialDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TuristaMundialDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TuristaMundialDB.edmx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="DataBaseModel.edmx.diagram">
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DataBaseModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DataBaseModel.Context.cs</LastGenOutput>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="DataBaseModel.edmx.sql" />
-    <Content Include="DataBaseModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
-      <LastGenOutput>DataBaseModel.cs</LastGenOutput>
-    </Content>
+    <EntityDeploy Include="TuristaMundialDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TuristaMundialDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TuristaMundialDB.edmx.diagram">
+      <DependentUpon>TuristaMundialDB.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TuristaMundialDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TuristaMundialDB.edmx</DependentUpon>
+      <LastGenOutput>TuristaMundialDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TuristaMundialDB.edmx.sql" />
+    <Content Include="TuristaMundialDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TuristaMundialDB.edmx</DependentUpon>
+      <LastGenOutput>TuristaMundialDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

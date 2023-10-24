@@ -8,23 +8,27 @@ using System.ServiceModel.Dispatcher;
 using System.Text;
 using System.Threading.Tasks;
 using Services;
+using Services.DataBaseManager;
 
 namespace Host
 {
     internal class Program
     {
         public static List<InstanceContext> activeInstanceContexts = new List<InstanceContext>();
+        
         static void Main(string[] args)
         {
+
             using (ServiceHost host = new ServiceHost(typeof(Services.DataBaseManager.PlayerManager)))
             {
-                host.Description.Behaviors.Add(new ConnectionLoggingBehavior());
+                var playerManager = new PlayerManager();
                 host.Open();
                 Console.WriteLine("Server is running. Press Enter to exit.");
                 Console.ReadLine();
             }
         }
     }
+
 
     public class ConnectionLoggingBehavior : IServiceBehavior
     {
@@ -65,7 +69,7 @@ namespace Host
                     string clientIpAddress = endpointProperty.Address;
                     Console.WriteLine("Nueva conexión entrante desde " + clientIpAddress);
 
-                    // Agregar el InstanceContext a la lista de instancias activas
+                    //Agregar el InstanceContext a la lista de instancias activas
                     Program.activeInstanceContexts.Add(instanceContext);
                 }
             }
