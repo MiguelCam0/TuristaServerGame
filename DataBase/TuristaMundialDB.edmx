@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TuristaMundialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FriendRequest">
+          <Key>
+            <PropertyRef Name="IDRequest" />
+          </Key>
+          <Property Name="IDRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlayerSet1ID" Type="int" />
+          <Property Name="PlayerSet2ID" Type="int" />
+          <Property Name="StatusRequest" Type="int" />
+        </EntityType>
+        <EntityType Name="friendship">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="player1_id" Type="int" />
+          <Property Name="player2_id" Type="int" />
+        </EntityType>
+        <EntityType Name="PlayerSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nickname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="eMail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FriendRequest_PlayerSet1ID">
+          <End Role="PlayerSet" Type="Self.PlayerSet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FriendRequest" Type="Self.FriendRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FriendRequest">
+              <PropertyRef Name="PlayerSet1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FriendRequest_PlayerSet2ID">
+          <End Role="PlayerSet" Type="Self.PlayerSet" Multiplicity="0..1" />
+          <End Role="FriendRequest" Type="Self.FriendRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FriendRequest">
+              <PropertyRef Name="PlayerSet2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_friendship_player1">
+          <End Role="PlayerSet" Type="Self.PlayerSet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="friendship" Type="Self.friendship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="friendship">
+              <PropertyRef Name="player1_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_friendship_player2">
+          <End Role="PlayerSet" Type="Self.PlayerSet" Multiplicity="0..1" />
+          <End Role="friendship" Type="Self.friendship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="friendship">
+              <PropertyRef Name="player2_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TuristaMundialModelStoreContainer">
+          <EntitySet Name="FriendRequest" EntityType="Self.FriendRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="friendship" EntityType="Self.friendship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlayerSet" EntityType="Self.PlayerSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FriendRequest_PlayerSet1ID" Association="Self.FK_FriendRequest_PlayerSet1ID">
+            <End Role="PlayerSet" EntitySet="PlayerSet" />
+            <End Role="FriendRequest" EntitySet="FriendRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FriendRequest_PlayerSet2ID" Association="Self.FK_FriendRequest_PlayerSet2ID">
+            <End Role="PlayerSet" EntitySet="PlayerSet" />
+            <End Role="FriendRequest" EntitySet="FriendRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_friendship_player1" Association="Self.FK_friendship_player1">
+            <End Role="PlayerSet" EntitySet="PlayerSet" />
+            <End Role="friendship" EntitySet="friendship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_friendship_player2" Association="Self.FK_friendship_player2">
+            <End Role="PlayerSet" EntitySet="PlayerSet" />
+            <End Role="friendship" EntitySet="friendship" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TuristaMundialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PlayerSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nickname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="eMail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="friendship" Relationship="TuristaMundialModel.FK_friendship_player1" FromRole="PlayerSet" ToRole="friendship" />
+          <NavigationProperty Name="friendship1" Relationship="TuristaMundialModel.FK_friendship_player2" FromRole="PlayerSet" ToRole="friendship" />
+          <NavigationProperty Name="FriendRequest" Relationship="TuristaMundialModel.FK_FriendRequest_PlayerSet1ID" FromRole="PlayerSet" ToRole="FriendRequest" />
+          <NavigationProperty Name="FriendRequest1" Relationship="TuristaMundialModel.FK_FriendRequest_PlayerSet2ID" FromRole="PlayerSet" ToRole="FriendRequest" />
+        </EntityType>
+        <EntityContainer Name="TuristaMundialEntitiesDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PlayerSet" EntityType="Self.PlayerSet" />
+          <EntitySet Name="friendship" EntityType="TuristaMundialModel.friendship" />
+          <AssociationSet Name="FK_friendship_player1" Association="TuristaMundialModel.FK_friendship_player1">
+            <End Role="PlayerSet" EntitySet="PlayerSet" />
+            <End Role="friendship" EntitySet="friendship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_friendship_player2" Association="TuristaMundialModel.FK_friendship_player2">
+            <End Role="PlayerSet" EntitySet="PlayerSet" />
+            <End Role="friendship" EntitySet="friendship" />
+          </AssociationSet>
+          <EntitySet Name="FriendRequest" EntityType="TuristaMundialModel.FriendRequest" />
+          <AssociationSet Name="FK_FriendRequest_PlayerSet1ID" Association="TuristaMundialModel.FK_FriendRequest_PlayerSet1ID">
+            <End Role="PlayerSet" EntitySet="PlayerSet" />
+            <End Role="FriendRequest" EntitySet="FriendRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FriendRequest_PlayerSet2ID" Association="TuristaMundialModel.FK_FriendRequest_PlayerSet2ID">
+            <End Role="PlayerSet" EntitySet="PlayerSet" />
+            <End Role="FriendRequest" EntitySet="FriendRequest" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="friendship">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="player1_id" Type="Int32" />
+          <Property Name="player2_id" Type="Int32" />
+          <NavigationProperty Name="PlayerSet" Relationship="TuristaMundialModel.FK_friendship_player1" FromRole="friendship" ToRole="PlayerSet" />
+          <NavigationProperty Name="PlayerSet1" Relationship="TuristaMundialModel.FK_friendship_player2" FromRole="friendship" ToRole="PlayerSet" />
+        </EntityType>
+        <Association Name="FK_friendship_player1">
+          <End Type="TuristaMundialModel.PlayerSet" Role="PlayerSet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TuristaMundialModel.friendship" Role="friendship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="friendship">
+              <PropertyRef Name="player1_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_friendship_player2">
+          <End Type="TuristaMundialModel.PlayerSet" Role="PlayerSet" Multiplicity="0..1" />
+          <End Type="TuristaMundialModel.friendship" Role="friendship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="friendship">
+              <PropertyRef Name="player2_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FriendRequest">
+          <Key>
+            <PropertyRef Name="IDRequest" />
+          </Key>
+          <Property Name="IDRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerSet1ID" Type="Int32" />
+          <Property Name="PlayerSet2ID" Type="Int32" />
+          <Property Name="StatusRequest" Type="Int32" />
+          <NavigationProperty Name="PlayerSet" Relationship="TuristaMundialModel.FK_FriendRequest_PlayerSet1ID" FromRole="FriendRequest" ToRole="PlayerSet" />
+          <NavigationProperty Name="PlayerSet1" Relationship="TuristaMundialModel.FK_FriendRequest_PlayerSet2ID" FromRole="FriendRequest" ToRole="PlayerSet" />
+        </EntityType>
+        <Association Name="FK_FriendRequest_PlayerSet1ID">
+          <End Type="TuristaMundialModel.PlayerSet" Role="PlayerSet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TuristaMundialModel.FriendRequest" Role="FriendRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FriendRequest">
+              <PropertyRef Name="PlayerSet1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FriendRequest_PlayerSet2ID">
+          <End Type="TuristaMundialModel.PlayerSet" Role="PlayerSet" Multiplicity="0..1" />
+          <End Type="TuristaMundialModel.FriendRequest" Role="FriendRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FriendRequest">
+              <PropertyRef Name="PlayerSet2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TuristaMundialModelStoreContainer" CdmEntityContainer="TuristaMundialEntitiesDB">
+    <EntitySetMapping Name="PlayerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(TuristaMundialModel.PlayerSet)">
+        <MappingFragment StoreEntitySet="PlayerSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+          <ScalarProperty Name="eMail" ColumnName="eMail" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="friendship">
+      <EntityTypeMapping TypeName="IsTypeOf(TuristaMundialModel.friendship)">
+        <MappingFragment StoreEntitySet="friendship">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="player1_id" ColumnName="player1_id" />
+          <ScalarProperty Name="player2_id" ColumnName="player2_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <EntitySetMapping Name="FriendRequest">
+            <EntityTypeMapping TypeName="TuristaMundialModel.FriendRequest">
+              <MappingFragment StoreEntitySet="FriendRequest">
+                <ScalarProperty Name="StatusRequest" ColumnName="StatusRequest" />
+                <ScalarProperty Name="PlayerSet2ID" ColumnName="PlayerSet2ID" />
+                <ScalarProperty Name="PlayerSet1ID" ColumnName="PlayerSet1ID" />
+                <ScalarProperty Name="IDRequest" ColumnName="IDRequest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

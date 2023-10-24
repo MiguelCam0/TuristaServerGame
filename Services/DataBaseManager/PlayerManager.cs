@@ -1,47 +1,52 @@
 ﻿using Contracts.IDataBase;
 using DataBase;
 using System;
+using System.ServiceModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace Services.DataBaseManager
 {
-    public class PlayerManager : IPlayer
+
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
+    public partial class PlayerManager : IPlayer
     {
-        public int PlayerSearch(Player player)
+
+        public int PlayerSearch(PlayerSet player)
         {
             int check = 0;
 
             try
             {
-                using (var context = new TuristaMagicalPlacesBDEntities())
+                using (var context = new TuristaMundialEntitiesDB())
                 {
-                    var existingPlayer = context.PlayerSet.FirstOrDefault(p => p.Nickname == player.Nickname && p.Password == player.Password);
+                    var existingPlayer = context.PlayerSet.Where(p => p.Nickname == player.Nickname && p.Password == player.Password).FirstOrDefault();
 
                     if (existingPlayer != null)
-                    {
-                        check = 1;
+                    {          
+                        check = existingPlayer.Id;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en PlayerSearch: " + ex.Message);
+                Console.WriteLine("Error en PlayerSearch: " + ex.InnerException);
             }
 
             return check;
         }
 
-
-        public int RegisterPlayer(Player player)
+        public int RegisterPlayer(PlayerSet player)
         {
             int band = 0;
 
             try
             {
-                using (var context = new TuristaMagicalPlacesBDEntities())
+                using (var context = new TuristaMundialEntitiesDB())
                 {
                     context.PlayerSet.Add(player);
                     context.SaveChanges();
@@ -56,5 +61,77 @@ namespace Services.DataBaseManager
             return band;
         }
 
+        public List<FriendList> GetFriends(int idPlayer)
+        {
+            List<friendship> friendsList = new List<friendship>();
+            List<FriendList> friends = new List<FriendList>();
+            try
+            {
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    Console.WriteLine("Entra");
+                    friendsList = context.friendship.Where(friend => friend.PlayerSet.Id == idPlayer).ToList();
+                    foreach (var friend in friendsList)
+                    {
+                        var friendData = new FriendList();
+                        friendData.IdFriend = friend.PlayerSet1.Id;
+                        friendData.FriendName = friend.PlayerSet1.Nickname;
+                        friends.Add(friendData);
+                    }
+
+                    friendsList = context.friendship.Where(friend => friend.PlayerSet1.Id == idPlayer).ToList();
+                    foreach (var friend in friendsList)
+                    {
+                        var friendData = new FriendList();
+                        friendData.IdFriend = friend.PlayerSet.Id;
+                        friendData.FriendName = friend.PlayerSet.Nickname;
+                        friends.Add(friendData);
+                    }
+
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine("Error en GetFriends: " + exception.Message);
+            }
+
+            friends = AreOnline(friends);
+            return friends;
+        }
+
+        private List<FriendList> AreOnline(List<FriendList> friends) { 
+            foreach (var friend in friends) {
+                foreach (var OnlineUser in currentUsers)
+                {
+                    if (friend.IdFriend == OnlineUser.Key)
+                    { 
+                        friend.IsOnline = true;
+                    }
+                }
+            }
+            return friends;
+        }
+
+        public List<FriendRequestData> GetFriendRequests(int idPlayer)
+        {
+            List<FriendRequestData> friendRequests = new List<FriendRequestData>();
+            List<FriendRequest> dataBaseData = new List<FriendRequest>();
+            using (var Context = new TuristaMundialEntitiesDB())
+            {
+                dataBaseData = Context.FriendRequest.Where(P=> P.PlayerSet2ID == idPlayer).ToList();
+
+                foreach (var data in dataBaseData) 
+                {
+                    FriendRequestData request = new FriendRequestData
+                    {
+                        SenderName = data.PlayerSet.Nickname,
+                        IDRequest = data.IDRequest
+                    };
+                    friendRequests.Add(request);
+                }
+            }
+
+            return friendRequests;
+        }
     }
 }
