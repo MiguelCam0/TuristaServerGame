@@ -13,10 +13,10 @@ namespace DataBase
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TuristaMagicalPlacesBDEntities : DbContext
+    public partial class TuristaMundialEntitiesDB : DbContext
     {
-        public TuristaMagicalPlacesBDEntities()
-            : base("name=TuristaMagicalPlacesBDEntities")
+        public TuristaMundialEntitiesDB()
+            : base("name=TuristaMundialEntitiesDB")
         {
         }
     
@@ -25,6 +25,8 @@ namespace DataBase
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Player> PlayerSet { get; set; }
+        public virtual DbSet<PlayerSet> PlayerSet { get; set; }
+        public virtual DbSet<friendship> friendship { get; set; }
+        public virtual DbSet<FriendRequest> FriendRequest { get; set; }
     }
 }
