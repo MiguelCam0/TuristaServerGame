@@ -50,7 +50,7 @@ namespace Services.DataBaseManager
         public void SavePlayerSession(int idPlayer)
         {
             IPlayerManagerCallBack context = OperationContext.Current.GetCallbackChannel<IPlayerManagerCallBack>();
-            //OperationContext.Current.GetCallbackChannel<IPlayerManagerCallBack>().LookForFriends();
+            OperationContext.Current.GetCallbackChannel<IPlayerManagerCallBack>().LookForFriends();
             currentUsers.Add(idPlayer, context);
             Console.WriteLine(currentUsers.Count());
             foreach (var kvp in currentUsers)
