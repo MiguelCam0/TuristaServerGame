@@ -69,7 +69,6 @@ namespace Services.DataBaseManager
             {
                 using (var context = new TuristaMundialEntitiesDB())
                 {
-                    Console.WriteLine("Entra");
                     friendsList = context.friendship.Where(friend => friend.PlayerSet.Id == idPlayer).ToList();
                     foreach (var friend in friendsList)
                     {
