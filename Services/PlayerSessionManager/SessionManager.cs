@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Contracts.IDataBase;
 using Contracts.ISessionManager;
 using DataBase;
 
@@ -16,27 +17,28 @@ namespace Services.DataBaseManager
         public int MakeFriendRequest(int IDPlayer, string namePlayer)
         {
             int Result = 0;
-            try 
+            try
             {
-                using (var Context = new TuristaMundialEntitiesDB()) 
+                using (var Context = new TuristaMundialEntitiesDB())
                 {
                     Console.WriteLine(namePlayer);
-                    var SecondPlayer = Context.PlayerSet.Where(P => P.Nickname == namePlayer).First();
 
-                    if (SecondPlayer == null)
+                    if (CheckAlredyFriends(IDPlayer, namePlayer) == 0)
                     {
-                        Console.WriteLine("NO lo encontro");
                         Result = 1;
                     }
                     else
                     {
-                        FriendRequest Request = new FriendRequest();
-                        Request.PlayerSet1ID = IDPlayer;
-                        Request.PlayerSet2ID = SecondPlayer.Id;
-                        Request.StatusRequest = 1;
-                        Context.FriendRequest.Add(Request);
-                        Result = Context.SaveChanges();
-                        Console.WriteLine("ALGO PASO");
+                        var SecondPlayer = Context.PlayerSet.Where(P => P.Nickname == namePlayer).First();
+                        if (Context.FriendRequest.Where(r => r.PlayerSet1ID == IDPlayer && r.PlayerSet2ID == SecondPlayer.Id).FirstOrDefault() == null)
+                        {            
+                            FriendRequest Request = new FriendRequest();
+                            Request.PlayerSet1ID = IDPlayer;
+                            Request.PlayerSet2ID = SecondPlayer.Id;
+                            Context.FriendRequest.Add(Request);
+                            Result = Context.SaveChanges();
+                            NotifyRequest(SecondPlayer.Id);
+                        }
                     }
                 }
             } catch (Exception ex)
@@ -50,13 +52,93 @@ namespace Services.DataBaseManager
         public void SavePlayerSession(int idPlayer)
         {
             IPlayerManagerCallBack context = OperationContext.Current.GetCallbackChannel<IPlayerManagerCallBack>();
-            OperationContext.Current.GetCallbackChannel<IPlayerManagerCallBack>().LookForFriends();
             currentUsers.Add(idPlayer, context);
             Console.WriteLine(currentUsers.Count());
             foreach (var kvp in currentUsers)
             {
                 Console.WriteLine($"Clave: {kvp.Key}, Valor: {kvp.Value.ToString()}");
             }
+            
+        }
+
+        public int AcceptFriendRequest(int IdRequest)
+        {
+            int result = 0;
+            try
+            {
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    var request = context.FriendRequest.Where(r => r.IDRequest == IdRequest).First();
+                    friendship friendship = new friendship();
+                    friendship.PlayerSet = request.PlayerSet;
+                    friendship.PlayerSet1 = request.PlayerSet1;
+                    context.friendship.Add(friendship);
+                    context.FriendRequest.Remove(request);
+                    result = context.SaveChanges();
+                }
+            }catch(Exception ex) 
+            {
+                Console.WriteLine("Error en CheckAlredyFriends: " + ex.Message);
+            }
+            return result;
+        }
+
+        public int RejectFriendRequest(int IdRequest)
+        {
+            int result = 0;
+            try
+            {
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    var request = context.FriendRequest.Where(r => r.IDRequest == IdRequest).First();
+                    context.FriendRequest.Remove(request);
+                    result = context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en CheckAlredyFriends: " + ex.Message);
+            }
+            return result;
+        }
+
+        private int CheckAlredyFriends(int idPlayer, String playerName)
+        {
+            int result = 0;
+            try
+            {
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    var player = context.PlayerSet.Where(p => p.Nickname == playerName).FirstOrDefault();
+                    if (player != null)
+                    {
+                        var check = context.friendship.Where(fs => (fs.player1_id == idPlayer || fs.player1_id == player.Id) && ((fs.player2_id == idPlayer || fs.player2_id == player.Id))).FirstOrDefault();
+                        if(check == null)
+                        {
+                            result = 1;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) 
+            { 
+                Console.WriteLine("Error en CheckAlredyFriends: " + ex.Message); 
+            }
+            return result;
+        }
+        
+        private void NotifyRequest(int idPlayer)
+        {
+            foreach(var user in currentUsers)
+            {
+                if(idPlayer == user.Key)
+                {
+                    Console.WriteLine(idPlayer);
+                    user.Value.UpdateFriendRequest();
+                    Console.WriteLine("Notifica la request");
+                }
+            }
+
         }
     }
 }

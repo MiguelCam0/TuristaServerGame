@@ -17,7 +17,6 @@ namespace DataBase
         public int IDRequest { get; set; }
         public Nullable<int> PlayerSet1ID { get; set; }
         public Nullable<int> PlayerSet2ID { get; set; }
-        public Nullable<int> StatusRequest { get; set; }
     
         public virtual PlayerSet PlayerSet { get; set; }
         public virtual PlayerSet PlayerSet1 { get; set; }

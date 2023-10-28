@@ -16,13 +16,18 @@ namespace Contracts.ISessionManager
         [OperationContract]
         int MakeFriendRequest(int IDPlayer, String namePlayer);
 
+        [OperationContract]
+        int AcceptFriendRequest(int IdRequest);
+
+        [OperationContract]
+        int RejectFriendRequest(int IdRequest);
     }
 
     [ServiceContract]
     public interface IPlayerManagerCallBack
     {
         [OperationContract]
-        void LookForFriends();
+        void UpdateFriendRequest();
 
     }
 }
