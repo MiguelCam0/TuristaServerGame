@@ -12,7 +12,6 @@
           <Property Name="IDRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PlayerSet1ID" Type="int" />
           <Property Name="PlayerSet2ID" Type="int" />
-          <Property Name="StatusRequest" Type="int" />
         </EntityType>
         <EntityType Name="friendship">
           <Key>
@@ -185,7 +184,6 @@
           <Property Name="IDRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PlayerSet1ID" Type="Int32" />
           <Property Name="PlayerSet2ID" Type="Int32" />
-          <Property Name="StatusRequest" Type="Int32" />
           <NavigationProperty Name="PlayerSet" Relationship="TuristaMundialModel.FK_FriendRequest_PlayerSet1ID" FromRole="FriendRequest" ToRole="PlayerSet" />
           <NavigationProperty Name="PlayerSet1" Relationship="TuristaMundialModel.FK_FriendRequest_PlayerSet2ID" FromRole="FriendRequest" ToRole="PlayerSet" />
         </EntityType>
@@ -243,7 +241,6 @@
           <EntitySetMapping Name="FriendRequest">
             <EntityTypeMapping TypeName="TuristaMundialModel.FriendRequest">
               <MappingFragment StoreEntitySet="FriendRequest">
-                <ScalarProperty Name="StatusRequest" ColumnName="StatusRequest" />
                 <ScalarProperty Name="PlayerSet2ID" ColumnName="PlayerSet2ID" />
                 <ScalarProperty Name="PlayerSet1ID" ColumnName="PlayerSet1ID" />
                 <ScalarProperty Name="IDRequest" ColumnName="IDRequest" />
