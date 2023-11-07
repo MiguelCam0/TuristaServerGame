@@ -8,11 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
+using Contracts.IGameManager;
 
 namespace Services.DataBaseManager
 {
 
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.PerSession)]
     public partial class PlayerManager : IPlayer
     {
 
@@ -131,6 +132,36 @@ namespace Services.DataBaseManager
             }
 
             return friendRequests;
+        }
+
+        public string GetPlayerName(int IdPlayer)
+        {
+            string PlayerName = "";
+
+            try
+            {
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    var existingPlayer = context.PlayerSet.Where(p => p.Id == IdPlayer).FirstOrDefault();
+
+                    if (existingPlayer != null)
+                    {
+                        PlayerName = existingPlayer.Nickname;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en PlayerSearch: " + ex.InnerException);
+            }
+
+            return PlayerName;
+        }
+
+        public Game GetGame(int Game)
+        {
+            Console.WriteLine("LA clave del game es: " + Game);
+            return CurrentGames[Game];
         }
     }
 }

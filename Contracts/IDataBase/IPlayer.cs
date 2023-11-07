@@ -1,4 +1,5 @@
-﻿using DataBase;
+﻿using Contracts.IGameManager;
+using DataBase;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,12 +18,17 @@ namespace Contracts.IDataBase
         int RegisterPlayer(PlayerSet player);
         [OperationContract]
         int PlayerSearch(PlayerSet player);
+        [OperationContract]
+        string GetPlayerName(int IdPlayer);
 
         [OperationContract]
         List<FriendList> GetFriends(int idPlayer);
 
         [OperationContract]
         List<FriendRequestData> GetFriendRequests(int idPlayer);
+
+        [OperationContract]
+        Game GetGame(int Game);
 
     }
 
