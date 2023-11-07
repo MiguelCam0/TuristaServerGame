@@ -9,6 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Services;
 using Services.DataBaseManager;
+using System.Configuration;
+using System.Net.Sockets;
+using System.Net;
+using System.Xml.Linq;
+using System.Net.NetworkInformation;
+using System.Reflection.Emit;
 
 namespace Host
 {
@@ -16,9 +22,10 @@ namespace Host
     {
         public static List<InstanceContext> activeInstanceContexts = new List<InstanceContext>();
         
+
         static void Main(string[] args)
         {
-
+            UpdateBaseAddressesInAppConfig();
             using (ServiceHost host = new ServiceHost(typeof(Services.DataBaseManager.PlayerManager)))
             {
                 var playerManager = new PlayerManager();
@@ -27,8 +34,31 @@ namespace Host
                 Console.ReadLine();
             }
         }
-    }
 
+        public static void UpdateBaseAddressesInAppConfig()
+        {
+            try
+            {
+                string hostName = Dns.GetHostName();
+                string newIpAddress = Dns.GetHostByName(hostName).AddressList[1].ToString();
+                string configFilePath = "D:\\repos\\Juego\\TuristaServerGame\\Host\\App.config";
+                XDocument doc = XDocument.Load(configFilePath);
+                var baseAddresses = doc.Descendants("baseAddresses").Elements("add");
+                foreach (var baseAddressElement in baseAddresses)
+                {
+                    string oldBaseAddress = baseAddressElement.Attribute("baseAddress").Value;
+                    string newBaseAddress = oldBaseAddress.Replace("192.168.100.90", newIpAddress);
+                    baseAddressElement.SetAttributeValue("baseAddress", newBaseAddress);
+                }
+                doc.Save(configFilePath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error updating base addresses: " + ex.Message);
+            }
+        }
+
+    }
 
     public class ConnectionLoggingBehavior : IServiceBehavior
     {
