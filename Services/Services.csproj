@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBaseManager\PlayerManager.cs" />
+    <Compile Include="GameManager\ChatManager.cs" />
+    <Compile Include="GameManager\GameManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlayerSessionManager\SessionManager.cs" />
   </ItemGroup>
