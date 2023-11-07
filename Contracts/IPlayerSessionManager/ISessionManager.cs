@@ -21,6 +21,8 @@ namespace Contracts.ISessionManager
 
         [OperationContract]
         int RejectFriendRequest(int IdRequest);
+        [OperationContract(IsOneWay = true)]
+        void UpdatePlayerSession(int idPlayer);
     }
 
     [ServiceContract]
@@ -28,6 +30,9 @@ namespace Contracts.ISessionManager
     {
         [OperationContract]
         void UpdateFriendRequest();
+
+        [OperationContract]
+        void UpdateFriendDisplay();
 
     }
 }

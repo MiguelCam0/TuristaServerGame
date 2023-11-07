@@ -53,6 +53,7 @@ namespace Services.DataBaseManager
         {
             IPlayerManagerCallBack context = OperationContext.Current.GetCallbackChannel<IPlayerManagerCallBack>();
             currentUsers.Add(idPlayer, context);
+            NotifyFriendOline(idPlayer);
             Console.WriteLine(currentUsers.Count());
             foreach (var kvp in currentUsers)
             {
@@ -75,6 +76,7 @@ namespace Services.DataBaseManager
                     context.friendship.Add(friendship);
                     context.FriendRequest.Remove(request);
                     result = context.SaveChanges();
+                    NotifyFriendOline(friendship.PlayerSet1.Id);
                 }
             }catch(Exception ex) 
             {
@@ -139,6 +141,24 @@ namespace Services.DataBaseManager
                 }
             }
 
+        }
+
+        public void UpdatePlayerSession(int idPlayer)
+        {
+            IPlayerManagerCallBack context = OperationContext.Current.GetCallbackChannel<IPlayerManagerCallBack>();
+            currentUsers[idPlayer] = context;
+        }
+
+        private void NotifyFriendOline(int idPlayer)
+        {
+            var friends = GetFriends(idPlayer);
+            foreach (var friend in friends) 
+            {
+                if (currentUsers.ContainsKey(friend.IdFriend))
+                {
+                    currentUsers[friend.IdFriend].UpdateFriendDisplay();
+                }
+            }
         }
     }
 }
