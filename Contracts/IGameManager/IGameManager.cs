@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Contracts.IGameManager
 {
@@ -28,6 +29,18 @@ namespace Contracts.IGameManager
 
         [OperationContract(IsOneWay = true)]
         void StartGame(Game game);
+        
+        [OperationContract(IsOneWay = true)]
+        void InitializeGame(Game game);
+
+        [OperationContract(IsOneWay = true)]
+        void UpdatePlayerGame(Game game, int idPlayer);
+
+        [OperationContract(IsOneWay = true)]
+        void SelectedToken(Game game, string token);
+
+        [OperationContract(IsOneWay = true)]
+        void UnSelectedToken(Game game, string token);
     }
 
     [ServiceContract]
@@ -44,6 +57,18 @@ namespace Contracts.IGameManager
 
         [OperationContract]
         void MoveToGame(Game game);
+
+        [OperationContract]
+        void PreparePieces(Game game, List<Player> playersInGame);
+        
+        [OperationContract]
+        Piece UptdatePiecePlayer(Game game);
+
+        [OperationContract]
+        void BlockToken(string token);
+        
+        [OperationContract]
+        void UnblockToken(string token);
     }
 
     [DataContract]
@@ -64,7 +89,68 @@ namespace Contracts.IGameManager
         public int IdPlayer { get; set; }
         [DataMember]
         public string Name { get; set; }
-
+        [DataMember]
+        public int Position {  get; set; }
+        [DataMember]
+        public long Money { get; set; }
+        [DataMember]
+        public bool Jail { get; set; }
+        [DataMember]
+        public List<Property> properties { get; set; }
+        [DataMember]
+        public bool loser {  get; set; }
+        [DataMember]
+        public Piece Token { get; set; }
         public IGameManagerCallBack GameManagerCallBack { get; set; }
+        public IGamerLogicManagerCallBack GameLogicManagerCallBack { get; set; }
     }
+
+    [DataContract]
+    public class Piece
+    {
+        [DataMember]
+        public string Name { get; set; }
+        [DataMember]
+        public string ImagenSource { get; set; }
+    }
+
+    [DataContract]
+    public class Square
+    {
+        [DataMember]
+        public int position;
+        [DataMember]
+        public int Position { get => position; set => position = value; }
+    }
+
+    [DataContract]
+    public class Property : Square
+    {
+        public enum Type_Property { Jail, Service, Street }
+        public enum Property_Situation { Free, Bought, House, Hotel }
+
+        [DataMember]
+        public string Name { get; set; }
+        [DataMember]
+        public Type_Property Type { get; set; }
+        [DataMember]
+        public long BuyingCost { get; set; }
+        [DataMember]
+        public long Taxes { get; set; }
+        [DataMember]
+        public Property_Situation Situation { get; set; }
+        [DataMember]
+        public Player Owner { get; set; }
+        [DataMember]
+        public int PosicitionX { get; set; }
+        [DataMember]
+        public int PosicitionY { get; set; }
+        [DataMember]
+        public string ImageSource { get; set; }
+        [DataMember]
+        public string Color { get; set; }
+        public IGameManagerCallBack GameManagerCallBack { get; set; }
+        public IGameManagerCallBack GameLogicManagerCallBack { get; set; }
+    }
+
 }

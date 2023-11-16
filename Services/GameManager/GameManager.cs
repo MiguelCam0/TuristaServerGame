@@ -11,6 +11,7 @@ namespace Services.DataBaseManager
     public partial class PlayerManager : IGameManager
     {
         public static Dictionary<int, Game> CurrentGames = new Dictionary<int, Game>();
+        public static List<Player> PlayersAux = new List<Player>();
         public void AddGame(Game game)
         {
             CurrentGames.Add(game.IdGame, game);
@@ -19,12 +20,30 @@ namespace Services.DataBaseManager
             Console.WriteLine(CurrentGames.First().Key);
         }
 
+        void PreparePlayers(Game game)
+        {
+            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+            {
+                Player playerAux = new Player
+                {
+                    IdPlayer = player.IdPlayer,
+                    Name = player.Name,
+                    properties = new List<Property>(),
+                    loser = false,
+                    Position = -1,
+                    Jail = false,
+                    Money = 2000000,
+                    Token = player.Token
+                };
+                PlayersAux.Add(playerAux);
+            }
+        }
+
         public void AddPlayerToGame(int Game, Player player)
         {
             player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>(); 
             CurrentGames[Game].Players.Enqueue(player);
             CurrentGames[Game].PlayersInGame.Add(player);
-            Console.WriteLine("Numero total de jugadores actuales: " + CurrentGames[Game].Players.Count());
         }
 
         public void UpdatePlayers(int IdGame)
@@ -43,6 +62,30 @@ namespace Services.DataBaseManager
             foreach(var player in CurrentGames[game.IdGame].PlayersInGame)
             {
                 player.GameManagerCallBack.MoveToGame(game);
+            }
+        }
+
+        public void InitializeGame(Game game)
+        {
+            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+            {
+                player.GameManagerCallBack.PreparePieces(game, PlayersAux);
+            }
+        }
+
+        public void SelectedToken(Game game, string token)
+        {
+            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+            {
+                player.GameManagerCallBack.BlockToken(token);
+            }
+        }
+
+        public void UnSelectedToken(Game game, string token)
+        {
+            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+            {
+                player.GameManagerCallBack.UnblockToken(token);
             }
         }
     }
