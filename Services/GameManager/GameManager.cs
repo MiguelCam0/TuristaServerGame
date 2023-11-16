@@ -45,5 +45,32 @@ namespace Services.DataBaseManager
                 player.GameManagerCallBack.MoveToGame(game);
             }
         }
+
+        public void UpdateGameServer(int idPlayer, Game game)
+        {
+            CurrentGames[game.IdGame] = game;
+            var thisGame = CurrentGames[game.IdGame];
+            foreach (var player in thisGame.Players)
+            {
+                if(player.IdPlayer != idPlayer)
+                {
+                    //player.GameManagerCallBack.UpdateGame();
+                }
+            }
+        }
+
+        public void UpdateCallBackPlayer(int idGame, int idPlayer)
+        {
+            var game = CurrentGames[idGame];
+            foreach(var player in game.Players)
+            {
+                if(player.IdPlayer == idPlayer)
+                {
+                    Console.WriteLine(player.Name);
+                    player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>();
+                    Console.WriteLine(player.GameManagerCallBack + "ES NULO O no");
+                }
+            }
+        }
     }
 }
