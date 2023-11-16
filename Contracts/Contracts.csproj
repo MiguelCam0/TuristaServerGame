@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDataBase\IPlayer.cs" />
+    <Compile Include="IGameManager\IGameLogicManager.cs" />
     <Compile Include="IGameManager\IGameManager.cs" />
     <Compile Include="IPlayerSessionManager\ISessionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

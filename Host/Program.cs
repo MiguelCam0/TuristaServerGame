@@ -43,13 +43,24 @@ namespace Host
                 string newIpAddress = Dns.GetHostByName(hostName).AddressList[1].ToString();
                 string configFilePath = "D:\\repos\\Juego\\TuristaServerGame\\Host\\App.config";
                 XDocument doc = XDocument.Load(configFilePath);
+
                 var baseAddresses = doc.Descendants("baseAddresses").Elements("add");
+
                 foreach (var baseAddressElement in baseAddresses)
                 {
                     string oldBaseAddress = baseAddressElement.Attribute("baseAddress").Value;
-                    string newBaseAddress = oldBaseAddress.Replace("192.168.100.90", newIpAddress);
+                    Uri oldUri = new Uri(oldBaseAddress);
+                    string oldScheme = oldUri.Scheme;
+                    string oldHost = oldUri.Host;
+                    Uri newUri = new UriBuilder(oldScheme, newIpAddress)
+                    {
+                        Path = oldUri.PathAndQuery,
+                        Port = oldUri.Port
+                    }.Uri;
+                    string newBaseAddress = newUri.ToString();
                     baseAddressElement.SetAttributeValue("baseAddress", newBaseAddress);
                 }
+
                 doc.Save(configFilePath);
             }
             catch (Exception ex)

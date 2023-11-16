@@ -20,7 +20,7 @@ namespace Services.DataBaseManager
         public int PlayerSearch(PlayerSet player)
         {
             int check = 0;
-
+            Console.WriteLine("Entro crack");
             try
             {
                 using (var context = new TuristaMundialEntitiesDB())
@@ -50,15 +50,16 @@ namespace Services.DataBaseManager
                 using (var context = new TuristaMundialEntitiesDB())
                 {
                     context.PlayerSet.Add(player);
-                    context.SaveChanges();
+                    band = context.SaveChanges();
                 }
-                band = 1;
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error en RegisterPlayer: " + ex.Message);
             }
 
+            Console.WriteLine(band);
             return band;
         }
 
