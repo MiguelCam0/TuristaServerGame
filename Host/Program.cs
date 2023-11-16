@@ -25,7 +25,7 @@ namespace Host
 
         static void Main(string[] args)
         {
-            UpdateBaseAddressesInAppConfig();
+            //UpdateBaseAddressesInAppConfig();
             using (ServiceHost host = new ServiceHost(typeof(Services.DataBaseManager.PlayerManager)))
             {
                 var playerManager = new PlayerManager();

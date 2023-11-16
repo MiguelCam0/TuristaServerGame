@@ -41,6 +41,12 @@ namespace Contracts.IGameManager
 
         [OperationContract(IsOneWay = true)]
         void UnSelectedToken(Game game, string token);
+
+        [OperationContract]
+        void UpdateGameServer(int idPlayer, Game game);
+
+        [OperationContract]
+        void UpdateCallBackPlayer(int idGame, int idPlayer);
     }
 
     [ServiceContract]
