@@ -20,7 +20,9 @@ namespace Services.DataBaseManager
             int dieOne = random.Next(1, 6);
             int dieSecond = random.Next(1, 6);
 
+            Console.WriteLine("Nombre: " + CurrentGames[game.IdGame].Players.Peek().Name + " posicion: " +CurrentGames[game.IdGame].Players.Peek().Position);
             CurrentGames[game.IdGame].Players.Peek().Position = CurrentGames[game.IdGame].Players.Peek().Position + dieOne + dieSecond;
+            Console.WriteLine("Nombre: " + CurrentGames[game.IdGame].Players.Peek().Name + " posicion: " + CurrentGames[game.IdGame].Players.Peek().Position);
 
 
             if (CurrentGames[game.IdGame].Players.Peek().Position >= 40)
@@ -35,7 +37,11 @@ namespace Services.DataBaseManager
                 
             }
 
-            if(Turn == CurrentGames[game.IdGame].PlayersInGame.Count - 1)
+            CurrentGames[game.IdGame].Players.Enqueue(CurrentGames[game.IdGame].Players.Peek());
+            CurrentGames[game.IdGame].Players.Dequeue();
+            Console.WriteLine("Nombre: " + CurrentGames[game.IdGame].Players.Peek().Name + " posicion: " + CurrentGames[game.IdGame].Players.Peek().Position);
+
+            if (Turn == CurrentGames[game.IdGame].PlayersInGame.Count - 1)
             {
                 Turn = 0;
             }
