@@ -17,7 +17,6 @@ namespace Services.DataBaseManager
             CurrentGames.Add(game.IdGame, game);
             CurrentGames[game.IdGame].Players = new Queue<Player>();
             CurrentGames[game.IdGame].PlayersInGame = new List<Player>();
-            Console.WriteLine(CurrentGames.First().Key);
         }
 
         void PreparePlayers(Game game)
@@ -50,10 +49,8 @@ namespace Services.DataBaseManager
         {
             foreach(var player in CurrentGames[IdGame].Players)
             {
-                Console.WriteLine(player.GameManagerCallBack);
                 player.GameManagerCallBack.UpdateGame();
                 player.GameManagerCallBack.AddVisualPlayers();
-                Console.WriteLine(player.Name);
             }
         }
 
@@ -71,21 +68,22 @@ namespace Services.DataBaseManager
             {
                 player.GameManagerCallBack.PreparePieces(game, PlayersAux);
             }
+            InitializeBoard();
         }
 
-        public void SelectedToken(Game game, string token)
+        public void SelectedPiece(Game game, string token)
         {
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
-                player.GameManagerCallBack.BlockToken(token);
+                player.GameManagerCallBack.BlockPiece(token);
             }
         }
 
-        public void UnSelectedToken(Game game, string token)
+        public void UnSelectedPiece(Game game, string token)
         {
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
-                player.GameManagerCallBack.UnblockToken(token);
+                player.GameManagerCallBack.UnblockPiece(token);
             }
         }
     }

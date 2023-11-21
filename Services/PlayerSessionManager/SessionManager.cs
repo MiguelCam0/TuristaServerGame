@@ -46,6 +46,7 @@ namespace Services.DataBaseManager
                 Console.WriteLine("Error en RegisterPlayer: " + ex.Message);
             }
             Console.WriteLine(Result);
+
             return Result;
         }
 

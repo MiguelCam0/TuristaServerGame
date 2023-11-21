@@ -40,8 +40,8 @@ namespace Host
             try
             {
                 string hostName = Dns.GetHostName();
-                string newIpAddress = Dns.GetHostByName(hostName).AddressList[1].ToString();
-                string configFilePath = "D:\\repos\\Juego\\TuristaServerGame\\Host\\App.config";
+                string newIpAddress = Dns.GetHostByName(hostName).AddressList[0].ToString();
+                string configFilePath = "D:\\Proyectos .NET\\Juego\\TuristaServerGame\\Host\\App.config";
                 XDocument doc = XDocument.Load(configFilePath);
 
                 var baseAddresses = doc.Descendants("baseAddresses").Elements("add");
@@ -69,56 +69,5 @@ namespace Host
             }
         }
 
-    }
-
-    public class ConnectionLoggingBehavior : IServiceBehavior
-    {
-        public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, System.Collections.ObjectModel.Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters)
-        {
-        }
-
-        public void ApplyDispatchBehavior(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
-        {
-            foreach (ChannelDispatcherBase channelDispatcherBase in serviceHostBase.ChannelDispatchers)
-            {
-                ChannelDispatcher channelDispatcher = channelDispatcherBase as ChannelDispatcher;
-                if (channelDispatcher != null)
-                {
-                    foreach (EndpointDispatcher endpointDispatcher in channelDispatcher.Endpoints)
-                    {
-                        endpointDispatcher.DispatchRuntime.MessageInspectors.Add(new ConnectionLoggingMessageInspector());
-                    }
-                }
-            }
-        }
-
-        public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
-        {
-        }
-    }
-
-    public class ConnectionLoggingMessageInspector : IDispatchMessageInspector
-    {
-        public object AfterReceiveRequest(ref Message request, IClientChannel channel, InstanceContext instanceContext)
-        {
-            OperationContext context = OperationContext.Current;
-            if (context != null)
-            {
-                var endpointProperty = context.IncomingMessageProperties[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
-                if (endpointProperty != null)
-                {
-                    string clientIpAddress = endpointProperty.Address;
-                    Console.WriteLine("Nueva conexión entrante desde " + clientIpAddress);
-
-                    //Agregar el InstanceContext a la lista de instancias activas
-                    Program.activeInstanceContexts.Add(instanceContext);
-                }
-            }
-            return null;
-        }
-
-        public void BeforeSendReply(ref Message reply, object correlationState)
-        {
-        }
     }
 }

@@ -37,10 +37,10 @@ namespace Contracts.IGameManager
         void UpdatePlayerGame(Game game, int idPlayer);
 
         [OperationContract(IsOneWay = true)]
-        void SelectedToken(Game game, string token);
+        void SelectedPiece(Game game, string piece);
 
         [OperationContract(IsOneWay = true)]
-        void UnSelectedToken(Game game, string token);
+        void UnSelectedPiece(Game game, string piece);
     }
 
     [ServiceContract]
@@ -65,10 +65,10 @@ namespace Contracts.IGameManager
         Piece UptdatePiecePlayer(Game game);
 
         [OperationContract]
-        void BlockToken(string token);
+        void BlockPiece(string piece);
         
         [OperationContract]
-        void UnblockToken(string token);
+        void UnblockPiece(string piece);
     }
 
     [DataContract]
@@ -112,6 +112,8 @@ namespace Contracts.IGameManager
         public string Name { get; set; }
         [DataMember]
         public string ImagenSource { get; set; }
+        [DataMember]
+        public int PartNumber { get; set; }
     }
 
     [DataContract]
@@ -124,11 +126,26 @@ namespace Contracts.IGameManager
     }
 
     [DataContract]
-    public class Property : Square
+    public class Property 
     {
+        private Property() { }
+        public Property(string name, Type_Property type, long buyingCost, long taxes, Property_Situation situation, Player owner, int posX, int posY, string imageSource, string color)
+        {
+            Name = name;
+            Type = type;
+            BuyingCost = buyingCost;
+            Taxes = taxes;
+            Situation = situation;
+            Owner = owner;
+            PosicitionX = posX;
+            PosicitionY = posY;
+            ImageSource = imageSource;
+            Color = color;
+            NumberHouses = 0;
+        }
+
         public enum Type_Property { Jail, Service, Street }
         public enum Property_Situation { Free, Bought, House, Hotel }
-
         [DataMember]
         public string Name { get; set; }
         [DataMember]
@@ -149,6 +166,8 @@ namespace Contracts.IGameManager
         public string ImageSource { get; set; }
         [DataMember]
         public string Color { get; set; }
+        [DataMember]
+        public int NumberHouses { get; set; }
         public IGameManagerCallBack GameManagerCallBack { get; set; }
         public IGameManagerCallBack GameLogicManagerCallBack { get; set; }
     }
