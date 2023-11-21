@@ -37,10 +37,16 @@ namespace Contracts.IGameManager
         void UpdatePlayerGame(Game game, int idPlayer);
 
         [OperationContract(IsOneWay = true)]
-        void SelectedPiece(Game game, string piece);
+        void SelectedToken(Game game, string token);
 
         [OperationContract(IsOneWay = true)]
-        void UnSelectedPiece(Game game, string piece);
+        void UnSelectedToken(Game game, string token);
+
+        [OperationContract]
+        void UpdateGameServer(int idPlayer, Game game);
+
+        [OperationContract]
+        void UpdateCallBackPlayer(int idGame, int idPlayer);
     }
 
     [ServiceContract]
@@ -65,10 +71,10 @@ namespace Contracts.IGameManager
         Piece UptdatePiecePlayer(Game game);
 
         [OperationContract]
-        void BlockPiece(string piece);
+        void BlockToken(string token);
         
         [OperationContract]
-        void UnblockPiece(string piece);
+        void UnblockToken(string token);
     }
 
     [DataContract]
@@ -112,8 +118,6 @@ namespace Contracts.IGameManager
         public string Name { get; set; }
         [DataMember]
         public string ImagenSource { get; set; }
-        [DataMember]
-        public int PartNumber { get; set; }
     }
 
     [DataContract]
@@ -126,26 +130,11 @@ namespace Contracts.IGameManager
     }
 
     [DataContract]
-    public class Property 
+    public class Property : Square
     {
-        private Property() { }
-        public Property(string name, Type_Property type, long buyingCost, long taxes, Property_Situation situation, Player owner, int posX, int posY, string imageSource, string color)
-        {
-            Name = name;
-            Type = type;
-            BuyingCost = buyingCost;
-            Taxes = taxes;
-            Situation = situation;
-            Owner = owner;
-            PosicitionX = posX;
-            PosicitionY = posY;
-            ImageSource = imageSource;
-            Color = color;
-            NumberHouses = 0;
-        }
-
         public enum Type_Property { Jail, Service, Street }
         public enum Property_Situation { Free, Bought, House, Hotel }
+
         [DataMember]
         public string Name { get; set; }
         [DataMember]
@@ -166,8 +155,6 @@ namespace Contracts.IGameManager
         public string ImageSource { get; set; }
         [DataMember]
         public string Color { get; set; }
-        [DataMember]
-        public int NumberHouses { get; set; }
         public IGameManagerCallBack GameManagerCallBack { get; set; }
         public IGameManagerCallBack GameLogicManagerCallBack { get; set; }
     }
