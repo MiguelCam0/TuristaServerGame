@@ -1,0 +1,8 @@
+﻿D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Services\DataBaseManager\PlayerManager.cs
+D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Services\GameManager\ChatManager.cs
+D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Services\GameManager\GameLogicManager.cs
+D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Services\GameManager\GameManager.cs
+D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Services\Properties\AssemblyInfo.cs
+D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Services\PlayerSessionManager\SessionManager.cs
+D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Services\App.config
+D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Services\packages.config

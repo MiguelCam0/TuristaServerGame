@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,14 +42,14 @@ namespace Services.DataBaseManager
 
         public void AddPlayerToGame(int Game, Player player)
         {
-            player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>(); 
+            player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>();
             CurrentGames[Game].Players.Enqueue(player);
             CurrentGames[Game].PlayersInGame.Add(player);
         }
 
         public void UpdatePlayers(int IdGame)
         {
-            foreach(var player in CurrentGames[IdGame].Players)
+            foreach (var player in CurrentGames[IdGame].Players)
             {
                 Console.WriteLine(player.GameManagerCallBack);
                 player.GameManagerCallBack.UpdateGame();
@@ -59,7 +60,7 @@ namespace Services.DataBaseManager
 
         public void StartGame(Game game)
         {
-            foreach(var player in CurrentGames[game.IdGame].PlayersInGame)
+            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
                 player.GameManagerCallBack.MoveToGame(game);
             }
@@ -86,13 +87,16 @@ namespace Services.DataBaseManager
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
                 player.GameManagerCallBack.UnblockToken(token);
+            }
+        }
+
         public void UpdateGameServer(int idPlayer, Game game)
         {
             CurrentGames[game.IdGame] = game;
             var thisGame = CurrentGames[game.IdGame];
             foreach (var player in thisGame.Players)
             {
-                if(player.IdPlayer != idPlayer)
+                if (player.IdPlayer != idPlayer)
                 {
                     //player.GameManagerCallBack.UpdateGame();
                 }
@@ -101,16 +105,7 @@ namespace Services.DataBaseManager
 
         public void UpdateCallBackPlayer(int idGame, int idPlayer)
         {
-            var game = CurrentGames[idGame];
-            foreach(var player in game.Players)
-            {
-                if(player.IdPlayer == idPlayer)
-                {
-                    Console.WriteLine(player.Name);
-                    player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>();
-                    Console.WriteLine(player.GameManagerCallBack + "ES NULO O no");
-                }
-            }
+            throw new NotImplementedException();
         }
     }
 }

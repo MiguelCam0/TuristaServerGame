@@ -13,6 +13,7 @@ namespace Contracts.IGameManager
     {
         [OperationContract(IsOneWay = true)]
         void PlayTurn(Game game);
+
         [OperationContract]
         void UpdatePlayerService(int idPlayer, int idGame);
 
@@ -27,6 +28,4 @@ namespace Contracts.IGameManager
         [OperationContract]
         void MovePlayerPieceOnBoard(Player player, int turnPlayer);
     }
-
-    
 }
