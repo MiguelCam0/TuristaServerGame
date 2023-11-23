@@ -18,10 +18,7 @@ namespace Contracts.IGameManager
         void UpdatePlayerService(int idPlayer, int idGame);
 
         [OperationContract(IsOneWay = true)]
-        void InitializeBoard();
-
-        [OperationContract(IsOneWay = true)]
-        void PurchaseProperty(Property property, Player player);
+        void PurchaseProperty(Property property, Player player, int idGame);
     }
 
     [ServiceContract]

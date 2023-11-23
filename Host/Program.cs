@@ -21,11 +21,8 @@ namespace Host
     internal class Program
     {
         public static List<InstanceContext> activeInstanceContexts = new List<InstanceContext>();
-        
-
         static void Main(string[] args)
         {
-            //UpdateBaseAddressesInAppConfig();
             using (ServiceHost host = new ServiceHost(typeof(Services.DataBaseManager.PlayerManager)))
             {
                 var playerManager = new PlayerManager();

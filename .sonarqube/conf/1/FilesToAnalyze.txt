@@ -1,0 +1,7 @@
+﻿D:\Proyectos .NET\Juego\TuristaServerGame\Contracts\IDataBase\IPlayer.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Contracts\IGameManager\IGameLogicManager.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Contracts\IGameManager\IGameManager.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Contracts\IPlayerSessionManager\ISessionManager.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Contracts\Properties\AssemblyInfo.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Contracts\App.config
+D:\Proyectos .NET\Juego\TuristaServerGame\Contracts\packages.config

@@ -1,0 +1,8 @@
+﻿D:\Proyectos .NET\Juego\TuristaServerGame\Services\DataBaseManager\PlayerManager.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Services\GameManager\ChatManager.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Services\GameManager\GameLogicManager.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Services\GameManager\GameManager.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Services\Properties\AssemblyInfo.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Services\PlayerSessionManager\SessionManager.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Services\App.config
+D:\Proyectos .NET\Juego\TuristaServerGame\Services\packages.config
