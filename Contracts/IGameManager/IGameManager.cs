@@ -171,6 +171,5 @@ namespace Contracts.IGameManager
         public IGameManagerCallBack GameManagerCallBack { get; set; }
         public IGameManagerCallBack GameLogicManagerCallBack { get; set; }
     }
-
 }
 

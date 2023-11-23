@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contracts.IDataBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.ISessionManager
 {
-    [ServiceContract(CallbackContract = typeof(IPlayerManagerCallBack))]
-    public interface IPlayerManager
+    [ServiceContract(CallbackContract = typeof(INotificationsCallBack))]
+    public interface IFriends
     {
         [OperationContract(IsOneWay = true)]
         void SavePlayerSession(int idPlayer);
@@ -21,12 +22,19 @@ namespace Contracts.ISessionManager
 
         [OperationContract]
         int RejectFriendRequest(int IdRequest);
+
         [OperationContract(IsOneWay = true)]
         void UpdatePlayerSession(int idPlayer);
+
+        [OperationContract]
+        List<FriendList> GetFriends(int idPlayer);
+
+        [OperationContract]
+        List<FriendRequestData> GetFriendRequests(int idPlayer);
     }
 
     [ServiceContract]
-    public interface IPlayerManagerCallBack
+    public interface INotificationsCallBack
     {
         [OperationContract]
         void UpdateFriendRequest();
