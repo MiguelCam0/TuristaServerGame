@@ -1,6 +1,8 @@
-﻿using Contracts.IGameManager;
+﻿using Contracts.IDataBase;
+using Contracts.IGameManager;
 using Contracts.ISessionManager;
 using Microsoft.Win32;
+using Services.GameManager;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,22 +10,21 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Services.DataBaseManager
 {
     public partial class PlayerManager : IGameLogicManager
     {
-        public static int Turn = 0;
+        public static Dictionary<int,Board> CurrentBoards = new Dictionary<int,Board>();
+
         public void PlayTurn(Game game)
         {
             Random random = new Random();
             int dieOne = random.Next(1, 6);
             int dieSecond = random.Next(1, 6);
 
-            Console.WriteLine("Nombre: " + CurrentGames[game.IdGame].Players.Peek().Name + " posicion: " +CurrentGames[game.IdGame].Players.Peek().Position);
             CurrentGames[game.IdGame].Players.Peek().Position = CurrentGames[game.IdGame].Players.Peek().Position + dieOne + dieSecond;
-            Console.WriteLine("Nombre: " + CurrentGames[game.IdGame].Players.Peek().Name + " posicion: " + CurrentGames[game.IdGame].Players.Peek().Position);
-
 
             if (CurrentGames[game.IdGame].Players.Peek().Position >= 40)
             {
@@ -33,22 +34,21 @@ namespace Services.DataBaseManager
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
                 player.GameLogicManagerCallBack.PlayDie(dieOne, dieSecond);
-                player.GameLogicManagerCallBack.MovePlayerPieceOnBoard(CurrentGames[game.IdGame].Players.Peek(), Turn);
-                
+                player.GameLogicManagerCallBack.MovePlayerPieceOnBoard(CurrentGames[game.IdGame].Players.Peek(), CurrentBoards[game.IdGame].GetProperty(CurrentGames[game.IdGame].Players.Peek().Position));
+                if (player.IdPlayer == CurrentGames[game.IdGame].Players.Peek().IdPlayer)
+                {
+                    player.GameLogicManagerCallBack.ShowCard(CurrentBoards[game.IdGame].GetProperty(CurrentGames[game.IdGame].Players.Peek().Position));
+                }
             }
 
             CurrentGames[game.IdGame].Players.Enqueue(CurrentGames[game.IdGame].Players.Peek());
             CurrentGames[game.IdGame].Players.Dequeue();
-            Console.WriteLine("Nombre: " + CurrentGames[game.IdGame].Players.Peek().Name + " posicion: " + CurrentGames[game.IdGame].Players.Peek().Position);
+        }
 
-            if (Turn == CurrentGames[game.IdGame].PlayersInGame.Count - 1)
-            {
-                Turn = 0;
-            }
-            else
-            {
-                Turn++;
-            }
+        public void PurchaseProperty(Property property, Player player, int idGame)
+        {
+            player.Money -= property.BuyingCost;
+            CurrentBoards[idGame].RegisterPurchaseProperty(player, property);
         }
 
         public void UpdatePlayerService(int idPlayer, int idGame)
@@ -63,6 +63,5 @@ namespace Services.DataBaseManager
                 }
             }
         }
-
     }
 }

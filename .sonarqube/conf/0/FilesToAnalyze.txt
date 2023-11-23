@@ -1,0 +1,11 @@
+﻿D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\FriendRequest.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\friendship.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\PlayerSet.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\Properties\AssemblyInfo.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\TuristaMundialDB.Context.tt
+D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\TuristaMundialDB.edmx.sql
+D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\TuristaMundialDB.tt
+D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\TuristaMundialDB.edmx
+D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\App.Config
+D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\packages.config
+D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\TuristaMundialDB.edmx.diagram

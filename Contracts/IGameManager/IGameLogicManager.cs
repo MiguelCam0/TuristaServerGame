@@ -13,9 +13,12 @@ namespace Contracts.IGameManager
     {
         [OperationContract(IsOneWay = true)]
         void PlayTurn(Game game);
-        [OperationContract]
+        
+        [OperationContract(IsOneWay = true)]
         void UpdatePlayerService(int idPlayer, int idGame);
 
+        [OperationContract(IsOneWay = true)]
+        void PurchaseProperty(Property property, Player player, int idGame);
     }
 
     [ServiceContract]
@@ -25,8 +28,9 @@ namespace Contracts.IGameManager
         void PlayDie(int firstDieValue, int SecondDieValue);
 
         [OperationContract]
-        void MovePlayerPieceOnBoard(Player player, int turnPlayer);
-    }
+        void MovePlayerPieceOnBoard(Player player, Property property);
 
-    
+        [OperationContract]
+        void ShowCard(Property property);
+    }
 }
