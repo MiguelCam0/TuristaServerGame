@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AnalysisConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
-  <SonarConfigDir>D:\Proyectos .NET\Juego\TuristaServerGame\.sonarqube\conf</SonarConfigDir>
-  <SonarOutputDir>D:\Proyectos .NET\Juego\TuristaServerGame\.sonarqube\out</SonarOutputDir>
-  <SonarBinDir>D:\Proyectos .NET\Juego\TuristaServerGame\.sonarqube\bin</SonarBinDir>
-  <SonarScannerWorkingDirectory>D:\Proyectos .NET\Juego\TuristaServerGame</SonarScannerWorkingDirectory>
+<AnalysisConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+  <SonarConfigDir>D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\.sonarqube\conf</SonarConfigDir>
+  <SonarOutputDir>D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\.sonarqube\out</SonarOutputDir>
+  <SonarBinDir>D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\.sonarqube\bin</SonarBinDir>
+  <SonarScannerWorkingDirectory>D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame</SonarScannerWorkingDirectory>
   <HasBeginStepCommandLineCredentials>true</HasBeginStepCommandLineCredentials>
   <SonarQubeHostUrl>http://localhost:9000</SonarQubeHostUrl>
   <SonarQubeVersion>10.3.0.82913</SonarQubeVersion>
-  <SonarProjectKey>TouristGameServer</SonarProjectKey>
+  <SonarProjectKey>TuristaMundialGame</SonarProjectKey>
   <AdditionalConfig>
     <ConfigSetting Id="BuildUri" />
     <ConfigSetting Id="TfsUri" />
     <ConfigSetting Id="VsCoverageConverterToolPath" />
     <ConfigSetting Id="UnchangedFilesPath" />
-    <ConfigSetting Id="sonar.pullrequest.cache.basepath" Value="D:\Proyectos .NET\Juego\TuristaServerGame" />
-    <ConfigSetting Id="settings.file.path" Value="D:\Archivos Programas (D)\SonarQube-Scanner\SonarQube.Analysis.xml" />
+    <ConfigSetting Id="sonar.pullrequest.cache.basepath" Value="D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame" />
+    <ConfigSetting Id="settings.file.path" Value="C:\Users\yusgu\.dotnet\tools\.store\dotnet-sonarscanner\5.14.0\dotnet-sonarscanner\5.14.0\tools\net5.0\any\SonarQube.Analysis.xml" />
   </AdditionalConfig>
   <ServerSettings>
     <Property Name="sonaranalyzer-cs.nuget.packageVersion">9.13.0.79967</Property>
@@ -128,8 +128,8 @@
     <Property Name="sonar.auth.gitlab.url">https://gitlab.com</Property>
     <Property Name="sonaranalyzer-vbnet.pluginKey">vbnet</Property>
     <Property Name="sonar.updatecenter.url">https://update.sonarsource.org/update-center.properties</Property>
-    <Property Name="sonar.core.id">147B411E-AYvy9ejnEJBRZn356gFV</Property>
-    <Property Name="sonar.core.startTime">21/11/2023 01:19:38 p. m.</Property>
+    <Property Name="sonar.core.startTime">20/11/2023 05:39:32 p. m.</Property>
+    <Property Name="sonar.core.id">147B411E-AYvvGoPytEw4RVzyjLzl</Property>
   </ServerSettings>
   <LocalSettings>
     <Property Name="sonar.host.url">http://localhost:9000</Property>
@@ -137,58 +137,58 @@
   <AnalyzersSettings>
     <AnalyzerSettings>
       <Language>cs</Language>
-      <RulesetPath>D:\Proyectos .NET\Juego\TuristaServerGame\.sonarqube\conf\Sonar-cs.ruleset</RulesetPath>
-      <DeactivatedRulesetPath>D:\Proyectos .NET\Juego\TuristaServerGame\.sonarqube\conf\Sonar-cs-none.ruleset</DeactivatedRulesetPath>
+      <RulesetPath>D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\.sonarqube\conf\Sonar-cs.ruleset</RulesetPath>
+      <DeactivatedRulesetPath>D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\.sonarqube\conf\Sonar-cs-none.ruleset</DeactivatedRulesetPath>
       <AnalyzerPlugins>
         <AnalyzerPlugin Key="csharp" Version="9.13.0.79967" StaticResourceName="SonarAnalyzer-9.13.0.79967.zip">
           <AssemblyPaths>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\0\Google.Protobuf.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CFG.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CSharp.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\0\THIRD-PARTY-NOTICES.txt</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\0\Google.Protobuf.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CFG.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CSharp.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\0\THIRD-PARTY-NOTICES.txt</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
         <AnalyzerPlugin Key="vbnet" Version="9.13.0.79967" StaticResourceName="SonarAnalyzer-9.13.0.79967.zip">
           <AssemblyPaths>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\1\Google.Protobuf.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.CFG.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.VisualBasic.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\1\THIRD-PARTY-NOTICES.txt</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\1\Google.Protobuf.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.CFG.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.VisualBasic.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\1\THIRD-PARTY-NOTICES.txt</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
       </AnalyzerPlugins>
       <AdditionalFilePaths>
-        <Path>D:\Proyectos .NET\Juego\TuristaServerGame\.sonarqube\conf\cs\SonarLint.xml</Path>
+        <Path>D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\.sonarqube\conf\cs\SonarLint.xml</Path>
       </AdditionalFilePaths>
     </AnalyzerSettings>
     <AnalyzerSettings>
       <Language>vbnet</Language>
-      <RulesetPath>D:\Proyectos .NET\Juego\TuristaServerGame\.sonarqube\conf\Sonar-vbnet.ruleset</RulesetPath>
-      <DeactivatedRulesetPath>D:\Proyectos .NET\Juego\TuristaServerGame\.sonarqube\conf\Sonar-vbnet-none.ruleset</DeactivatedRulesetPath>
+      <RulesetPath>D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\.sonarqube\conf\Sonar-vbnet.ruleset</RulesetPath>
+      <DeactivatedRulesetPath>D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\.sonarqube\conf\Sonar-vbnet-none.ruleset</DeactivatedRulesetPath>
       <AnalyzerPlugins>
         <AnalyzerPlugin Key="csharp" Version="9.13.0.79967" StaticResourceName="SonarAnalyzer-9.13.0.79967.zip">
           <AssemblyPaths>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\0\Google.Protobuf.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CFG.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CSharp.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\0\THIRD-PARTY-NOTICES.txt</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\0\Google.Protobuf.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CFG.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CSharp.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\0\THIRD-PARTY-NOTICES.txt</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
         <AnalyzerPlugin Key="vbnet" Version="9.13.0.79967" StaticResourceName="SonarAnalyzer-9.13.0.79967.zip">
           <AssemblyPaths>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\1\Google.Protobuf.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.CFG.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.VisualBasic.dll</Path>
-            <Path>C:\Users\Migue\AppData\Local\Temp\.sonarqube\resources\1\THIRD-PARTY-NOTICES.txt</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\1\Google.Protobuf.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.CFG.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.VisualBasic.dll</Path>
+            <Path>C:\Users\yusgu\AppData\Local\Temp\.sonarqube\resources\1\THIRD-PARTY-NOTICES.txt</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
       </AnalyzerPlugins>
       <AdditionalFilePaths>
-        <Path>D:\Proyectos .NET\Juego\TuristaServerGame\.sonarqube\conf\vbnet\SonarLint.xml</Path>
+        <Path>D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\.sonarqube\conf\vbnet\SonarLint.xml</Path>
       </AdditionalFilePaths>
     </AnalyzerSettings>
   </AnalyzersSettings>

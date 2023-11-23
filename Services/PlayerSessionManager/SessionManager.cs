@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -10,30 +11,30 @@ using DataBase;
 
 namespace Services.DataBaseManager
 {
-    public partial class PlayerManager : IPlayerManager
+    public partial class PlayerManager : IFriends
     {
-        public static Dictionary<int, IPlayerManagerCallBack> currentUsers = new Dictionary<int, IPlayerManagerCallBack>();
+        public static Dictionary<int, INotificationsCallBack> currentUsers = new Dictionary<int, INotificationsCallBack>();
 
-        public int MakeFriendRequest(int IDPlayer, string namePlayer)
+        public int MakeFriendRequest(int Sender, string Reciber)
         {
             int Result = 0;
             try
             {
                 using (var Context = new TuristaMundialEntitiesDB())
                 {
-                    Console.WriteLine(namePlayer);
+                    Console.WriteLine(Reciber);
 
-                    if (CheckAlredyFriends(IDPlayer, namePlayer) == 0)
+                    if (CheckAlredyFriends(Sender, Reciber) == 0)
                     {
                         Result = 1;
                     }
                     else
                     {
-                        var SecondPlayer = Context.PlayerSet.Where(P => P.Nickname == namePlayer).First();
-                        if (Context.FriendRequest.Where(r => r.PlayerSet1ID == IDPlayer && r.PlayerSet2ID == SecondPlayer.Id).FirstOrDefault() == null)
+                        var SecondPlayer = Context.PlayerSet.Where(P => P.Nickname == Reciber).First();
+                        if (Context.FriendRequest.Where(r => r.PlayerSet1ID == Sender && r.PlayerSet2ID == SecondPlayer.Id).FirstOrDefault() == null)
                         {            
                             FriendRequest Request = new FriendRequest();
-                            Request.PlayerSet1ID = IDPlayer;
+                            Request.PlayerSet1ID = Sender;
                             Request.PlayerSet2ID = SecondPlayer.Id;
                             Context.FriendRequest.Add(Request);
                             Result = Context.SaveChanges();
@@ -52,13 +53,13 @@ namespace Services.DataBaseManager
 
         public void SavePlayerSession(int idPlayer)
         {
-            IPlayerManagerCallBack context = OperationContext.Current.GetCallbackChannel<IPlayerManagerCallBack>();
+            INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();
             currentUsers.Add(idPlayer, context);
             NotifyFriendOline(idPlayer);
             Console.WriteLine(currentUsers.Count());
-            foreach (var kvp in currentUsers)
+            foreach (var user in currentUsers)
             {
-                Console.WriteLine($"Clave: {kvp.Key}, Valor: {kvp.Value.ToString()}");
+                Console.WriteLine($"Clave: {user.Key}, Valor: {user.Value.ToString()}");
             }
             
         }
@@ -105,17 +106,17 @@ namespace Services.DataBaseManager
             return result;
         }
 
-        private int CheckAlredyFriends(int idPlayer, String playerName)
+        private int CheckAlredyFriends(int Sender, String Reciber)
         {
             int result = 0;
             try
             {
                 using (var context = new TuristaMundialEntitiesDB())
                 {
-                    var player = context.PlayerSet.Where(p => p.Nickname == playerName).FirstOrDefault();
+                    var player = context.PlayerSet.Where(p => p.Nickname == Reciber).FirstOrDefault();
                     if (player != null)
                     {
-                        var check = context.friendship.Where(fs => (fs.player1_id == idPlayer || fs.player1_id == player.Id) && ((fs.player2_id == idPlayer || fs.player2_id == player.Id))).FirstOrDefault();
+                        var check = context.friendship.Where(fs => (fs.player1_id == Sender || fs.player1_id == player.Id) && ((fs.player2_id == Sender || fs.player2_id == player.Id))).FirstOrDefault();
                         if(check == null)
                         {
                             result = 1;
@@ -146,7 +147,7 @@ namespace Services.DataBaseManager
 
         public void UpdatePlayerSession(int idPlayer)
         {
-            IPlayerManagerCallBack context = OperationContext.Current.GetCallbackChannel<IPlayerManagerCallBack>();
+            INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();
             currentUsers[idPlayer] = context;
         }
 
@@ -160,6 +161,64 @@ namespace Services.DataBaseManager
                     currentUsers[friend.IdFriend].UpdateFriendDisplay();
                 }
             }
+        }
+
+        public List<FriendList> GetFriends(int idPlayer)
+        {
+            List<friendship> friendsList = new List<friendship>();
+            List<FriendList> friends = new List<FriendList>();
+            try
+            {
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    friendsList = context.friendship.Where(friend => friend.PlayerSet.Id == idPlayer).ToList();
+                    foreach (var friend in friendsList)
+                    {
+                        var friendData = new FriendList();
+                        friendData.IdFriend = friend.PlayerSet1.Id;
+                        friendData.FriendName = friend.PlayerSet1.Nickname;
+                        friends.Add(friendData);
+                    }
+
+                    friendsList = context.friendship.Where(friend => friend.PlayerSet1.Id == idPlayer).ToList();
+                    foreach (var friend in friendsList)
+                    {
+                        var friendData = new FriendList();
+                        friendData.IdFriend = friend.PlayerSet.Id;
+                        friendData.FriendName = friend.PlayerSet.Nickname;
+                        friends.Add(friendData);
+                    }
+
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine("Error en GetFriends: " + exception.Message);
+            }
+
+            friends = AreOnline(friends);
+            return friends;
+        }
+        public List<FriendRequestData> GetFriendRequests(int idPlayer)
+        {
+            List<FriendRequestData> friendRequests = new List<FriendRequestData>();
+            List<FriendRequest> dataBaseData = new List<FriendRequest>();
+            using (var Context = new TuristaMundialEntitiesDB())
+            {
+                dataBaseData = Context.FriendRequest.Where(P => P.PlayerSet2ID == idPlayer).ToList();
+
+                foreach (var data in dataBaseData)
+                {
+                    FriendRequestData request = new FriendRequestData
+                    {
+                        SenderName = data.PlayerSet.Nickname,
+                        IDRequest = data.IDRequest
+                    };
+                    friendRequests.Add(request);
+                }
+            }
+
+            return friendRequests;
         }
     }
 }

@@ -22,12 +22,6 @@ namespace Contracts.IDataBase
         string GetPlayerName(int IdPlayer);
 
         [OperationContract]
-        List<FriendList> GetFriends(int idPlayer);
-
-        [OperationContract]
-        List<FriendRequestData> GetFriendRequests(int idPlayer);
-
-        [OperationContract]
         Game GetGame(int Game);
 
     }
