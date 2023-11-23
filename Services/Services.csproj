@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBaseManager\PlayerManager.cs" />
+    <Compile Include="GameManager\Board.cs" />
     <Compile Include="GameManager\ChatManager.cs" />
     <Compile Include="GameManager\GameLogicManager.cs" />
     <Compile Include="GameManager\GameManager.cs" />

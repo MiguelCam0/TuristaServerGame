@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Contracts.IGameManager;
+using Services.GameManager;
 
 namespace Services.DataBaseManager
 {
@@ -64,21 +65,15 @@ namespace Services.DataBaseManager
             {
                 player.GameManagerCallBack.MoveToGame(game);
             }
+            Board board = new Board();
+            CurrentBoards.Add(game.IdGame, board);
         }
 
         public void InitializeGame(Game game)
         {
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
-                player.GameManagerCallBack.PreparePieces(game, PlayersAux);
-            }
-        }
-
-        public void SelectedToken(Game game, string token)
-        {
-            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
-            {
-                player.GameManagerCallBack.BlockToken(token);
+                player.GameManagerCallBack.PreparePieces(game, CurrentGames[game.IdGame].PlayersInGame);
             }
         }
 
@@ -98,7 +93,7 @@ namespace Services.DataBaseManager
             {
                 if (player.IdPlayer != idPlayer)
                 {
-                    //player.GameManagerCallBack.UpdateGame();
+                    player.GameManagerCallBack.UpdateGame();
                 }
             }
         }

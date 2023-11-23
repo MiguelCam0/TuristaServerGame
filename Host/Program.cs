@@ -21,11 +21,8 @@ namespace Host
     internal class Program
     {
         public static List<InstanceContext> activeInstanceContexts = new List<InstanceContext>();
-        
-
         static void Main(string[] args)
         {
-            //UpdateBaseAddressesInAppConfig();
             using (ServiceHost host = new ServiceHost(typeof(Services.DataBaseManager.PlayerManager)))
             {
                 var playerManager = new PlayerManager();
@@ -40,8 +37,8 @@ namespace Host
             try
             {
                 string hostName = Dns.GetHostName();
-                string newIpAddress = Dns.GetHostByName(hostName).AddressList[1].ToString();
-                string configFilePath = "D:\\repos\\Juego\\TuristaServerGame\\Host\\App.config";
+                string newIpAddress = Dns.GetHostByName(hostName).AddressList[0].ToString();
+                string configFilePath = "D:\\Proyectos .NET\\Juego\\TuristaServerGame\\Host\\App.config";
                 XDocument doc = XDocument.Load(configFilePath);
 
                 var baseAddresses = doc.Descendants("baseAddresses").Elements("add");
