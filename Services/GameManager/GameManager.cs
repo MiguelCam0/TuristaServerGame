@@ -81,7 +81,7 @@ namespace Services.DataBaseManager
         {
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
-                player.GameManagerCallBack.UnblockToken(token);
+                //player.GameManagerCallBack.UnblockToken(token);
             }
         }
 
