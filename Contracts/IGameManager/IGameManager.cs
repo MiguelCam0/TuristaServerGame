@@ -1,4 +1,5 @@
-﻿using Contracts.ISessionManager;
+﻿using Contracts.IDataBase;
+using Contracts.ISessionManager;
 using DataBase;
 using System;
 using System.Collections.Generic;
