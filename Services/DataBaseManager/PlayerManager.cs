@@ -20,7 +20,7 @@ namespace Services.DataBaseManager
         public int PlayerSearch(PlayerSet player)
         {
             int check = 0;
-            Console.WriteLine("Entro crack");
+            
             try
             {
                 using (var context = new TuristaMundialEntitiesDB())
@@ -28,7 +28,8 @@ namespace Services.DataBaseManager
                     var existingPlayer = context.PlayerSet.Where(p => p.Nickname == player.Nickname && p.Password == player.Password).FirstOrDefault();
 
                     if (existingPlayer != null)
-                    {          
+                    {
+                        Console.WriteLine("Entro crack");
                         check = existingPlayer.Id;
                     }
                 }

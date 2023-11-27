@@ -25,12 +25,6 @@ namespace Contracts.ISessionManager
 
         [OperationContract(IsOneWay = true)]
         void UpdatePlayerSession(int idPlayer);
-
-        [OperationContract]
-        List<FriendList> GetFriends(int idPlayer);
-
-        [OperationContract]
-        List<FriendRequestData> GetFriendRequests(int idPlayer);
     }
 
     [ServiceContract]
