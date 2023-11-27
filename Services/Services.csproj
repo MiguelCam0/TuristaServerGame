@@ -57,6 +57,7 @@
     <Compile Include="GameManager\ChatManager.cs" />
     <Compile Include="GameManager\GameLogicManager.cs" />
     <Compile Include="GameManager\GameManager.cs" />
+    <Compile Include="PlayerSessionManager\FriendList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlayerSessionManager\SessionManager.cs" />
   </ItemGroup>

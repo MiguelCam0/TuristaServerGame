@@ -22,25 +22,6 @@ namespace Services.DataBaseManager
             Console.WriteLine(CurrentGames.First().Key);
         }
 
-        void PreparePlayers(Game game)
-        {
-            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
-            {
-                Player playerAux = new Player
-                {
-                    IdPlayer = player.IdPlayer,
-                    Name = player.Name,
-                    properties = new List<Property>(),
-                    loser = false,
-                    Position = -1,
-                    Jail = false,
-                    Money = 2000000,
-                    Token = player.Token
-                };
-                PlayersAux.Add(playerAux);
-            }
-        }
-
         public void AddPlayerToGame(int Game, Player player)
         {
             player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>();
@@ -75,32 +56,6 @@ namespace Services.DataBaseManager
             {
                 player.GameManagerCallBack.PreparePieces(game, CurrentGames[game.IdGame].PlayersInGame);
             }
-        }
-
-        public void UnSelectedToken(Game game, string token)
-        {
-            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
-            {
-                //player.GameManagerCallBack.UnblockToken(token);
-            }
-        }
-
-        public void UpdateGameServer(int idPlayer, Game game)
-        {
-            CurrentGames[game.IdGame] = game;
-            var thisGame = CurrentGames[game.IdGame];
-            foreach (var player in thisGame.Players)
-            {
-                if (player.IdPlayer != idPlayer)
-                {
-                    player.GameManagerCallBack.UpdateGame();
-                }
-            }
-        }
-
-        public void UpdateCallBackPlayer(int idGame, int idPlayer)
-        {
-            throw new NotImplementedException();
         }
     }
 }
