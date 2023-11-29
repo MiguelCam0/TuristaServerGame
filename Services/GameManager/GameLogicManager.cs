@@ -29,7 +29,7 @@ namespace Services.DataBaseManager
                 player.GameLogicManagerCallBack.MovePlayerPieceOnBoard(CurrentGames[game.IdGame].Players.Peek(), CurrentBoards[game.IdGame].GetProperty(CurrentGames[game.IdGame].Players.Peek().Position));
                 if (player.IdPlayer == CurrentGames[game.IdGame].Players.Peek().IdPlayer)
                 {
-                    player.GameLogicManagerCallBack.ShowCard(CurrentBoards[game.IdGame].GetProperty(CurrentGames[game.IdGame].Players.Peek().Position));
+                    player.GameLogicManagerCallBack.ShowCard(CurrentBoards[game.IdGame].GetProperty(CurrentGames[game.IdGame].Players.Peek().Position + 1));
                 }
             }
 
@@ -43,11 +43,11 @@ namespace Services.DataBaseManager
             CurrentBoards[idGame].RegisterPurchaseProperty(player, property);
         }
 
-        public void StartAuction(int idGame)
+        public void StartAuction(int idGame, Property property)
         {
             foreach (var player in CurrentGames[idGame].Players)
             {
-                player.GameLogicManagerCallBack.OpenAuctionWindow();
+                player.GameLogicManagerCallBack.OpenAuctionWindow(property);
             }
         }
 
