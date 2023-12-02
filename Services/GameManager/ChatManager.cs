@@ -36,19 +36,6 @@ namespace Services.DataBaseManager
             }
         }
 
-        public int CheckUser(Player player)
-        {
-            int check = 0;
-            foreach (var playerAux in PlayersAux)
-            {
-                if(player.IdPlayer == playerAux.IdPlayer)
-                {
-                    check = 1; break;
-                }
-            }
-            return check;
-        }
-
         public void SelectedPiece(Game game, string token)
         {
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)

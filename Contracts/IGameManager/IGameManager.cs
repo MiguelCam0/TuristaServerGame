@@ -70,6 +70,7 @@ namespace Contracts.IGameManager
 
         [OperationContract]
         void UnblockPiece(string piece);
+
     }
 
     [DataContract]

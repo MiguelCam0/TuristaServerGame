@@ -56,5 +56,8 @@ namespace Contracts.IGameManager
 
         [OperationContract]
         void UpdateTurns(Queue<Player> turns);
+
+        [OperationContract]
+        void LoadFriends(Queue<Player> friends);
     }
 }
