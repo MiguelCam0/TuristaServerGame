@@ -1,4 +1,5 @@
-﻿using Contracts.IGameManager;
+﻿using Contracts.IDataBase;
+using Contracts.IGameManager;
 using Services.GameManager;
 using System;
 using System.Collections.Generic;
@@ -35,19 +36,38 @@ namespace Services.DataBaseManager
 
             CurrentGames[game.IdGame].Players.Enqueue(CurrentGames[game.IdGame].Players.Peek());
             CurrentGames[game.IdGame].Players.Dequeue();
+            UpdatePlayersInGame(game);
+        }
+
+        public void UpdatePlayersInGame(Game game)
+        {
+            foreach(var player in CurrentGames[game.IdGame].Players)
+            {
+                player.GameLogicManagerCallBack.LoadFriends(CurrentGames[game.IdGame].Players);
+            }
         }
 
         public void PurchaseProperty(Property property, Player player, int idGame)
         {
             player.Money -= property.BuyingCost;
+            foreach (var playerAux in CurrentGames[idGame].Players)
+            {
+                if(playerAux.IdPlayer == player.IdPlayer)
+                {
+                    playerAux.Money -= property.BuyingCost;
+                    Console.WriteLine(playerAux.Name + " dinero: " + playerAux.Money);
+                    break;
+                }
+                
+            }
             CurrentBoards[idGame].RegisterPurchaseProperty(player, property);
         }
 
-        public void StartAuction(int idGame)
+        public void StartAuction(int idGame, Property property)
         {
             foreach (var player in CurrentGames[idGame].Players)
             {
-                player.GameLogicManagerCallBack.OpenAuctionWindow();
+                player.GameLogicManagerCallBack.OpenAuctionWindow(property);
             }
         }
 

@@ -13,7 +13,6 @@ namespace Services.DataBaseManager
     public partial class PlayerManager : IGameManager
     {
         public static Dictionary<int, Game> CurrentGames = new Dictionary<int, Game>();
-        public static List<Player> PlayersAux = new List<Player>();
         public void AddGame(Game game)
         {
             CurrentGames.Add(game.IdGame, game);
@@ -45,6 +44,7 @@ namespace Services.DataBaseManager
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
                 player.GameManagerCallBack.MoveToGame(game);
+                
             }
             Board board = new Board();
             CurrentBoards.Add(game.IdGame, board);
@@ -55,6 +55,7 @@ namespace Services.DataBaseManager
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
                 player.GameManagerCallBack.PreparePieces(game, CurrentGames[game.IdGame].PlayersInGame);
+                player.GameLogicManagerCallBack.LoadFriends(CurrentGames[game.IdGame].Players);
             }
         }
     }

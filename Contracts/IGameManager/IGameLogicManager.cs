@@ -21,7 +21,7 @@ namespace Contracts.IGameManager
         void PurchaseProperty(Property property, Player player, int idGame);
 
         [OperationContract(IsOneWay = true)]
-        void StartAuction(int idGame);
+        void StartAuction(int idGame, Property property);
 
         [OperationContract(IsOneWay = true)]
         void MakeBid(int idGame, int IdPlayer, int Bid);
@@ -46,7 +46,7 @@ namespace Contracts.IGameManager
         void ShowCard(Property property);
 
         [OperationContract]
-        void OpenAuctionWindow();
+        void OpenAuctionWindow(Property property);
 
         [OperationContract]
         void UpdateBids(int IdPlayer, int Bid);
@@ -56,5 +56,8 @@ namespace Contracts.IGameManager
 
         [OperationContract]
         void UpdateTurns(Queue<Player> turns);
+
+        [OperationContract]
+        void LoadFriends(Queue<Player> friends);
     }
 }
