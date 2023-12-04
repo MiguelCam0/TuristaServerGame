@@ -29,7 +29,7 @@ namespace Services.DataBaseManager
                 player.GameLogicManagerCallBack.MovePlayerPieceOnBoard(CurrentGames[game.IdGame].Players.Peek(), CurrentBoards[game.IdGame].GetProperty(CurrentGames[game.IdGame].Players.Peek().Position));
                 if (player.IdPlayer == CurrentGames[game.IdGame].Players.Peek().IdPlayer)
                 {
-                    player.GameLogicManagerCallBack.ShowCard(CurrentBoards[game.IdGame].GetProperty(CurrentGames[game.IdGame].Players.Peek().Position));
+                    player.GameLogicManagerCallBack.ShowCard(CurrentBoards[game.IdGame].GetProperty(CurrentGames[game.IdGame].Players.Peek().Position + 1));
                 }
             }
 
