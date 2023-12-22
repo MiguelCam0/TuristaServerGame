@@ -31,6 +31,12 @@ namespace Contracts.IGameManager
 
         [OperationContract(IsOneWay = true)]
         void UpdateQueu(int idGame);
+
+        [OperationContract(IsOneWay = true)]
+        void GetActionCard(int idGame);
+
+        [OperationContract(IsOneWay = true)]
+        void MovePlayer(int idGame, int spaces);
     }
 
     [ServiceContract]
@@ -59,5 +65,17 @@ namespace Contracts.IGameManager
 
         [OperationContract]
         void LoadFriends(Queue<Player> friends);
+
+        [OperationContract]
+        void ShowEvent(int action);
+
+        [OperationContract]
+        void GoToJail();
+
+        [OperationContract]
+        void PayTaxes(int taxes);
+
+        [OperationContract]
+        void GetPay(int money);
     }
 }

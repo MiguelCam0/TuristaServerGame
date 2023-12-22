@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Contracts.IGameManager;
+using log4net;
+using log4net.Config;
 using Services.GameManager;
 
 namespace Services.DataBaseManager
 {
     public partial class PlayerManager : IGameManager
     {
+        private static readonly ILog _ilog = LogManager.GetLogger(typeof(PlayerManager));
         public static Dictionary<int, Game> CurrentGames = new Dictionary<int, Game>();
         public void AddGame(Game game)
         {
@@ -32,10 +36,18 @@ namespace Services.DataBaseManager
         {
             foreach (var player in CurrentGames[IdGame].Players)
             {
-                Console.WriteLine(player.GameManagerCallBack);
-                player.GameManagerCallBack.UpdateGame();
-                player.GameManagerCallBack.AddVisualPlayers();
-                Console.WriteLine(player.Name);
+                try
+                {
+                    Console.WriteLine(player.GameManagerCallBack);
+                    player.GameManagerCallBack.UpdateGame();
+                    player.GameManagerCallBack.AddVisualPlayers();
+                    Console.WriteLine(player.Name);
+
+                }
+                catch(TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                }
             }
         }
 
@@ -43,8 +55,14 @@ namespace Services.DataBaseManager
         {
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
-                player.GameManagerCallBack.MoveToGame(game);
-                
+                try
+                {
+                    player.GameManagerCallBack.MoveToGame(game);
+                }
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                }
             }
             Board board = new Board();
             CurrentBoards.Add(game.IdGame, board);
@@ -54,9 +72,26 @@ namespace Services.DataBaseManager
         {
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
-                player.GameManagerCallBack.PreparePieces(game, CurrentGames[game.IdGame].PlayersInGame);
-                player.GameLogicManagerCallBack.LoadFriends(CurrentGames[game.IdGame].Players);
+                try
+                {
+                    player.GameManagerCallBack.PreparePieces(game, CurrentGames[game.IdGame].PlayersInGame);
+                    player.GameLogicManagerCallBack.LoadFriends(CurrentGames[game.IdGame].Players);
+                }
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                }
             }
+        }
+
+        public void startLog()
+        {
+            XmlConfigurator.Configure(new FileInfo("D:\\yusgu\\Documents\\UV\\Quinto Semestre\\Tecnologias\\GAMEFINAL\\TuristaServerGame\\Services\\Logs\\LogConfiguration.xml"));
+            _ilog.Info("TESTING");
+            _ilog.Error("ERROR");
+            ILog log = LogManager.GetLogger(typeof(PlayerManager));
+            Console.WriteLine($"Nivel del Logger: {log.Logger.Repository.Name}");
+            Console.WriteLine("SI ENTRO Y REGISTRO SEGUN");
         }
     }
 }
