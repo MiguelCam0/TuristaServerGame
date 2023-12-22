@@ -47,23 +47,23 @@ namespace Services.DataBaseManager
             {
                 Console.WriteLine("Error en RegisterPlayer: " + ex.Message);
             }
-            Console.WriteLine(Result);
-
             return Result;
         }
 
         public void SavePlayerSession(int idPlayer)
         {
             INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();
-            currentUsers.Add(idPlayer, context);
-            NotifyFriendOline(idPlayer);
-            Console.WriteLine(currentUsers.Count());
-            foreach (var user in currentUsers)
+            if (currentUsers.ContainsKey(idPlayer))
             {
-                Console.WriteLine($"Clave: {user.Key}, Valor: {user.Value.ToString()}");
+                currentUsers[idPlayer] = context;
             }
-            
+            else
+            {
+                currentUsers.Add(idPlayer, context);
+                NotifyFriendOline(idPlayer);
+            }
         }
+
 
         public int AcceptFriendRequest(int IdRequest)
         {

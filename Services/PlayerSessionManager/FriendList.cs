@@ -66,7 +66,6 @@ namespace Services.DataBaseManager
                     friendRequests.Add(request);
                 }
             }
-
             return friendRequests;
         }
     }

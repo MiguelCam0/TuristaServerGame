@@ -76,8 +76,13 @@ namespace Contracts.IGameManager
     [DataContract]
     public class Game
     {
+        public enum Game_Situation { ByStart, Ongoing, Finished}
         [DataMember]
         public int IdGame { get; set; }
+        [DataMember]
+        public int Slot { get; set; }
+        [DataMember]
+        public Game_Situation Status { get; set; }
         [DataMember]
         public Queue<Player> Players { get; set; } = new Queue<Player>();
         [DataMember]
@@ -87,6 +92,17 @@ namespace Contracts.IGameManager
     [DataContract]
     public class Player
     {
+        public Player() { }
+
+        public Player(int id, string NamePlayer, long MoneyPlayer) {
+            IdPlayer = id;
+            Name = NamePlayer;
+            Money = MoneyPlayer;
+            Position = 0;
+            Jail = false;
+            Loser = false;
+        }
+
         [DataMember]
         public int IdPlayer { get; set; }
         [DataMember]
@@ -100,7 +116,7 @@ namespace Contracts.IGameManager
         [DataMember]
         public List<Property> properties { get; set; }
         [DataMember]
-        public bool loser { get; set; }
+        public bool Loser { get; set; }
         [DataMember]
         public Piece Token { get; set; }
         public IGameManagerCallBack GameManagerCallBack { get; set; }
