@@ -3,6 +3,7 @@ using Contracts.IGameManager;
 using Services.GameManager;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel;
 
 namespace Services.DataBaseManager
@@ -16,6 +17,8 @@ namespace Services.DataBaseManager
             Random random = new Random();
             int dieOne = random.Next(1, 6);
             int dieSecond = random.Next(1, 6);
+            dieOne = 5;
+            dieSecond = 0;
 
             CurrentGames[game.IdGame].Players.Peek().Position = CurrentGames[game.IdGame].Players.Peek().Position + dieOne + dieSecond;
 
@@ -106,6 +109,46 @@ namespace Services.DataBaseManager
             foreach(Player player in turns)
             {
                 player.GameLogicManagerCallBack.UpdateTurns(turns);
+            }
+        }
+
+        public void GetActionCard(int idGame)
+        {
+            Card card = new Card();
+            card.Action = 5;
+            CurrentGames[idGame].Players.Last().GameLogicManagerCallBack.ShowEvent(card.Action);
+            if (card.Action == 1) { CurrentGames[idGame].Players.Last().GameLogicManagerCallBack.GoToJail(); }
+            else if(card.Action == 2) { PayAnotherPlayer(idGame, card.RandomCash); }
+            else if (card.Action == 3) { CurrentGames[idGame].Players.Last().GameLogicManagerCallBack.PayTaxes(card.RandomCash); }
+            else if (card.Action == 4) { CurrentGames[idGame].Players.Last().GameLogicManagerCallBack.GetPay(card.RandomCash); }
+            else if (card.Action == 5) { MovePlayer(idGame, card.Action); }
+            else if (card.Action == 6) { MovePlayer(idGame, (-1 * card.Action)); }
+        }
+
+        private void PayAnotherPlayer(int idGame, int money)
+        {
+            CurrentGames[idGame].Players.Peek().GameLogicManagerCallBack.PayTaxes(money);
+            CurrentGames[idGame].Players.Last().GameLogicManagerCallBack.GetPay(money);
+        }
+
+        public void MovePlayer(int idGame, int spaces)
+        {
+            CurrentGames[idGame].Players.Peek().Position = CurrentGames[idGame].Players.Peek().Position + spaces;
+            Console.WriteLine(CurrentGames[idGame].Players.Peek().Name);
+           
+            if (CurrentGames[idGame].Players.Peek().Position >= 40)
+            {
+                CurrentGames[idGame].Players.Peek().Position -= 40;
+            }
+
+            foreach (var player in CurrentGames[idGame].PlayersInGame)
+            {
+                player.GameLogicManagerCallBack.MovePlayerPieceOnBoard(CurrentGames[idGame].Players.Peek(), CurrentBoards[idGame].GetProperty(CurrentGames[idGame].Players.Peek().Position));
+                
+                if (player.IdPlayer == CurrentGames[idGame].Players.Peek().IdPlayer)
+                {
+                    player.GameLogicManagerCallBack.ShowCard(CurrentBoards[idGame].GetProperty(CurrentGames[idGame].Players.Peek().Position + 1));
+                }
             }
         }
     }
