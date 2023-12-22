@@ -189,5 +189,31 @@ namespace Contracts.IGameManager
         public IGameManagerCallBack GameManagerCallBack { get; set; }
         public IGameManagerCallBack GameLogicManagerCallBack { get; set; }
     }
+
+    public class Card
+    {
+        public int Action { get; set; }
+        public int RandomCash {  get; set; }
+
+        public Card()
+        {
+            Action = RandomAction();
+            RandomCash = GenerateRandomCash();
+        }
+
+        private int RandomAction()
+        {
+            Random random = new Random();
+            int result = random.Next(1, 7);
+            return result;
+        }
+
+        private int GenerateRandomCash()
+        {
+            Random random = new Random();
+            int result = random.Next(1, 1000);
+            return result;
+        }
+    }
 }
 
