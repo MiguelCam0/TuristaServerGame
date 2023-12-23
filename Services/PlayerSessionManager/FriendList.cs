@@ -42,7 +42,7 @@ namespace Services.DataBaseManager
             }
             catch (SqlException exception)
             {
-                Console.WriteLine("Error en GetFriends: " + exception.Message);
+                _ilog.Error(exception.ToString());
             }
 
             friends = AreOnline(friends);

@@ -20,10 +20,13 @@ namespace Contracts.IGameManager
         void AddGame(Game game);
 
         [OperationContract]
-        void AddPlayerToGame(int Game, Player player);
+        void AddPlayerToGame(int game, Player player);
+        
+        [OperationContract]
+        void AddGuestToGame(int idGame, int idPlayer);
 
         [OperationContract(IsOneWay = true)]
-        void UpdatePlayers(int IdGame);
+        void UpdatePlayers(int idGame);
 
         [OperationContract(IsOneWay = true)]
         void SendMessage(int idGame, String message);
@@ -94,10 +97,10 @@ namespace Contracts.IGameManager
     {
         public Player() { }
 
-        public Player(int id, string NamePlayer, long MoneyPlayer) {
+        public Player(int id, string NamePlayer) {
             IdPlayer = id;
             Name = NamePlayer;
-            Money = MoneyPlayer;
+            Money = 100000;
             Position = 0;
             Jail = false;
             Loser = false;

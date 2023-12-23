@@ -83,15 +83,5 @@ namespace Services.DataBaseManager
                 }
             }
         }
-
-        public void startLog()
-        {
-            XmlConfigurator.Configure(new FileInfo("D:\\yusgu\\Documents\\UV\\Quinto Semestre\\Tecnologias\\GAMEFINAL\\TuristaServerGame\\Services\\Logs\\LogConfiguration.xml"));
-            _ilog.Info("TESTING");
-            _ilog.Error("ERROR");
-            ILog log = LogManager.GetLogger(typeof(PlayerManager));
-            Console.WriteLine($"Nivel del Logger: {log.Logger.Repository.Name}");
-            Console.WriteLine("SI ENTRO Y REGISTRO SEGUN");
-        }
     }
 }

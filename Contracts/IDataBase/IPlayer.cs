@@ -20,9 +20,10 @@ namespace Contracts.IDataBase
         int PlayerSearch(PlayerSet player);
         [OperationContract]
         string GetPlayerName(int IdPlayer);
-
         [OperationContract]
         Game GetGame(int Game);
+        [OperationContract]
+        string GetMyPlayersName(int idPlayer, int idGame);
 
     }
 
