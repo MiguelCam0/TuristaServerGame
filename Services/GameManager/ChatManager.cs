@@ -58,10 +58,41 @@ namespace Services.DataBaseManager
         public void AddGuestToGame(int idGame, int idPlayer)
         {
             TotalGuestPlayers++;
-            Player player = new Player(idPlayer, "JugadorInvitado_"+TotalGuestPlayers);
+            Player player = new Player(idPlayer, "Invitado0"+TotalGuestPlayers);
             player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>();
             CurrentGames[idGame].Players.Enqueue(player);
             CurrentGames[idGame].PlayersInGame.Add(player);
+        }
+
+
+        public void CheckReadyToStartGame(Game game)
+        {
+            CurrentGames[game.IdGame].NumberPlayersReady++;
+            if (CurrentGames[game.IdGame].NumberPlayersReady == CurrentGames[game.IdGame].PlayersInGame.Count && CurrentGames[game.IdGame].PlayersInGame.Count > 1)
+            {
+                foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+                {
+                    player.GameManagerCallBack.EnableStartGameButton();
+                }
+            }
+
+        }
+
+        public void UnCheckReadyToStartGame(Game game)
+        {
+            CurrentGames[game.IdGame].NumberPlayersReady--;
+            if (CurrentGames[game.IdGame].NumberPlayersReady != CurrentGames[game.IdGame].PlayersInGame.Count)
+            {
+                InactivateBeginGameControls(game.IdGame);
+            }
+        }
+
+        public void InactivateBeginGameControls(int idGame)
+        {
+            foreach (var player in CurrentGames[idGame].PlayersInGame)
+            {
+                player.GameManagerCallBack.DisableStartGameButton();
+            }
         }
     }
 }

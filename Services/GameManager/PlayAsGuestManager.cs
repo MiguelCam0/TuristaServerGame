@@ -13,7 +13,7 @@ namespace Services.DataBaseManager
         {
             int result = 0;
 
-            if (CurrentGames[code].Slot < 0)
+            if (CurrentGames[code].PlayersInGame.Count > 3)
             {
                 result = 1;
             }

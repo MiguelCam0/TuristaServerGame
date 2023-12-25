@@ -45,6 +45,12 @@ namespace Contracts.IGameManager
 
         [OperationContract(IsOneWay = true)]
         void UnSelectedPiece(Game game, string piece);
+        [OperationContract(IsOneWay =true)]
+        void CheckReadyToStartGame(Game game);
+        [OperationContract(IsOneWay = true)]
+        void UnCheckReadyToStartGame(Game game);
+        [OperationContract(IsOneWay = true)]
+        void InactivateBeginGameControls(int idGame);
     }
 
     [ServiceContract]
@@ -74,6 +80,10 @@ namespace Contracts.IGameManager
         [OperationContract]
         void UnblockPiece(string piece);
 
+        [OperationContract]
+        void EnableStartGameButton();
+        [OperationContract]
+        void DisableStartGameButton();
     }
 
     [DataContract]
@@ -86,6 +96,8 @@ namespace Contracts.IGameManager
         public int Slot { get; set; }
         [DataMember]
         public Game_Situation Status { get; set; }
+        [DataMember]
+        public int NumberPlayersReady { get; set; }
         [DataMember]
         public Queue<Player> Players { get; set; } = new Queue<Player>();
         [DataMember]

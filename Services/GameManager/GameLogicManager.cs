@@ -17,12 +17,11 @@ namespace Services.DataBaseManager
             Random random = new Random();
             int dieOne = random.Next(1, 6);
             int dieSecond = random.Next(1, 6);
-            dieOne = 5;
-            dieSecond = 0;
 
-            CurrentGames[game.IdGame].Players.Peek().Position = CurrentGames[game.IdGame].Players.Peek().Position + dieOne + dieSecond;
+            int playerPosition = CurrentGames[game.IdGame].Players.Peek().Position + dieOne + dieSecond;
+            CurrentGames[game.IdGame].Players.Peek().Position = playerPosition;
 
-            if (CurrentGames[game.IdGame].Players.Peek().Position >= 40)
+            if (playerPosition >= 40)
             {
                 CurrentGames[game.IdGame].Players.Peek().Position -= 40;
             }
@@ -30,10 +29,10 @@ namespace Services.DataBaseManager
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
                 player.GameLogicManagerCallBack.PlayDie(dieOne, dieSecond);
-                player.GameLogicManagerCallBack.MovePlayerPieceOnBoard(CurrentGames[game.IdGame].Players.Peek(), CurrentBoards[game.IdGame].GetProperty(CurrentGames[game.IdGame].Players.Peek().Position));
+                player.GameLogicManagerCallBack.MovePlayerPieceOnBoard(CurrentGames[game.IdGame].Players.Peek(), CurrentBoards[game.IdGame].GetProperty(playerPosition));
                 if (player.IdPlayer == CurrentGames[game.IdGame].Players.Peek().IdPlayer)
                 {
-                    player.GameLogicManagerCallBack.ShowCard(CurrentBoards[game.IdGame].GetProperty(CurrentGames[game.IdGame].Players.Peek().Position + 1));
+                    player.GameLogicManagerCallBack.ShowCard(CurrentBoards[game.IdGame].GetProperty(playerPosition + 1));
                 }
             }
 

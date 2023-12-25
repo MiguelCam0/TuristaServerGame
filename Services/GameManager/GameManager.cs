@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Contracts.IDataBase;
 using Contracts.IGameManager;
 using log4net;
 using log4net.Config;
@@ -22,7 +23,6 @@ namespace Services.DataBaseManager
             CurrentGames.Add(game.IdGame, game);
             CurrentGames[game.IdGame].Players = new Queue<Player>();
             CurrentGames[game.IdGame].PlayersInGame = new List<Player>();
-            Console.WriteLine(CurrentGames.First().Key);
         }
 
         public void AddPlayerToGame(int Game, Player player)
@@ -38,11 +38,8 @@ namespace Services.DataBaseManager
             {
                 try
                 {
-                    Console.WriteLine(player.GameManagerCallBack);
                     player.GameManagerCallBack.UpdateGame();
                     player.GameManagerCallBack.AddVisualPlayers();
-                    Console.WriteLine(player.Name);
-
                 }
                 catch(TimeoutException exception)
                 {
@@ -57,6 +54,7 @@ namespace Services.DataBaseManager
             {
                 try
                 {
+                    CurrentGames[game.IdGame].Status = Game.Game_Situation.Ongoing;
                     player.GameManagerCallBack.MoveToGame(game);
                 }
                 catch (TimeoutException exception)
