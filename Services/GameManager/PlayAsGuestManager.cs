@@ -25,7 +25,7 @@ namespace Services.DataBaseManager
         {
             int result = 1;
 
-            if (CurrentGames[code].Status == Game.Game_Situation.ByStart)
+            if (CurrentGames[code].Status == Game.GameSituation.ByStart)
             {
                 result = 0;
             }

@@ -10,6 +10,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Xml.Linq;
 
 namespace Contracts.IGameManager
 {
@@ -45,10 +46,13 @@ namespace Contracts.IGameManager
 
         [OperationContract(IsOneWay = true)]
         void UnSelectedPiece(Game game, string piece);
+
         [OperationContract(IsOneWay =true)]
         void CheckReadyToStartGame(Game game);
+
         [OperationContract(IsOneWay = true)]
         void UnCheckReadyToStartGame(Game game);
+
         [OperationContract(IsOneWay = true)]
         void InactivateBeginGameControls(int idGame);
     }
@@ -82,6 +86,7 @@ namespace Contracts.IGameManager
 
         [OperationContract]
         void EnableStartGameButton();
+
         [OperationContract]
         void DisableStartGameButton();
     }
@@ -89,13 +94,13 @@ namespace Contracts.IGameManager
     [DataContract]
     public class Game
     {
-        public enum Game_Situation { ByStart, Ongoing, Finished}
+        public enum GameSituation { ByStart, Ongoing, Finished}
         [DataMember]
         public int IdGame { get; set; }
         [DataMember]
         public int Slot { get; set; }
         [DataMember]
-        public Game_Situation Status { get; set; }
+        public GameSituation Status { get; set; }
         [DataMember]
         public int NumberPlayersReady { get; set; }
         [DataMember]
@@ -112,7 +117,7 @@ namespace Contracts.IGameManager
         public Player(int id, string NamePlayer) {
             IdPlayer = id;
             Name = NamePlayer;
-            Money = 100000;
+            Money = 500;
             Position = 0;
             Jail = false;
             Loser = false;
@@ -150,47 +155,39 @@ namespace Contracts.IGameManager
     }
 
     [DataContract]
-    public class Square
+    public class Property
     {
-        [DataMember]
-        public int position;
-        [DataMember]
-        public int Position { get => position; set => position = value; }
-    }
-
-    [DataContract]
-    public class Property : Square
-    {
-        private Property() { }
-        public Property(string name, Type_Property type, long buyingCost, long taxes, Property_Situation situation, Player owner, int posX, int posY, string imageSource, string color)
+        public Property(string name, TypeProperty type, long buyingCost, int posX, int posY, string imageSource, string color)
         {
             Name = name;
             Type = type;
             BuyingCost = buyingCost;
-            Taxes = taxes;
-            Situation = situation;
-            Owner = owner;
+            Taxes = (int)Math.Round(0.15 * buyingCost);
+            Situation = PropertySituation.Free;
+            Owner = null;
             PosicitionX = posX;
             PosicitionY = posY;
             ImageSource = imageSource;
             Color = color;
             NumberHouses = 0;
+            DefinitiveCost = buyingCost;
+            IsMortgaged = false;
         }
 
-        public enum Type_Property { Jail, Service, Street }
-        public enum Property_Situation { Free, Bought, House, Hotel }
+        public Property(string name, int posX, int posY, string imageSource)
+        {
+            Name = name;
+            PosicitionX = posX;
+            PosicitionY = posY;
+            ImageSource = imageSource;
+        }
+
+
+        public enum TypeProperty { Jail, Service, Street }
+        public enum PropertySituation { Free, Bought, House, Hotel }
+
         [DataMember]
         public string Name { get; set; }
-        [DataMember]
-        public Type_Property Type { get; set; }
-        [DataMember]
-        public long BuyingCost { get; set; }
-        [DataMember]
-        public long Taxes { get; set; }
-        [DataMember]
-        public Property_Situation Situation { get; set; }
-        [DataMember]
-        public Player Owner { get; set; }
         [DataMember]
         public int PosicitionX { get; set; }
         [DataMember]
@@ -198,19 +195,33 @@ namespace Contracts.IGameManager
         [DataMember]
         public string ImageSource { get; set; }
         [DataMember]
+        public TypeProperty Type { get; set; }
+        [DataMember]
+        public long BuyingCost { get; set; }
+        [DataMember]
+        public long Taxes { get; set; }
+        [DataMember]
+        public PropertySituation Situation { get; set; }
+        [DataMember]
+        public Player Owner { get; set; }
+        [DataMember]
         public string Color { get; set; }
         [DataMember]
         public int NumberHouses { get; set; }
+        [DataMember]
+        public long DefinitiveCost { get; set; }
+        [DataMember]
+        public bool IsMortgaged { get; set; }
         public IGameManagerCallBack GameManagerCallBack { get; set; }
         public IGameManagerCallBack GameLogicManagerCallBack { get; set; }
     }
 
-    public class Card
+    public class Wildcard
     {
         public int Action { get; set; }
         public int RandomCash {  get; set; }
 
-        public Card()
+        public Wildcard()
         {
             Action = RandomAction();
             RandomCash = GenerateRandomCash();
@@ -219,7 +230,7 @@ namespace Contracts.IGameManager
         private int RandomAction()
         {
             Random random = new Random();
-            int result = random.Next(1, 7);
+            int result = random.Next(1, 6);
             return result;
         }
 

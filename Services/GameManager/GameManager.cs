@@ -54,7 +54,7 @@ namespace Services.DataBaseManager
             {
                 try
                 {
-                    CurrentGames[game.IdGame].Status = Game.Game_Situation.Ongoing;
+                    CurrentGames[game.IdGame].Status = Game.GameSituation.Ongoing;
                     player.GameManagerCallBack.MoveToGame(game);
                 }
                 catch (TimeoutException exception)
@@ -64,6 +64,7 @@ namespace Services.DataBaseManager
             }
             Board board = new Board();
             CurrentBoards.Add(game.IdGame, board);
+            UpdateQueu(game.IdGame);
         }
 
         public void InitializeGame(Game game)

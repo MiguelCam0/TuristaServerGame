@@ -18,7 +18,6 @@ namespace Services.DataBaseManager
 
         public int MakeFriendRequest(int Sender, string Reciber)
         {
-            Console.WriteLine("Entro AL Metodo");
             int Result = 0;
             try
             {
@@ -41,14 +40,12 @@ namespace Services.DataBaseManager
                         var SecondPlayer = Context.PlayerSet.Where(P => P.Nickname == Reciber).First();
                         if (Context.FriendRequest.Where(r => r.PlayerSet1ID == Sender && r.PlayerSet2ID == SecondPlayer.Id).FirstOrDefault() == null)
                         {
-                            Console.WriteLine("Entro al if");
                             FriendRequest Request = new FriendRequest();
                             Request.PlayerSet1ID = Sender;
                             Request.PlayerSet2ID = SecondPlayer.Id;
                             Context.FriendRequest.Add(Request);
                             Result = Context.SaveChanges();
                             NotifyRequest(SecondPlayer.Id);
-                            Console.WriteLine("Que pedo si llego hasta aqui");
                         }
                     }
                 }
@@ -56,7 +53,6 @@ namespace Services.DataBaseManager
             {
                 Console.WriteLine("Error en RegisterPlayer: " + ex.Message);
             }
-            Console.WriteLine("Fuck");
             return Result;
         }
 
