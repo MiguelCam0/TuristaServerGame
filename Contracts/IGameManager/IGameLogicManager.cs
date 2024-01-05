@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace Contracts.IGameManager
 {
@@ -18,7 +19,7 @@ namespace Contracts.IGameManager
         void UpdatePlayerService(int idPlayer, int idGame);
 
         [OperationContract(IsOneWay = true)]
-        void PurchaseProperty(Property property, Player player, int idGame);
+        void PurchaseProperty(Property property, Player buyer, int idGame);
 
         [OperationContract(IsOneWay = true)]
         void StartAuction(int idGame, Property property);
@@ -33,10 +34,22 @@ namespace Contracts.IGameManager
         void UpdateQueu(int idGame);
 
         [OperationContract(IsOneWay = true)]
-        void GetActionCard(int idGame);
+        void GetActionCard(int idGame, Player player);
+        
+        [OperationContract(IsOneWay = true)]
+        void JailPlayer(int idGame, int idPlayer);
 
         [OperationContract(IsOneWay = true)]
-        void MovePlayer(int idGame, int spaces);
+        void RealizePropertyMortgage(int idGame, Property property, int idPlayer);
+
+        [OperationContract(IsOneWay = true)]
+        void DeclareLosingPlayer(Player loserPlayer, int idGame);
+
+        [OperationContract(IsOneWay = true)]
+        void PayPropertyMortgage(Game game, int idPlayer, Property mortgagedProperty);
+
+        [OperationContract(IsOneWay =true)]
+        void GoToJail(Player player, int idGame);
     }
 
     [ServiceContract]
@@ -70,12 +83,18 @@ namespace Contracts.IGameManager
         void ShowEvent(int action);
 
         [OperationContract]
-        void GoToJail();
+        void NotifyPlayerOfEvent(int messageNumber);
 
         [OperationContract]
-        void PayTaxes(int taxes);
+        void UpgradePlayerMoney(long money);
 
         [OperationContract]
-        void GetPay(int money);
+        void RemoveGamePiece(Player player);
+
+        [OperationContract]
+        void EndGame(int idWinner);
+
+        [OperationContract]
+        void UpdatePropertyStatus(Property property);
     }
 }

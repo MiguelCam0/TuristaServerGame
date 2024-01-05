@@ -1,4 +1,5 @@
-﻿D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Host\Program.cs
-D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Host\Properties\AssemblyInfo.cs
-D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Host\App.config
-D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\Host\packages.config
+﻿D:\Proyectos .NET\Juego\TuristaServerGame\Host\Program.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Host\Properties\AssemblyInfo.cs
+D:\Proyectos .NET\Juego\TuristaServerGame\Host\Logs\XMLFile1.xml
+D:\Proyectos .NET\Juego\TuristaServerGame\Host\App.config
+D:\Proyectos .NET\Juego\TuristaServerGame\Host\packages.config

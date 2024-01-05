@@ -1,1 +1,1 @@
-D:\yusgu\Documents\UV\Quinto Semestre\Tecnologias\GAMEFINAL\TuristaServerGame\.sonarqube\out\0
+D:\Proyectos .NET\Juego\TuristaServerGame\.sonarqube\out\0
