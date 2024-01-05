@@ -61,6 +61,7 @@
     <Compile Include="IDataBase\IPlayer.cs" />
     <Compile Include="IGameManager\IGameLogicManager.cs" />
     <Compile Include="IGameManager\IGameManager.cs" />
+    <Compile Include="IGameManager\IPlayAsGuestManager.cs" />
     <Compile Include="IPlayerSessionManager\IFriendList.cs" />
     <Compile Include="IPlayerSessionManager\IFriends.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

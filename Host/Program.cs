@@ -31,46 +31,11 @@ namespace Host
             using (ServiceHost host = new ServiceHost(typeof(Services.DataBaseManager.PlayerManager)))
             {
                 var playerManager = new PlayerManager();
-                playerManager.startLog();
+                XmlConfigurator.Configure(new FileInfo("D:\\Proyectos .NET\\Juego\\TuristaServerGame\\Host\\Logs\\XMLFile1.xml"));
                 host.Open();
                 Console.WriteLine("Server is running. Press Enter to exit.");
                 Console.ReadLine();
             }
         }
-
-        public static void UpdateBaseAddressesInAppConfig()
-        {
-            try
-            {
-                string hostName = Dns.GetHostName();
-                string newIpAddress = Dns.GetHostByName(hostName).AddressList[0].ToString();
-                string configFilePath = "D:\\Proyectos .NET\\Juego\\TuristaServerGame\\Host\\App.config";
-                XDocument doc = XDocument.Load(configFilePath);
-
-                var baseAddresses = doc.Descendants("baseAddresses").Elements("add");
-
-                foreach (var baseAddressElement in baseAddresses)
-                {
-                    string oldBaseAddress = baseAddressElement.Attribute("baseAddress").Value;
-                    Uri oldUri = new Uri(oldBaseAddress);
-                    string oldScheme = oldUri.Scheme;
-                    string oldHost = oldUri.Host;
-                    Uri newUri = new UriBuilder(oldScheme, newIpAddress)
-                    {
-                        Path = oldUri.PathAndQuery,
-                        Port = oldUri.Port
-                    }.Uri;
-                    string newBaseAddress = newUri.ToString();
-                    baseAddressElement.SetAttributeValue("baseAddress", newBaseAddress);
-                }
-
-                doc.Save(configFilePath);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error updating base addresses: " + ex.Message);
-            }
-        }
-
     }
 }
