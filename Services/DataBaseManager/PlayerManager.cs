@@ -16,7 +16,6 @@ namespace Services.DataBaseManager
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.PerSession)]
     public partial class PlayerManager : IPlayer
     {
-
         public int PlayerSearch(PlayerSet player)
         {
             int check = 0;
@@ -96,6 +95,21 @@ namespace Services.DataBaseManager
             catch (Exception ex)
             {
                 Console.WriteLine("Error en PlayerSearch: " + ex.InnerException);
+            }
+
+            return PlayerName;
+        }
+
+        public string GetMyPlayersName(int idPlayer, int idGame)
+        {
+            string PlayerName = "";
+            foreach (var player in CurrentGames[idGame].PlayersInGame)
+            {
+                if (player.IdPlayer == idPlayer)
+                {
+                    PlayerName = player.Name;
+                    break;
+                }
             }
 
             return PlayerName;

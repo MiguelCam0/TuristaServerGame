@@ -23,17 +23,23 @@ namespace Services.DataBaseManager
             {
                 using (var Context = new TuristaMundialEntitiesDB())
                 {
-                    Console.WriteLine(Reciber);
-
-                    if (CheckAlredyFriends(Sender, Reciber) == 0)
+                    if (VerifyUserExistence(Reciber) == 1)
+                    {
+                        Result = 2;
+                    } 
+                    else if (CheckAlredyFriends(Sender, Reciber) == 0)
                     {
                         Result = 1;
+                    }
+                    else if (CheckPreviousFriendRequest(Sender, Reciber) == 1)
+                    {
+                        Result = 3;
                     }
                     else
                     {
                         var SecondPlayer = Context.PlayerSet.Where(P => P.Nickname == Reciber).First();
                         if (Context.FriendRequest.Where(r => r.PlayerSet1ID == Sender && r.PlayerSet2ID == SecondPlayer.Id).FirstOrDefault() == null)
-                        {            
+                        {
                             FriendRequest Request = new FriendRequest();
                             Request.PlayerSet1ID = Sender;
                             Request.PlayerSet2ID = SecondPlayer.Id;
@@ -47,23 +53,23 @@ namespace Services.DataBaseManager
             {
                 Console.WriteLine("Error en RegisterPlayer: " + ex.Message);
             }
-            Console.WriteLine(Result);
-
             return Result;
         }
 
         public void SavePlayerSession(int idPlayer)
         {
             INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();
-            currentUsers.Add(idPlayer, context);
-            NotifyFriendOline(idPlayer);
-            Console.WriteLine(currentUsers.Count());
-            foreach (var user in currentUsers)
+            if (currentUsers.ContainsKey(idPlayer))
             {
-                Console.WriteLine($"Clave: {user.Key}, Valor: {user.Value.ToString()}");
+                currentUsers[idPlayer] = context;
             }
-            
+            else
+            {
+                currentUsers.Add(idPlayer, context);
+                NotifyFriendOline(idPlayer);
+            }
         }
+
 
         public int AcceptFriendRequest(int IdRequest)
         {
@@ -117,7 +123,8 @@ namespace Services.DataBaseManager
                     var player = context.PlayerSet.Where(p => p.Nickname == Reciber).FirstOrDefault();
                     if (player != null)
                     {
-                        var check = context.friendship.Where(fs => (fs.player1_id == Sender || fs.player1_id == player.Id) && ((fs.player2_id == Sender || fs.player2_id == player.Id))).FirstOrDefault();
+                        var check = context.friendship.Where(fs => (fs.player1_id == Sender || fs.player1_id == player.Id) 
+                        && ((fs.player2_id == Sender || fs.player2_id == player.Id))).FirstOrDefault();
                         if(check == null)
                         {
                             result = 1;
@@ -131,7 +138,51 @@ namespace Services.DataBaseManager
             }
             return result;
         }
-        
+
+        private int VerifyUserExistence(String userName)
+        {
+            try
+            {
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    var existingPlayer = context.PlayerSet.Any(p => p.Nickname == userName);
+                    return existingPlayer ? 0 : 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en CheckUserExistence: " + ex.Message);
+                return -1;
+            }
+        }
+
+        public int CheckPreviousFriendRequest(int Sender, string Reciber)
+        {
+            int result = 0;
+            try
+            {
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    var secondPlayer = context.PlayerSet.FirstOrDefault(p => p.Nickname == Reciber);
+                    if (secondPlayer != null)
+                    {
+                        var existingRequest = context.FriendRequest
+                            .Where(r => (r.PlayerSet1ID == Sender && r.PlayerSet2ID == secondPlayer.Id) || (r.PlayerSet1ID == secondPlayer.Id && r.PlayerSet2ID == Sender))
+                            .FirstOrDefault();
+                        if (existingRequest != null)
+                        {
+                            result = 1;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en CheckPreviousFriendRequest: " + ex.Message);
+            }
+            return result;
+        }
+
         private void NotifyRequest(int idPlayer)
         {
             foreach(var user in currentUsers)

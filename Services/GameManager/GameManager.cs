@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Contracts.IDataBase;
 using Contracts.IGameManager;
 using log4net;
 using log4net.Config;
@@ -22,7 +23,6 @@ namespace Services.DataBaseManager
             CurrentGames.Add(game.IdGame, game);
             CurrentGames[game.IdGame].Players = new Queue<Player>();
             CurrentGames[game.IdGame].PlayersInGame = new List<Player>();
-            Console.WriteLine(CurrentGames.First().Key);
         }
 
         public void AddPlayerToGame(int Game, Player player)
@@ -38,11 +38,8 @@ namespace Services.DataBaseManager
             {
                 try
                 {
-                    Console.WriteLine(player.GameManagerCallBack);
                     player.GameManagerCallBack.UpdateGame();
                     player.GameManagerCallBack.AddVisualPlayers();
-                    Console.WriteLine(player.Name);
-
                 }
                 catch(TimeoutException exception)
                 {
@@ -57,6 +54,7 @@ namespace Services.DataBaseManager
             {
                 try
                 {
+                    CurrentGames[game.IdGame].Status = Game.GameSituation.Ongoing;
                     player.GameManagerCallBack.MoveToGame(game);
                 }
                 catch (TimeoutException exception)
@@ -66,6 +64,7 @@ namespace Services.DataBaseManager
             }
             Board board = new Board();
             CurrentBoards.Add(game.IdGame, board);
+            UpdateQueu(game.IdGame);
         }
 
         public void InitializeGame(Game game)
@@ -82,16 +81,6 @@ namespace Services.DataBaseManager
                     _ilog.Error(exception.ToString());
                 }
             }
-        }
-
-        public void startLog()
-        {
-            XmlConfigurator.Configure(new FileInfo("D:\\yusgu\\Documents\\UV\\Quinto Semestre\\Tecnologias\\GAMEFINAL\\TuristaServerGame\\Services\\Logs\\LogConfiguration.xml"));
-            _ilog.Info("TESTING");
-            _ilog.Error("ERROR");
-            ILog log = LogManager.GetLogger(typeof(PlayerManager));
-            Console.WriteLine($"Nivel del Logger: {log.Logger.Repository.Name}");
-            Console.WriteLine("SI ENTRO Y REGISTRO SEGUN");
         }
     }
 }
