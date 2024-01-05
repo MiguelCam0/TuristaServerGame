@@ -12,36 +12,92 @@ namespace Services.DataBaseManager
 {
     public partial class PlayerManager : IGameLogicManager
     {
-        public static Dictionary<int, Board> CurrentBoards = new Dictionary<int, Board>();
+        private static readonly Dictionary<int, Board> CurrentBoards = new Dictionary<int, Board>();
 
         public void PlayTurn(Game game)
         {
-            Random random = new Random();
-            int dieOne = random.Next(1, 6);
-            int dieSecond = random.Next(1, 6);
-
-            Player currentPlayer = CurrentGames[game.IdGame].Players.Peek();
-            int playerPosition = currentPlayer.Position + 1; //dieOne + dieSecond;
-            currentPlayer.Position = playerPosition;
-
-            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+            try
             {
-                player.GameLogicManagerCallBack.PlayDie(dieOne, dieSecond);
-            }
+                Random random = new Random();
+                int dieOne = random.Next(1, 6);
+                int dieSecond = random.Next(1, 6);
 
-            MovePlayer(game.IdGame, playerPosition, ref currentPlayer);
-            AdvanceTurn(game.IdGame);
+                Player currentPlayer = GetCurrentPlayer(game);
+
+                int playerPosition = currentPlayer.Position + 1;//dieOne + dieSecond;
+                currentPlayer.Position = playerPosition;
+
+                UpdatingDiceNumbersInGame(game, dieOne, dieSecond);
+
+                MoveAndAdvance(game, playerPosition, ref currentPlayer);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
+
+        private Player GetCurrentPlayer(Game game)
+        {
+            return CurrentGames[game.IdGame].Players.Peek();
+        }
+
+        private void UpdatingDiceNumbersInGame(Game game, int dieOne, int dieSecond)
+        {
+            foreach (var player in CurrentGames[game.IdGame].Players)
+            {
+                try
+                {
+                    player.GameLogicManagerCallBack.PlayDie(dieOne, dieSecond);
+                }
+                catch (Exception ex)
+                {
+                    DeclareLosingPlayer(player, game.IdGame);
+                    HandleNotificationException(player, ex);
+                    throw;
+                }
+            }
+        }
+
+        private void MoveAndAdvance(Game game, int playerPosition, ref Player currentPlayer)
+        {
+            try
+            {
+                MovePlayer(game.IdGame, playerPosition, ref currentPlayer);
+                AdvanceTurn(game.IdGame);
+            }
+            catch (Exception ex)
+            {
+                HandleMovementException(ex);
+            }
+        }
+
+
+        private void HandleException(Exception ex)
+        {
+            Console.WriteLine($"Error en el bloque principal: {ex.Message}");
+        }
+
+        private void HandleNotificationException(Player player, Exception ex)
+        {
+            Console.WriteLine($"Error en PlayDie para el jugador {player.Name}: {ex.Message}");
+        }
+
+        private void HandleMovementException(Exception ex)
+        {
+            Console.WriteLine($"Error en MovePlayer o AdvanceTurn: {ex.Message}");
+        }
+
 
         private void AdvanceTurn(int idGame)
         {
             CurrentGames[idGame].Players.Enqueue(CurrentGames[idGame].Players.Dequeue());
-            if (CurrentGames[idGame].Players.Peek().Jail == true && CurrentGames[idGame].Players.Peek().Loser == false)
+            if (CurrentGames[idGame].Players.Peek().Jail && !CurrentGames[idGame].Players.Peek().Loser)
             {
                 CurrentGames[idGame].Players.Peek().Jail = false;
                 CurrentGames[idGame].Players.Enqueue(CurrentGames[idGame].Players.Dequeue());
             }
-            else if (CurrentGames[idGame].Players.Peek().Loser == true)
+            else if (CurrentGames[idGame].Players.Peek().Loser)
             {
                 CurrentGames[idGame].Players.Enqueue(CurrentGames[idGame].Players.Dequeue());
             }
@@ -51,65 +107,137 @@ namespace Services.DataBaseManager
         {
             int result = 0;
 
-            foreach (var player in CurrentGames[idGame].Players)
-            {
-                if (player.IdPlayer == idRenter)
-                {
-                    bool band = false;
-                    if (player.Money - amountOfRent < 0)
-                    {
-                        foreach (var property in CurrentBoards[idGame].board)
-                        {
-                            if(property.Owner != null && property.Owner.IdPlayer == idRenter && property.IsMortgaged == false)
-                            {
-                                RealizePropertyMortgage(idGame, property, idRenter);
-                                player.GameLogicManagerCallBack.UpdatePropertyStatus(property);
-                            }
-
-                            if(player.Money - amountOfRent >= 0)
-                            {
-                                band = true;
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        band = true;
-                    }
-
-                    if (!band)
-                    {
-                        DeclareLosingPlayer(player, idGame); 
-                        result = 1; break;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-            }
-
-            if(result == 0)
+            try
             {
                 foreach (var player in CurrentGames[idGame].Players)
                 {
-                    if (player.IdPlayer == idOwnerLand)
+                    if (player.IdPlayer == idRenter)
+                    {
+                        bool isPaymentSuccessful = ProcessRentalPayment(player, amountOfRent, idGame);
+
+                        if (!isPaymentSuccessful)
+                        {
+                            DeclareLosingPlayer(player, idGame);
+                            result = 1;
+                        }
+                        break;
+                    }
+                }
+
+                if (result == 0)
+                {
+                    ProcessPaymentForLandlord(idOwnerLand, amountOfRent, idGame);
+                    ProcessPaymentForRenter(idRenter, amountOfRent, idGame);
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                result = 2;
+            }
+
+            return result;
+        }
+
+        private bool ProcessRentalPayment(Player renter, long amountOfRent, int idGame)
+        {
+            bool isPaymentSuccessful;
+            if (renter.Money - amountOfRent < 0)
+            {
+                isPaymentSuccessful = TryMortgageProperties(renter, amountOfRent, idGame);
+            }
+            else
+            {
+                renter.Money -= amountOfRent;
+                isPaymentSuccessful = true;
+            }
+
+            try
+            {
+                renter.GameLogicManagerCallBack.UpgradePlayerMoney(renter.Money);
+                renter.GameLogicManagerCallBack.NotifyPlayerOfEvent(isPaymentSuccessful ? 1 : 0);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex); 
+            }
+
+            return isPaymentSuccessful;
+        }
+
+        private bool TryMortgageProperties(Player renter, long amountOfRent, int idGame)
+        {
+            bool result = false;
+
+            foreach (var property in CurrentBoards[idGame].board)
+            {
+                if (property.Owner != null && property.Owner.IdPlayer == renter.IdPlayer && !property.IsMortgaged)
+                {
+                    try
+                    {
+                        RealizePropertyMortgage(idGame, property, renter.IdPlayer);
+                        renter.GameLogicManagerCallBack.UpdatePropertyStatus(property);
+                    }
+                    catch (Exception ex)
+                    {
+                        HandleException(ex);
+                        throw;
+                    }
+                }
+
+                if (renter.Money - amountOfRent >= 0)
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
+        private void ProcessPaymentForLandlord(int idOwnerLand, long amountOfRent, int idGame)
+        {
+            foreach (var player in CurrentGames[idGame].Players)
+            {
+                if (player.IdPlayer == idOwnerLand)
+                {
+                    try
                     {
                         player.Money += amountOfRent;
                         player.GameLogicManagerCallBack.UpgradePlayerMoney(player.Money);
                         player.GameLogicManagerCallBack.NotifyPlayerOfEvent(0);
                     }
-                    else if (player.IdPlayer == idRenter)
+                    catch (Exception ex)
+                    {
+                        player.Money -= amountOfRent;
+                        HandleException(ex);
+                        throw;
+                    }
+                    
+                }
+            }
+        }
+
+        private void ProcessPaymentForRenter(int idRenter, long amountOfRent, int idGame)
+        {
+            foreach (var player in CurrentGames[idGame].Players)
+            {
+                if(player.IdPlayer == idRenter)
+                {
+                    try
                     {
                         player.Money -= amountOfRent;
                         player.GameLogicManagerCallBack.UpgradePlayerMoney(player.Money);
                         player.GameLogicManagerCallBack.NotifyPlayerOfEvent(1);
                     }
+                    catch (Exception ex)
+                    {
+                        player.Money += amountOfRent;
+                        HandleException(ex);
+                        throw;
+                    }
+                    break;
                 }
             }
-
-            return result;
         }
 
         public void UpdatePlayersInGame(int idGame)
@@ -120,26 +248,27 @@ namespace Services.DataBaseManager
             }
         }
 
-        public void PurchaseProperty(Property property, Player player, int idGame)
+        public void PurchaseProperty(Property property, Player buyer, int idGame)
         {
             foreach (var playerAux in CurrentGames[idGame].Players)
             {
-                if(playerAux.IdPlayer == player.IdPlayer)
+                if(playerAux.IdPlayer == buyer.IdPlayer)
                 {
-                    playerAux.Money -= property.DefinitiveCost;
+                    if(property.DefinitiveCost == 0)
+                    {
+                        playerAux.Money -= property.BuyingCost;
+                    }
+                    else
+                    {
+                        playerAux.Money -= property.DefinitiveCost;
+                    }
+                    
                     CurrentBoards[idGame].RegisterPurchaseProperty(playerAux, property);
                     break;
                 }
             }
         }
 
-        public void StartAuction(int idGame, Property property)
-        {
-            foreach (var player in CurrentGames[idGame].Players)
-            {
-                player.GameLogicManagerCallBack.OpenAuctionWindow(property);
-            }
-        }
         public void UpdatePlayerService(int idPlayer, int idGame)
         {
             IGamerLogicManagerCallBack context = OperationContext.Current.GetCallbackChannel<IGamerLogicManagerCallBack>();
@@ -153,66 +282,80 @@ namespace Services.DataBaseManager
             }
         }
 
-        public void MakeBid(int idGame, int IdPlayer, int Bid)
-        {
-            foreach (Player player in CurrentGames[idGame].Players)
-            {
-                player.GameLogicManagerCallBack.UpdateBids(IdPlayer, Bid);
-            }
-        }
-
-        public void StopAuction(int idGame,int winner, int winnerBid, Property property)
-        {
-            foreach (Player player in CurrentGames[idGame].Players)
-            {
-                player.GameLogicManagerCallBack.EndAuction(property, winner, winnerBid);
-            }
-        }
-
         public void UpdateQueu(int idGame)
         {
             Queue<Player> turns = CurrentGames[idGame].Players;
             foreach(Player player in turns)
             {
-                player.GameLogicManagerCallBack.UpdateTurns(turns);
+                if(!player.Loser)
+                {
+                    player.GameLogicManagerCallBack.UpdateTurns(turns);
+                }
             }
             UpdatePlayersInGame(idGame);
         }
 
-        public void GetActionCard(int idGame, Player player)
+        public void GetActionCard(int idGame, int idPlayer, Wildcard wildcard)
         {
-            Wildcard wildcard = new Wildcard();
+            Player player = GetPlayer(idGame, idPlayer);
+            if (wildcard.Action == 2) { GoToJail(player, idGame); }
+            else if(wildcard.Action == 3) { PayAnotherPlayer(idGame, player); }
+            else if (wildcard.Action == 4) { PayTaxes(ref player, idGame); }
+            else if (wildcard.Action == 5) { GetPay(ref player, idGame); }
+            else if (wildcard.Action == 6) { player.Position += 3; MovePlayer(idGame, player.Position, ref player); }
+            else if (wildcard.Action == 7) { player.Position -= 3; MovePlayer(idGame, player.Position, ref player); }
+        }
 
-            if (wildcard.Action == 1) { GoToJail(player, idGame); }
-            else if(wildcard.Action == 2) { PayAnotherPlayer(idGame, player); }
-            else if (wildcard.Action == 3) { PayTaxes(ref player, idGame); }
-            else if (wildcard.Action == 4) { GetPay(ref player); }
-            else if (wildcard.Action == 5) { player.Position += 3; MovePlayer(idGame, player.Position, ref player); }
-            else if (wildcard.Action == 6) { player.Position -= 3; MovePlayer(idGame, player.Position, ref player); }
+        private Player GetPlayer(int idGame, int idPlayer)
+        {
+            Player player = null;
+            
+            foreach (var playerAux in CurrentGames[idGame].Players)
+            {
+                if(playerAux.IdPlayer == idPlayer)
+                {
+                    player = playerAux;
+                    break;
+                }
+            }
 
-            player.GameLogicManagerCallBack.NotifyPlayerOfEvent(wildcard.Action);
+            return player;
         }
 
         private void PayTaxes(ref Player player, int idGame)
         {
-            player.Money -= 200;
-
-            if (player.Money < 0)
+            foreach(var playerAux in CurrentGames[idGame].Players)
             {
-                player.Money = 0;
+                if(playerAux.IdPlayer == player.IdPlayer)
+                {
+                    player.Money -= 200;
+
+                    if (player.Money < 0)
+                    {
+                        player.Money = 0;
+                    }
+                    playerAux.GameLogicManagerCallBack.LoadFriends(CurrentGames[idGame].Players);
+                }
             }
         }
 
-        private void GetPay(ref Player player)
+        private void GetPay(ref Player player, int idGame)
         {
-            player.Money += 200;
+            foreach (var playerAux in CurrentGames[idGame].Players)
+            {
+                if (playerAux.IdPlayer == player.IdPlayer)
+                {
+                    player.Money += 200;
+                    playerAux.GameLogicManagerCallBack.LoadFriends(CurrentGames[idGame].Players);
+                }
+            }
         }
 
         private void PayAnotherPlayer(int idGame, Player player)
         {
             PayTaxes(ref player, idGame);
             Player playerAux = CurrentGames[idGame].Players.Peek();
-            GetPay(ref playerAux);
+            GetPay(ref playerAux, idGame);
         }
 
         public void MovePlayer(int idGame, int playerPosition, ref Player player)
@@ -276,9 +419,10 @@ namespace Services.DataBaseManager
                 {
                     player.Loser = true;
                 }
-
-                player.GameLogicManagerCallBack.RemoveGamePiece(loserPlayer);
-                VerifyGameCompletion(idGame);
+                if(player.IdPlayer != loserPlayer.IdPlayer)
+                {
+                    player.GameLogicManagerCallBack.RemoveGamePiece(loserPlayer);
+                }
             }
         }
 
@@ -288,7 +432,7 @@ namespace Services.DataBaseManager
             int idWinner = 0;
             foreach (var player in CurrentGames[idGame].Players)
             {
-                if(player.Loser == false)
+                if(!player.Loser)
                 {
                     idWinner = player.IdPlayer;
                     activePlayers++;
@@ -342,6 +486,60 @@ namespace Services.DataBaseManager
 
             MovePlayer(idGame, player.Position, ref player);
             player.GameLogicManagerCallBack.ShowCard(CurrentBoards[idGame].board[player.Position]);
+        }
+
+        public void ModifyProperty(Property property, int idGame)
+        {
+            foreach (var propertyAux in CurrentBoards[idGame].board)
+            {
+                if(propertyAux.Name == property.Name)
+                {
+                    propertyAux.Taxes = property.Taxes;
+                    propertyAux.NumberHouses = property.NumberHouses;
+                    propertyAux.Situation = property.Situation;
+                    break;
+                }
+            }
+        }
+
+        public void ExpelPlayer(int idPlayer, int idGame)
+        {
+            var playersCopy = CurrentGames[idGame].Players.ToList();
+
+            foreach (var player in playersCopy)
+            {
+                if (player.IdPlayer == idPlayer)
+                {
+                    player.VotesToExpel++;
+                    if (player.VotesToExpel == CurrentGames[idGame].Players.Count - (1 + GetNumberLosersInGame(idGame)))
+                    {
+                        player.GameLogicManagerCallBack.ExitToGame();
+                        DeclareLosingPlayer(player, idGame);
+
+                        if (CurrentGames[idGame].Players.Peek().IdPlayer == idPlayer)
+                        {
+                            AdvanceTurn(idGame);
+                            UpdateQueu(idGame);
+                        }
+                    }
+                }
+                player.GameLogicManagerCallBack.LoadFriends(CurrentGames[idGame].Players);
+            }
+        }
+
+        private int GetNumberLosersInGame(int idGame)
+        {
+            int numberLosers = 0;
+
+            foreach (var player in CurrentGames[idGame].Players)
+            {
+                if(player.Loser)
+                {
+                    numberLosers++;
+                }
+            }
+
+            return numberLosers;
         }
     }
 }                                                                                                                                                                                         
