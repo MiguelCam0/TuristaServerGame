@@ -52,17 +52,22 @@ namespace Services.DataBaseManager
             return Result;
         }
 
-        public void SavePlayerSession(int idPlayer)
+        public int SavePlayerSession(int idPlayer)
         {
+            int result;
             INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();
-            currentUsers.Add(idPlayer, context);
-            NotifyFriendOline(idPlayer);
-            Console.WriteLine(currentUsers.Count());
-            foreach (var user in currentUsers)
+            try
             {
-                Console.WriteLine($"Clave: {user.Key}, Valor: {user.Value.ToString()}");
+                currentUsers.Add(idPlayer, context);
+                NotifyFriendOline(idPlayer);
+                result = 1;
             }
-            
+            catch(Exception ex) 
+            {
+                result = 0;
+            }
+            Console.WriteLine(currentUsers.Count());
+            return result;
         }
 
         public int AcceptFriendRequest(int IdRequest)
@@ -165,6 +170,21 @@ namespace Services.DataBaseManager
                     }catch (Exception ex) { Console.WriteLine(ex.InnerException); }
                 }
             }
+        }
+
+        public int LogOut(int idPlayer)
+        {
+            int result = 0;
+            try
+            {
+                currentUsers.Remove(idPlayer);
+                result = 1;
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.InnerException);
+            }
+            return result;
         }
     }
 }

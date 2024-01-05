@@ -24,6 +24,9 @@ namespace Contracts.IDataBase
         [OperationContract]
         Game GetGame(int Game);
 
+        [OperationContract]
+        int SendEmail(String verifyCode, String userEmail);
+
     }
 
     [DataContract]

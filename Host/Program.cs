@@ -32,6 +32,7 @@ namespace Host
             {
                 var playerManager = new PlayerManager();
                 playerManager.startLog();
+                //Console.WriteLine("Correo = " + playerManager.SendEmail("Hola", "yusgus02@gmail.com"));
                 host.Open();
                 Console.WriteLine("Server is running. Press Enter to exit.");
                 Console.ReadLine();
