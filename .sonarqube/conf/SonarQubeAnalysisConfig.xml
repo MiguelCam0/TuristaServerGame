@@ -7,7 +7,7 @@
   <HasBeginStepCommandLineCredentials>true</HasBeginStepCommandLineCredentials>
   <SonarQubeHostUrl>http://localhost:9000</SonarQubeHostUrl>
   <SonarQubeVersion>10.3.0.82913</SonarQubeVersion>
-  <SonarProjectKey>GameServer</SonarProjectKey>
+  <SonarProjectKey>Server</SonarProjectKey>
   <AdditionalConfig>
     <ConfigSetting Id="BuildUri" />
     <ConfigSetting Id="TfsUri" />
@@ -129,7 +129,7 @@
     <Property Name="sonaranalyzer-vbnet.pluginKey">vbnet</Property>
     <Property Name="sonar.updatecenter.url">https://update.sonarsource.org/update-center.properties</Property>
     <Property Name="sonar.core.id">147B411E-AYvy9ejnEJBRZn356gFV</Property>
-    <Property Name="sonar.core.startTime">25/12/2023 04:02:43 p. m.</Property>
+    <Property Name="sonar.core.startTime">04/01/2024 04:48:21 p. m.</Property>
   </ServerSettings>
   <LocalSettings>
     <Property Name="sonar.host.url">http://localhost:9000</Property>
