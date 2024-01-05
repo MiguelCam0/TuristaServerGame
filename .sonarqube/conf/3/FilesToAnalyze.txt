@@ -2,4 +2,5 @@
 D:\Proyectos .NET\Juego\TuristaServerGame\Host\Properties\AssemblyInfo.cs
 D:\Proyectos .NET\Juego\TuristaServerGame\Host\Logs\XMLFile1.xml
 D:\Proyectos .NET\Juego\TuristaServerGame\Host\App.config
+D:\Proyectos .NET\Juego\TuristaServerGame\Host\Credentials.json
 D:\Proyectos .NET\Juego\TuristaServerGame\Host\packages.config
