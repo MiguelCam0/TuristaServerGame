@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 using Contracts.IGameManager;
+using EASendMail;
 
 namespace Services.DataBaseManager
 {
@@ -19,7 +20,7 @@ namespace Services.DataBaseManager
         public int PlayerSearch(PlayerSet player)
         {
             int check = 0;
-            
+            //Pruebas TuristaMundialEntitiesDB
             try
             {
                 using (var context = new TuristaMundialEntitiesDB())
@@ -119,6 +120,38 @@ namespace Services.DataBaseManager
         {
             Console.WriteLine("LA clave del game es: " + Game);
             return CurrentGames[Game];
+        }
+
+        public int SendEmail(String verifyCode, String userEmail)
+        {
+            int result = 0;
+
+            try
+            {
+                SmtpMail mail = new SmtpMail("TryIt");
+                mail.From = "yusgus02@gmail.com";
+                mail.To = userEmail;
+                mail.Subject = "Codigo de verificacion";
+                mail.TextBody = "Tu codigo de verificacion es: " + verifyCode;
+
+                SmtpServer emailServer = new SmtpServer("smtp.gmail.com");
+
+                emailServer.User = "yusgus02@gmail.com";
+                emailServer.Password = "nopk fxne wkiy lvpg";
+                emailServer.Port = 587;
+                emailServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+                SmtpClient reciber = new SmtpClient();
+                reciber.SendMail(emailServer, mail);
+
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex);
+                result = 1;
+            }
+
+            return result;
         }
     }
 }

@@ -56,8 +56,9 @@ namespace Services.DataBaseManager
             return Result;
         }
 
-        public void SavePlayerSession(int idPlayer)
+        public int SavePlayerSession(int idPlayer)
         {
+            int result;
             INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();
             if (currentUsers.ContainsKey(idPlayer))
             {
@@ -216,6 +217,21 @@ namespace Services.DataBaseManager
                     }catch (Exception ex) { Console.WriteLine(ex.InnerException); }
                 }
             }
+        }
+
+        public int LogOut(int idPlayer)
+        {
+            int result = 0;
+            try
+            {
+                currentUsers.Remove(idPlayer);
+                result = 1;
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.InnerException);
+            }
+            return result;
         }
     }
 }
