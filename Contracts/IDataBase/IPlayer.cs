@@ -43,6 +43,9 @@ namespace Contracts.IDataBase
         [DataMember]
         public bool IsOnline { get; set; }
 
+        [DataMember]
+        public string Email { get; set; }
+
     }
 
     [DataContract]

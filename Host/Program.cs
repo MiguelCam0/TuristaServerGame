@@ -31,7 +31,7 @@ namespace Host
             using (ServiceHost host = new ServiceHost(typeof(Services.DataBaseManager.PlayerManager)))
             {
                 var playerManager = new PlayerManager();
-                XmlConfigurator.Configure(new FileInfo("D:\\Proyectos .NET\\Juego\\TuristaServerGame\\Host\\Logs\\XMLFile1.xml"));
+                XmlConfigurator.Configure(new FileInfo("D:\\yusgu\\Documents\\UV\\Quinto Semestre\\Tecnologias\\GAMEFINAL\\TuristaServerGame\\Host\\Logs\\XMLFile1.xml"));
                 host.Open();
                 Console.WriteLine("Server is running. Press Enter to exit.");
                 Console.ReadLine();

@@ -56,7 +56,7 @@ namespace Services.DataBaseManager
             return Result;
         }
 
-        public int SavePlayerSession(int idPlayer)
+        public void SavePlayerSession(int idPlayer)
         {
             int result;
             INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();

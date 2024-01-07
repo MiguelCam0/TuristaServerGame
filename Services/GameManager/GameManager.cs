@@ -23,10 +23,13 @@ namespace Services.DataBaseManager
             CurrentGames.Add(game.IdGame, game);
             CurrentGames[game.IdGame].Players = new Queue<Player>();
             CurrentGames[game.IdGame].PlayersInGame = new List<Player>();
+            Console.WriteLine(CurrentGames.Count);
         }
 
         public void AddPlayerToGame(int Game, Player player)
         {
+            Console.WriteLine("ESTA MIERDA QUE ES: " + Game);
+            Console.WriteLine("ESTO SI QUE : " + player.Name + player.IdPlayer);
             player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>();
             CurrentGames[Game].Players.Enqueue(player);
             CurrentGames[Game].PlayersInGame.Add(player);

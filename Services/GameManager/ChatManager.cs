@@ -1,5 +1,6 @@
 ﻿
 using Contracts.IGameManager;
+using EASendMail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,6 +93,33 @@ namespace Services.DataBaseManager
             foreach (var player in CurrentGames[idGame].PlayersInGame)
             {
                 player.GameManagerCallBack.DisableStartGameButton();
+            }
+        }
+
+        public void InviteFriendToGame(string codeGame, string friendEmail)
+        {
+            try
+            {
+                SmtpMail mail = new SmtpMail("TryIt");
+                mail.From = "yusgus02@gmail.com";
+                mail.To = friendEmail;
+                mail.Subject = "Codigo de verificacion";
+                mail.TextBody = "Tu codigo de verificacion es: " + codeGame;
+
+                SmtpServer emailServer = new SmtpServer("smtp.gmail.com");
+
+                emailServer.User = "yusgus02@gmail.com";
+                emailServer.Password = "nopk fxne wkiy lvpg";
+                emailServer.Port = 587;
+                emailServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+                SmtpClient reciber = new SmtpClient();
+                reciber.SendMail(emailServer, mail);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
     }

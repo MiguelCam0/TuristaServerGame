@@ -26,6 +26,7 @@ namespace Services.DataBaseManager
                         var friendData = new FriendList();
                         friendData.IdFriend = friend.PlayerSet1.Id;
                         friendData.FriendName = friend.PlayerSet1.Nickname;
+                        friendData.Email = friend.PlayerSet1.eMail;
                         friends.Add(friendData);
                     }
 

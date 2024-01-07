@@ -179,7 +179,7 @@ namespace Services.DataBaseManager
             UpdatePlayersInGame(idGame);
         }
 
-        public void GetActionCard(int idGame, Player player)
+        public void GetActionCard(int idGame, Player player) 
         {
             Wildcard wildcard = new Wildcard();
 
