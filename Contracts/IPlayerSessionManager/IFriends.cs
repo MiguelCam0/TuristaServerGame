@@ -12,7 +12,7 @@ namespace Contracts.ISessionManager
     public interface IFriends
     {
         [OperationContract]
-        int SavePlayerSession(int idPlayer);
+        void SavePlayerSession(int idPlayer);
 
         [OperationContract]
         int MakeFriendRequest(int IDPlayer, String namePlayer);

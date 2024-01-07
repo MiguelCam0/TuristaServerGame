@@ -55,6 +55,9 @@ namespace Contracts.IGameManager
 
         [OperationContract(IsOneWay = true)]
         void InactivateBeginGameControls(int idGame);
+
+        [OperationContract]
+        void InviteFriendToGame(string codeGame, string friendEmail);
     }
 
     [ServiceContract]
