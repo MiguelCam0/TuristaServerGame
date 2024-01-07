@@ -17,6 +17,9 @@ namespace Services.GameManager
             CreateBoard();
         }
 
+        /// <summary>
+        /// Crea y inicializa las propiedades del tablero del juego.
+        /// </summary>
         public void CreateBoard()
         {
             board = new Property[40];
@@ -62,11 +65,24 @@ namespace Services.GameManager
             board[39] = new Property("Invernalia", Property.TypeProperty.Street, 310, 644, 525, "..\\GameResources\\Pictures\\PropertyImage\\_724ecb4d-9044-489d-b9a2-77c29cf3b664.jpg", "#0172BB");
         }
 
+        /// <summary>
+        /// Obtiene la propiedad en una posición específica del tablero.
+        /// </summary>
+        /// <param name="position">Posición en el tablero para obtener la propiedad.</param>
+        /// <returns>Objeto Property que representa la propiedad en la posición especificada.</returns>
         public Property GetProperty(int position)
         {
             return board[position];
         }
 
+        /// <summary>
+        /// Registra la compra de una propiedad por parte de un jugador.
+        /// </summary>
+        /// <param name="player">Jugador que realiza la compra.</param>
+        /// <param name="property">Propiedad que se está comprando.</param>
+        /// <returns>Entero que indica el resultado de la operación:
+        /// 1 - Operación exitosa (propiedad comprada).
+        /// 0 - La propiedad ya tiene dueño (no se puede comprar).</returns>
         public int RegisterPurchaseProperty(Player player, Property property)
         {
             int result = 1;
@@ -78,13 +94,19 @@ namespace Services.GameManager
                 foundProperty.Owner = player;
                 foundProperty.Situation = property.Situation;
                 foundProperty.NumberHouses = property.NumberHouses;
-                foundProperty.DefinitiveCost = property.DefinitiveCost;
                 foundProperty.Taxes = property.Taxes;
             }
 
             return result;
         }
 
+        /// <summary>
+        /// Registra una hipoteca en una propiedad específica del tablero.
+        /// </summary>
+        /// <param name="property">Propiedad para la cual se registra la hipoteca.</param>
+        /// <returns>Entero que indica el resultado de la operación:
+        /// 1 - Operación exitosa (hipoteca registrada).
+        /// 0 - La propiedad no existe en el tablero (hipoteca no registrada).</returns>
         public int RegisterPropertyMortgage(Property property)
         {
             int result = 1;
