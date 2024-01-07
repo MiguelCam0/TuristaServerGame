@@ -30,8 +30,9 @@ namespace Services.DataBaseManager
             {
                 if (player.IdPlayer == idPlayer)
                 {
-                    player.Token = player.GameManagerCallBack.UptdatePiecePlayer(game);
-                    player.Token.PartNumber = turn;
+                    player.Piece = player.GameManagerCallBack.UptdatePiecePlayer(game);
+                    Console.WriteLine("Nombre: " + player.Name + " token " + player.Piece);
+                    player.Piece.PartNumber = turn;
 
                     break;
                 }

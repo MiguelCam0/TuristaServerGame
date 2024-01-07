@@ -22,19 +22,10 @@ namespace Contracts.IGameManager
         void PurchaseProperty(Property property, Player buyer, int idGame);
 
         [OperationContract(IsOneWay = true)]
-        void StartAuction(int idGame, Property property);
-
-        [OperationContract(IsOneWay = true)]
-        void MakeBid(int idGame, int IdPlayer, int Bid);
-
-        [OperationContract(IsOneWay = true)]
-        void StopAuction(int idGame, int winner, int winnerBid, Property property);
-
-        [OperationContract(IsOneWay = true)]
         void UpdateQueu(int idGame);
 
         [OperationContract(IsOneWay = true)]
-        void GetActionCard(int idGame, Player player);
+        void GetActionCard(int idGame, int idPlayer, Wildcard wildcard);
         
         [OperationContract(IsOneWay = true)]
         void JailPlayer(int idGame, int idPlayer);
@@ -50,6 +41,12 @@ namespace Contracts.IGameManager
 
         [OperationContract(IsOneWay =true)]
         void GoToJail(Player player, int idGame);
+
+        [OperationContract(IsOneWay = true)]
+        void ModifyProperty(Property property, int idGame);
+        
+        [OperationContract(IsOneWay = true)]
+        void ExpelPlayer(int idPlayer, int idGame);
     }
 
     [ServiceContract]
@@ -65,22 +62,10 @@ namespace Contracts.IGameManager
         void ShowCard(Property property);
 
         [OperationContract]
-        void OpenAuctionWindow(Property property);
-
-        [OperationContract]
-        void UpdateBids(int IdPlayer, int Bid);
-
-        [OperationContract]
-        void EndAuction(Property property, int winner, int winnerBid);
-
-        [OperationContract]
         void UpdateTurns(Queue<Player> turns);
 
         [OperationContract]
         void LoadFriends(Queue<Player> friends);
-
-        [OperationContract]
-        void ShowEvent(int action);
 
         [OperationContract]
         void NotifyPlayerOfEvent(int messageNumber);
@@ -96,5 +81,8 @@ namespace Contracts.IGameManager
 
         [OperationContract]
         void UpdatePropertyStatus(Property property);
+
+        [OperationContract]
+        void ExitToGame();
     }
 }

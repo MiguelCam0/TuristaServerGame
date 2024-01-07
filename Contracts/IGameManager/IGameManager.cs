@@ -137,11 +137,11 @@ namespace Contracts.IGameManager
         [DataMember]
         public bool Jail { get; set; }
         [DataMember]
-        public List<Property> properties { get; set; }
+        public int VotesToExpel { get; set; }
         [DataMember]
         public bool Loser { get; set; }
         [DataMember]
-        public Piece Token { get; set; }
+        public Piece Piece { get; set; }
         public IGameManagerCallBack GameManagerCallBack { get; set; }
         public IGamerLogicManagerCallBack GameLogicManagerCallBack { get; set; }
     }
@@ -168,20 +168,20 @@ namespace Contracts.IGameManager
             Taxes = (int)Math.Round(0.15 * buyingCost);
             Situation = PropertySituation.Free;
             Owner = null;
-            PosicitionX = posX;
-            PosicitionY = posY;
+            PositionX = posX;
+            PositionY = posY;
             ImageSource = imageSource;
             Color = color;
             NumberHouses = 0;
-            DefinitiveCost = buyingCost;
+            DefinitiveCost = 0;
             IsMortgaged = false;
         }
 
         public Property(string name, int posX, int posY, string imageSource)
         {
             Name = name;
-            PosicitionX = posX;
-            PosicitionY = posY;
+            PositionX = posX;
+            PositionY = posY;
             ImageSource = imageSource;
         }
 
@@ -192,9 +192,9 @@ namespace Contracts.IGameManager
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public int PosicitionX { get; set; }
+        public int PositionX { get; set; }
         [DataMember]
-        public int PosicitionY { get; set; }
+        public int PositionY { get; set; }
         [DataMember]
         public string ImageSource { get; set; }
         [DataMember]
@@ -219,30 +219,15 @@ namespace Contracts.IGameManager
         public IGameManagerCallBack GameLogicManagerCallBack { get; set; }
     }
 
+    [DataContract]
     public class Wildcard
     {
+        [DataMember]
         public int Action { get; set; }
+        [DataMember]
         public int RandomCash {  get; set; }
 
-        public Wildcard()
-        {
-            Action = RandomAction();
-            RandomCash = GenerateRandomCash();
-        }
-
-        private int RandomAction()
-        {
-            Random random = new Random();
-            int result = random.Next(1, 6);
-            return result;
-        }
-
-        private int GenerateRandomCash()
-        {
-            Random random = new Random();
-            int result = random.Next(1, 1000);
-            return result;
-        }
+        public Wildcard() {}
     }
 }
 
