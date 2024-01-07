@@ -18,6 +18,11 @@ namespace Services.DataBaseManager
     {
         private static readonly ILog _ilog = LogManager.GetLogger(typeof(PlayerManager));
         public static Dictionary<int, Game> CurrentGames = new Dictionary<int, Game>();
+
+        /// <summary>
+        /// Agrega un nuevo juego a la colección de juegos actuales.
+        /// </summary>
+        /// <param name="game">Objeto idGame que representa el juego a agregar.</param>
         public void AddGame(Game game)
         {
             CurrentGames.Add(game.IdGame, game);
@@ -26,18 +31,27 @@ namespace Services.DataBaseManager
             Console.WriteLine(CurrentGames.Count);
         }
 
-        public void AddPlayerToGame(int Game, Player player)
+        /// <summary>
+        /// Agrega un jugador a un juego específico en la colección de juegos actuales.
+        /// </summary>
+        /// <param name="idGame">Identificador del juego al que se agregará el jugador.</param>
+        /// <param name="player">Objeto Player que representa al jugador a agregar.</param>
+        public void AddPlayerToGame(int idGame, Player player)
         {
             Console.WriteLine("ESTA MIERDA QUE ES: " + Game);
             Console.WriteLine("ESTO SI QUE : " + player.Name + player.IdPlayer);
             player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>();
-            CurrentGames[Game].Players.Enqueue(player);
-            CurrentGames[Game].PlayersInGame.Add(player);
+            CurrentGames[idGame].Players.Enqueue(player);
+            CurrentGames[idGame].PlayersInGame.Add(player);
         }
 
-        public void UpdatePlayers(int IdGame)
+        /// <summary>
+        /// Actualiza la información de todos los jugadores en un juego específico.
+        /// </summary>
+        /// <param name="idGame">Identificador del juego cuyos jugadores se actualizarán.</param>
+        public void UpdatePlayers(int idGame)
         {
-            foreach (var player in CurrentGames[IdGame].Players)
+            foreach (var player in CurrentGames[idGame].Players)
             {
                 try
                 {
@@ -51,6 +65,10 @@ namespace Services.DataBaseManager
             }
         }
 
+        /// <summary>
+        /// Inicia un juego, actualiza el estado del juego y notifica a todos los jugadores.
+        /// </summary>
+        /// <param name="game">Objeto Game que representa el juego a iniciar.</param>
         public void StartGame(Game game)
         {
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
@@ -70,6 +88,10 @@ namespace Services.DataBaseManager
             UpdateQueu(game.IdGame);
         }
 
+        /// <summary>
+        /// Inicializa un juego preparando las piezas y cargando la lista de amigos para cada jugador.
+        /// </summary>
+        /// <param name="game">Objeto Game que representa el juego a inicializar.</param>
         public void InitializeGame(Game game)
         {
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)

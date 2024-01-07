@@ -12,6 +12,11 @@ namespace Services.DataBaseManager
 {
     public partial class PlayerManager : IFriendList
     {
+        /// <summary>
+        /// Obtiene la lista de amigos para un jugador específico.
+        /// </summary>
+        /// <param name="idPlayer">ID del jugador para el cual se obtiene la lista de amigos.</param>
+        /// <returns>Lista de amigos del jugador, incluyendo información como ID y nombre del amigo.</returns>
         public List<FriendList> GetFriends(int idPlayer)
         {
             List<friendship> friendsList = new List<friendship>();
@@ -49,6 +54,12 @@ namespace Services.DataBaseManager
             friends = AreOnline(friends);
             return friends;
         }
+
+        /// <summary>
+        /// Obtiene las solicitudes de amistad pendientes para un jugador específico.
+        /// </summary>
+        /// <param name="idPlayer">ID del jugador para el cual se obtienen las solicitudes de amistad.</param>
+        /// <returns>Lista de datos de solicitudes de amistad, incluyendo el nombre del remitente y el ID de la solicitud.</returns>
         public List<FriendRequestData> GetFriendRequests(int idPlayer)
         {
             List<FriendRequestData> friendRequests = new List<FriendRequestData>();
