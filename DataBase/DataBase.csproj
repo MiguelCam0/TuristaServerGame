@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EASendMail, Version=7.9.2.0, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
+      <HintPath>..\packages\EASendMail.7.9.2\lib\net472\EASendMail.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -52,6 +55,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=6.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.6.0.1\lib\net461\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -61,14 +67,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDatosPrueba.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseDatosPrueba.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatosPrueba.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseDatosPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatosPrueba.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseDatosPrueba.edmx</DependentUpon>
+    </Compile>
     <Compile Include="FriendRequest.cs">
-      <DependentUpon>TuristaMundialDB.tt</DependentUpon>
+      <DependentUpon>BaseDatosPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="friendship.cs">
-      <DependentUpon>TuristaMundialDB.tt</DependentUpon>
+      <DependentUpon>BaseDatosPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="PlayerSet.cs">
-      <DependentUpon>TuristaMundialDB.tt</DependentUpon>
+      <DependentUpon>BaseDatosPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TuristaMundialDB.Context.cs">
@@ -89,6 +110,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="BaseDatosPrueba.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BaseDatosPrueba.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BaseDatosPrueba.edmx.diagram">
+      <DependentUpon>BaseDatosPrueba.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <EntityDeploy Include="TuristaMundialDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -102,6 +130,16 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BaseDatosPrueba.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BaseDatosPrueba.edmx</DependentUpon>
+      <LastGenOutput>BaseDatosPrueba.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BaseDatosPrueba.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BaseDatosPrueba.edmx</DependentUpon>
+      <LastGenOutput>BaseDatosPrueba.cs</LastGenOutput>
+    </Content>
     <Content Include="TuristaMundialDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TuristaMundialDB.edmx</DependentUpon>

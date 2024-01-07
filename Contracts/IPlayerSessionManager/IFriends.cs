@@ -11,8 +11,8 @@ namespace Contracts.ISessionManager
     [ServiceContract(CallbackContract = typeof(INotificationsCallBack))]
     public interface IFriends
     {
-        [OperationContract(IsOneWay = true)]
-        void SavePlayerSession(int idPlayer);
+        [OperationContract]
+        int SavePlayerSession(int idPlayer);
 
         [OperationContract]
         int MakeFriendRequest(int IDPlayer, String namePlayer);
@@ -25,6 +25,9 @@ namespace Contracts.ISessionManager
 
         [OperationContract(IsOneWay = true)]
         void UpdatePlayerSession(int idPlayer);
+
+        [OperationContract]
+        int LogOut(int idPlayer);
     }
 
     [ServiceContract]
