@@ -9,6 +9,11 @@ namespace Services.DataBaseManager
 {
     public partial class PlayerManager : IPlayAsGuestManager
     {
+        /// <summary>
+        /// Verifica si el juego está completo basándose en el límite máximo de jugadores.
+        /// </summary>
+        /// <param name="code">Código identificador único del juego.</param>
+        /// <returns>0 si el juego no está completo, 1 si el juego está completo.</returns>
         public int IsGameFull(int code)
         {
             int result = 0;
@@ -21,6 +26,11 @@ namespace Services.DataBaseManager
             return result;
         }
 
+        /// <summary>
+        /// Verifica si el juego está en curso basándose en su estado actual.
+        /// </summary>
+        /// <param name="code">Código identificador único del juego.</param>
+        /// <returns>0 si el juego está en curso, 1 si el juego no está en curso.</returns>
         public int IsGameOngoing(int code)
         {
             int result = 1;
@@ -33,6 +43,11 @@ namespace Services.DataBaseManager
             return result;
         }
 
+        /// <summary>
+        /// Busca un juego en la colección de juegos actual basándose en su código identificador único.
+        /// </summary>
+        /// <param name="code">Código identificador único del juego a buscar.</param>
+        /// <returns>0 si el juego se encuentra, 1 si el juego no se encuentra.</returns>
         public int SearchGameByCode(int code)
         {
             int result = 1;

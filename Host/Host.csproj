@@ -116,7 +116,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Credentials.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
