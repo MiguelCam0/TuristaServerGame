@@ -64,20 +64,29 @@ namespace Services.DataBaseManager
         {
             List<FriendRequestData> friendRequests = new List<FriendRequestData>();
             List<FriendRequest> dataBaseData = new List<FriendRequest>();
-            using (var Context = new TuristaMundialEntitiesDB())
-            {
-                dataBaseData = Context.FriendRequest.Where(P => P.PlayerSet2ID == idPlayer).ToList();
 
-                foreach (var data in dataBaseData)
+            try
+            {
+                using (var Context = new TuristaMundialEntitiesDB())
                 {
-                    FriendRequestData request = new FriendRequestData
+                    dataBaseData = Context.FriendRequest.Where(P => P.PlayerSet2ID == idPlayer).ToList();
+
+                    foreach (var data in dataBaseData)
                     {
-                        SenderName = data.PlayerSet.Nickname,
-                        IDRequest = data.IDRequest
-                    };
-                    friendRequests.Add(request);
+                        FriendRequestData request = new FriendRequestData
+                        {
+                            SenderName = data.PlayerSet.Nickname,
+                            IDRequest = data.IDRequest
+                        };
+                        friendRequests.Add(request);
+                    }
                 }
             }
+            catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+
             return friendRequests;
         }
     }

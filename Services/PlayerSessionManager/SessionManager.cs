@@ -73,7 +73,6 @@ namespace Services.DataBaseManager
         /// <param name="idPlayer">ID del jugador cuya sesión se va a guardar.</param>
         public void SavePlayerSession(int idPlayer)
         {
-            int result;
             INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();
             if (currentUsers.ContainsKey(idPlayer))
             {

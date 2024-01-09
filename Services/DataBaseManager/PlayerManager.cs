@@ -28,7 +28,6 @@ namespace Services.DataBaseManager
         public int PlayerSearch(PlayerSet player)
         {
             int check = 0;
-            //Pruebas TuristaMundialEntitiesDB
             try
             {
                 using (var context = new TuristaMundialEntitiesDB())
@@ -37,14 +36,13 @@ namespace Services.DataBaseManager
 
                     if (existingPlayer != null)
                     {
-                        Console.WriteLine("Entro crack");
                         check = existingPlayer.Id;
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException exception)
             {
-                Console.WriteLine("Error en PlayerSearch: " + ex.InnerException);
+                _ilog.Error(exception.ToString());
             }
 
             return check;
@@ -71,12 +69,11 @@ namespace Services.DataBaseManager
                 }
 
             }
-            catch (Exception ex)
+            catch (SqlException exception)
             {
-                Console.WriteLine("Error en RegisterPlayer: " + ex.Message);
+                _ilog.Error(exception.ToString());
             }
 
-            Console.WriteLine(band);
             return band;
         }
 
@@ -124,9 +121,9 @@ namespace Services.DataBaseManager
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException exception)
             {
-                Console.WriteLine("Error en PlayerSearch: " + ex.InnerException);
+                _ilog.Error(exception.ToString());
             }
 
             return PlayerName;
@@ -166,7 +163,6 @@ namespace Services.DataBaseManager
         /// </returns>
         public Game GetGame(int idGame)
         {
-            Console.WriteLine("LA clave del game es: " + idGame);
             return CurrentGames[idGame];
         }
 
@@ -193,9 +189,9 @@ namespace Services.DataBaseManager
                 reciber.SendMail(emailServer, mail);
 
             }
-            catch (Exception ex) 
+            catch (Exception exception) 
             {
-                Console.WriteLine(ex);
+                _ilog.Error(exception.ToString());
                 result = 1;
             }
 
