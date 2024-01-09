@@ -22,7 +22,14 @@ namespace Services.DataBaseManager
         {
             foreach (var player in CurrentGames[idGame].Players) 
             {
-                player.GameManagerCallBack.GetMessage(message);
+                try
+                {
+                    player.GameManagerCallBack.GetMessage(message);
+                }
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                }
             }
             
         }
@@ -39,7 +46,15 @@ namespace Services.DataBaseManager
             {
                 if (player.IdPlayer == idPlayer)
                 {
-                    player.Piece = player.GameManagerCallBack.UptdatePiecePlayer(game);
+                    try
+                    {
+                        player.Piece = player.GameManagerCallBack.UptdatePiecePlayer(game);
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                    }
+
                     player.Piece.PartNumber = turn;
                     break;
                 }
@@ -56,7 +71,14 @@ namespace Services.DataBaseManager
         {
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
-                player.GameManagerCallBack.BlockPiece(piece);
+                try
+                {
+                    player.GameManagerCallBack.BlockPiece(piece);
+                }
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                }
             }
         }
 
@@ -69,7 +91,14 @@ namespace Services.DataBaseManager
         {
             foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
             {
-                player.GameManagerCallBack.UnblockPiece(piece);
+                try
+                {
+                    player.GameManagerCallBack.UnblockPiece(piece);
+                }
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                }
             }
         }
 
@@ -83,8 +112,17 @@ namespace Services.DataBaseManager
         public void AddGuestToGame(int idGame, int idPlayer)
         {
             TotalGuestPlayers++;
-            Player player = new Player(idPlayer, "Invitado:"+TotalGuestPlayers, true);
-            player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>();
+            Player player = new Player(idPlayer, "Invitado0" + TotalGuestPlayers);
+
+            try
+            {
+                player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>();
+            }
+            catch (TimeoutException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+
             CurrentGames[idGame].Players.Enqueue(player);
             CurrentGames[idGame].PlayersInGame.Add(player);
         }
@@ -100,7 +138,14 @@ namespace Services.DataBaseManager
             {
                 foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
                 {
-                    player.GameManagerCallBack.EnableStartGameButton();
+                    try
+                    {
+                        player.GameManagerCallBack.EnableStartGameButton();
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                    }
                 }
             }
         }
@@ -126,7 +171,14 @@ namespace Services.DataBaseManager
         {
             foreach (var player in CurrentGames[idGame].PlayersInGame)
             {
-                player.GameManagerCallBack.DisableStartGameButton();
+                try
+                {
+                    player.GameManagerCallBack.DisableStartGameButton();
+                }
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                }
             }
         }
 
