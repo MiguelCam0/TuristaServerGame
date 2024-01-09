@@ -12,6 +12,9 @@ namespace Contracts.IGameManager
     [ServiceContract(CallbackContract = typeof(IGamerLogicManagerCallBack))]
     public interface IGameLogicManager
     {
+        [OperationContract]
+        bool ConnectionExists();
+
         [OperationContract(IsOneWay = true)]
         void PlayTurn(Game game);
         
@@ -47,6 +50,9 @@ namespace Contracts.IGameManager
         
         [OperationContract(IsOneWay = true)]
         void ExpelPlayer(int idPlayer, int idGame);
+
+        [OperationContract]
+        void PayConstruction(int idPlayer, long constructionCost, int idGame);
     }
 
     [ServiceContract]

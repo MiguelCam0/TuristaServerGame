@@ -115,14 +115,23 @@ namespace Contracts.IGameManager
     [DataContract]
     public class Player
     {
+        private string v;
+
         public Player() { }
 
-        public Player(int id, string NamePlayer) {
+        public Player(int idPlayer, string v)
+        {
+            IdPlayer = idPlayer;
+            this.v = v;
+        }
+
+        public Player(int id, string NamePlayer, bool isGuest) {
             IdPlayer = id;
             Name = NamePlayer;
             Money = 500;
             Position = 0;
             Jail = false;
+            IsGuest = isGuest;
             Loser = false;
         }
 
@@ -138,6 +147,8 @@ namespace Contracts.IGameManager
         public bool Jail { get; set; }
         [DataMember]
         public int VotesToExpel { get; set; }
+        [DataMember]
+        public bool IsGuest {  get; set; }
         [DataMember]
         public bool Loser { get; set; }
         [DataMember]
@@ -173,7 +184,6 @@ namespace Contracts.IGameManager
             ImageSource = imageSource;
             Color = color;
             NumberHouses = 0;
-            DefinitiveCost = 0;
             IsMortgaged = false;
         }
 
@@ -211,8 +221,6 @@ namespace Contracts.IGameManager
         public string Color { get; set; }
         [DataMember]
         public int NumberHouses { get; set; }
-        [DataMember]
-        public long DefinitiveCost { get; set; }
         [DataMember]
         public bool IsMortgaged { get; set; }
         public IGameManagerCallBack GameManagerCallBack { get; set; }
