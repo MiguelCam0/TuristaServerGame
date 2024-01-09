@@ -115,7 +115,15 @@ namespace Contracts.IGameManager
     [DataContract]
     public class Player
     {
+        private string v;
+
         public Player() { }
+
+        public Player(int idPlayer, string v)
+        {
+            IdPlayer = idPlayer;
+            this.v = v;
+        }
 
         public Player(int id, string NamePlayer, bool isGuest) {
             IdPlayer = id;

@@ -28,7 +28,6 @@ namespace Services.DataBaseManager
             CurrentGames.Add(game.IdGame, game);
             CurrentGames[game.IdGame].Players = new Queue<Player>();
             CurrentGames[game.IdGame].PlayersInGame = new List<Player>();
-            Console.WriteLine(CurrentGames.Count);
         }
 
         /// <summary>
@@ -38,8 +37,6 @@ namespace Services.DataBaseManager
         /// <param name="player">Objeto Player que representa al jugador a agregar.</param>
         public void AddPlayerToGame(int idGame, Player player)
         {
-            Console.WriteLine("ESTA MIERDA QUE ES: " + Game);
-            Console.WriteLine("ESTO SI QUE : " + player.Name + player.IdPlayer);
             player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>();
             CurrentGames[idGame].Players.Enqueue(player);
             CurrentGames[idGame].PlayersInGame.Add(player);
@@ -51,6 +48,7 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador del juego cuyos jugadores se actualizarán.</param>
         public void UpdatePlayers(int idGame)
         {
+            Console.WriteLine("Entra");
             foreach (var player in CurrentGames[idGame].Players)
             {
                 try
@@ -63,6 +61,7 @@ namespace Services.DataBaseManager
                     _ilog.Error(exception.ToString());
                 }
             }
+            Console.WriteLine("Sale");
         }
 
         /// <summary>
