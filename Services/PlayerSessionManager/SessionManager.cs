@@ -276,6 +276,7 @@ namespace Services.DataBaseManager
             int result = 0;
             try
             {
+                Console.WriteLine("SALIOOOOOOOOOOOOOOOOOOOOO");
                 currentUsers.Remove(idPlayer);
                 result = 1;
             }

@@ -63,7 +63,7 @@ namespace Contracts.IGameManager
         void checkTakenPieces(Game game, int idPlayer);
 
         [OperationContract]
-        void InviteFriendToGame(string codeGame, string friendEmail);
+        void InviteFriendToGame(string codeGame, int friendId);
     }
 
     [ServiceContract]
@@ -155,6 +155,13 @@ namespace Contracts.IGameManager
         public Piece Piece { get; set; }
         public IGameManagerCallBack GameManagerCallBack { get; set; }
         public IGamerLogicManagerCallBack GameLogicManagerCallBack { get; set; }
+        [DataMember]
+        public int Games {  get; set; } = 0;
+        [DataMember]
+        public int GamesWin { get; set; } = 0;
+        [DataMember]
+        public string Description { get; set; }
+
     }
 
     [DataContract]

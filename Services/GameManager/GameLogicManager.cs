@@ -4,6 +4,7 @@ using DataBase;
 using Services.GameManager;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.ServiceModel;
 using System.Web.UI.WebControls;
@@ -529,6 +530,7 @@ namespace Services.DataBaseManager
             {
                 if (player.IdPlayer == loserPlayer.IdPlayer)
                 {
+                    AddGameToProfile(player.IdPlayer);
                     player.Loser = true;
                 }
                 if(player.IdPlayer != loserPlayer.IdPlayer)
@@ -554,6 +556,7 @@ namespace Services.DataBaseManager
                 {
                     idWinner = player.IdPlayer;
                     activePlayers++;
+                    RegisterWinner(idWinner);
                 }
             }
 
@@ -563,6 +566,37 @@ namespace Services.DataBaseManager
                 {
                     player.GameLogicManagerCallBack.EndGame(idWinner);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Declara a un jugador como ganador en el juego especificado y lo registra en la base de datos
+        /// <param name="idPlayer">Jugador que se declara como ganador.</param>
+        private void RegisterWinner(int idPlayer)
+        {
+            using (var context = new TuristaMundialEntitiesDB())
+            {
+                Console.WriteLine("GANOOOOOOOOOOOOO");
+                var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
+                player.Wins++;
+                player.Games++;
+                context.PlayerSet.AddOrUpdate(player);
+                context.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Se añade una partida jugada al historial de partidas del usuario
+        /// <param name="idPlayer">Jugador que termino una partida.</param>
+        private void AddGameToProfile(int idPlayer)
+        {
+            using (var context = new TuristaMundialEntitiesDB())
+            {
+                Console.WriteLine("PERDIOOOOOOOOOOOOOOOOOOOOOOOOOOOOoo");
+                var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
+                player.Games++;
+                context.PlayerSet.AddOrUpdate(player);
+                context.SaveChanges();
             }
         }
 
