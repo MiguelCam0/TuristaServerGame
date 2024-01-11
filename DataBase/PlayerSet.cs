@@ -17,24 +17,27 @@ namespace DataBase
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PlayerSet()
         {
-            this.FriendRequest = new HashSet<FriendRequest>();
-            this.FriendRequest1 = new HashSet<FriendRequest>();
             this.friendship = new HashSet<friendship>();
             this.friendship1 = new HashSet<friendship>();
+            this.FriendRequest = new HashSet<FriendRequest>();
+            this.FriendRequest1 = new HashSet<FriendRequest>();
         }
     
         public int Id { get; set; }
         public string Nickname { get; set; }
         public string eMail { get; set; }
         public string Password { get; set; }
+        public int Games { get; set; }
+        public int Wins { get; set; }
+        public string Description { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FriendRequest> FriendRequest { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FriendRequest> FriendRequest1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<friendship> friendship { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<friendship> friendship1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FriendRequest> FriendRequest { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FriendRequest> FriendRequest1 { get; set; }
     }
 }

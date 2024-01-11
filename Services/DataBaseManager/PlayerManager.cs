@@ -36,7 +36,14 @@ namespace Services.DataBaseManager
 
                     if (existingPlayer != null)
                     {
-                        check = existingPlayer.Id;
+                        if (!currentUsers.ContainsKey(existingPlayer.Id))
+                        {
+                            check = existingPlayer.Id;
+                        }
+                        else
+                        {
+                            check = -1;
+                        }
                     }
                 }
             }
@@ -196,6 +203,33 @@ namespace Services.DataBaseManager
             }
 
             return result;
+        }
+
+        public Player GePlayerInfo(int idPlayer)
+        {
+            Player playerInfo = new Player();
+            using (var context = new TuristaMundialEntitiesDB())
+            {
+                var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
+                playerInfo.Name = player.Nickname;
+                playerInfo.Games = (int)player.Games;
+                playerInfo.GamesWin = (int)player.Wins;
+                playerInfo.Description = player.Description;
+            }
+
+            return playerInfo;
+        }
+
+        public int UpdatePlayerInfo(int idPlayer, string Description)
+        {
+            int result = 0;
+            using (var context = new TuristaMundialEntitiesDB())
+            {
+                var player = context.PlayerSet.Where(playerInfo => playerInfo.Id == idPlayer).First();
+                player.Description = Description;
+                result = context.SaveChanges();
+            }
+            return result;  
         }
     }
 }

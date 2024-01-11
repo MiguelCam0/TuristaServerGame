@@ -1,9 +1,11 @@
 ﻿
 using Contracts.IGameManager;
+using DataBase;
 using EASendMail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
@@ -182,13 +184,14 @@ namespace Services.DataBaseManager
             }
         }
 
-        public void InviteFriendToGame(string codeGame, string friendEmail)
+        public void InviteFriendToGame(string codeGame, int friendId)
         {
             try
             {
+                
                 SmtpMail mail = new SmtpMail("TryIt");
                 mail.From = "yusgus02@gmail.com";
-                mail.To = friendEmail;
+                mail.To = getFriendEmail(friendId);
                 mail.Subject = "Codigo de verificacion";
                 mail.TextBody = "Tu codigo de verificacion es: " + codeGame;
 
@@ -207,6 +210,19 @@ namespace Services.DataBaseManager
             {
                 Console.WriteLine(ex);
             }
+        }
+
+        private string getFriendEmail(int idFriend)
+        {
+            string friendEmail;
+            using (var Context = new TuristaMundialEntitiesDB())
+            {
+
+                var friend = Context.PlayerSet.Where(P => P.Id == idFriend).First();
+                friendEmail = friend.eMail;
+            }
+
+            return friendEmail;
         }
     }
 }

@@ -28,6 +28,15 @@ namespace Contracts.IDataBase
         [OperationContract]
         int SendEmail(String verifyCode, String userEmail);
 
+        [OperationContract]
+        Player GePlayerInfo(int idPlayer);
+
+        [OperationContract]
+        int UpdatePlayerInfo(int idPlayer, String Description);
+
+        [OperationContract]
+        int LogOut(int idPlayer);
+
     }
 
     [DataContract]
@@ -44,7 +53,13 @@ namespace Contracts.IDataBase
         public bool IsOnline { get; set; }
 
         [DataMember]
-        public string Email { get; set; }
+        public int Games {  get; set; }
+
+        [DataMember]
+        public int GamesWins {  get; set; }
+
+        [DataMember]
+        public String WinRate{ get; set; }
 
     }
 
