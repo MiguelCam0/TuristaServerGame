@@ -18,43 +18,49 @@ namespace Contracts.IGameManager
     public interface IGameManager
     {
         [OperationContract]
-        void AddGame(Game game);
+        int Ping();
 
         [OperationContract]
-        void AddPlayerToGame(int game, Player player);
+        void AddGame(Game game); 
+
+        [OperationContract]
+        void AddPlayerToGame(int game, Player player); 
         
         [OperationContract]
-        void AddGuestToGame(int idGame, int idPlayer);
+        void AddGuestToGame(int idGame, int idPlayer); 
 
         [OperationContract(IsOneWay = true)]
-        void UpdatePlayers(int idGame);
+        void UpdatePlayers(int idGame); 
 
         [OperationContract(IsOneWay = true)]
-        void SendMessage(int idGame, String message);
+        void SendMessage(int idGame, String message); 
 
         [OperationContract(IsOneWay = true)]
-        void StartGame(Game game);
+        void StartGame(Game game); 
 
         [OperationContract(IsOneWay = true)]
         void InitializeGame(Game game);
 
         [OperationContract(IsOneWay = true)]
-        void UpdatePlayerGame(Game game, int idPlayer);
+        void UpdatePlayerGame(Game game, int idPlayer, Piece playersPiece); 
 
         [OperationContract(IsOneWay = true)]
-        void SelectedPiece(Game game, string piece);
+        void SelectedPiece(Game game, string piece, int idPlayer); 
 
         [OperationContract(IsOneWay = true)]
-        void UnSelectedPiece(Game game, string piece);
+        void UnSelectedPiece(Game game, string piece); 
 
         [OperationContract(IsOneWay =true)]
-        void CheckReadyToStartGame(Game game);
+        void CheckReadyToStartGame(Game game); 
 
         [OperationContract(IsOneWay = true)]
         void UnCheckReadyToStartGame(Game game);
 
         [OperationContract(IsOneWay = true)]
         void InactivateBeginGameControls(int idGame);
+
+        [OperationContract(IsOneWay = true)]
+        void checkTakenPieces(Game game, int idPlayer);
 
         [OperationContract]
         void InviteFriendToGame(string codeGame, int friendId);
@@ -79,10 +85,7 @@ namespace Contracts.IGameManager
         void PreparePieces(Game game, List<Player> playersInGame);
 
         [OperationContract]
-        Piece UptdatePiecePlayer(Game game);
-
-        [OperationContract]
-        void BlockPiece(string piece);
+        void BlockPiece(string piece, int idPlayer);
 
         [OperationContract]
         void UnblockPiece(string piece);
@@ -115,14 +118,11 @@ namespace Contracts.IGameManager
     [DataContract]
     public class Player
     {
-        private string v;
-
         public Player() { }
 
         public Player(int idPlayer, string v)
         {
             IdPlayer = idPlayer;
-            this.v = v;
         }
 
         public Player(int id, string NamePlayer, bool isGuest) {

@@ -301,7 +301,7 @@ namespace Services.DataBaseManager
         {
             foreach(var player in CurrentGames[idGame].Players)
             {
-                //player.GameLogicManagerCallBack.LoadFriends(CurrentGames[idGame].Players);
+                player.GameLogicManagerCallBack.LoadFriends(CurrentGames[idGame].Players);
             }
         }
 
@@ -353,7 +353,7 @@ namespace Services.DataBaseManager
             {
                 if(!player.Loser)
                 {
-                    //player.GameLogicManagerCallBack.UpdateTurns(turns);
+                    player.GameLogicManagerCallBack.UpdateTurns(turns);
                 }
             }
             UpdatePlayersInGame(idGame);

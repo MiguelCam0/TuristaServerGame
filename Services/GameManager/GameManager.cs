@@ -106,5 +106,10 @@ namespace Services.DataBaseManager
                 }
             }
         }
+
+        public int Ping()
+        {
+            return 1;
+        }
     }
 }

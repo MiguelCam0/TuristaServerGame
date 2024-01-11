@@ -3,6 +3,7 @@ using Contracts.IGameManager;
 using DataBase;
 using EASendMail;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -41,7 +42,7 @@ namespace Services.DataBaseManager
         /// </summary>
         /// <param name="game">Objeto Game que representa el juego.</param>
         /// <param name="idPlayer">Identificador del jugador cuya información se actualizará.</param>
-        public void UpdatePlayerGame(Game game, int idPlayer)
+        public void UpdatePlayerGame(Game game, int idPlayer, Piece playersPiece)
         {
             int turn = 0;
             foreach (var player in CurrentGames[game.IdGame].Players)
@@ -50,7 +51,7 @@ namespace Services.DataBaseManager
                 {
                     try
                     {
-                        player.Piece = player.GameManagerCallBack.UptdatePiecePlayer(game);
+                        player.Piece = playersPiece;
                     }
                     catch (TimeoutException exception)
                     {
@@ -64,24 +65,40 @@ namespace Services.DataBaseManager
             }
         }
 
-        /// <summary>
-        /// Notifica a todos los jugadores en un juego específico sobre la selección de una pieza.
-        /// </summary>
-        /// <param name="game">Objeto Game que representa el juego.</param>
-        /// <param name="piece">Token asociado a la pieza seleccionada.</param>
-        public void SelectedPiece(Game game, string piece)
+
+        public void SelectedPiece(Game game, string piece, int idPlayer)
         {
-            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+            if (Check(game, piece))
             {
-                try
+                foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
                 {
-                    player.GameManagerCallBack.BlockPiece(piece);
-                }
-                catch (TimeoutException exception)
-                {
-                    _ilog.Error(exception.ToString());
+                    try
+                    {
+
+                        player.GameManagerCallBack.BlockPiece(piece, idPlayer);
+
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                    }
                 }
             }
+        }
+
+        private bool Check(Game game, string selectedPiece)
+        {
+            bool result = true;
+
+            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+            {
+                if (player.Piece.Name == selectedPiece)
+                {
+                    result = false; break;
+                }
+            }
+            
+            return result;
         }
 
         /// <summary>
@@ -212,6 +229,41 @@ namespace Services.DataBaseManager
             }
         }
 
+        private List<string> GetSelectedPieces(Game game)
+        {
+            List<string> pieces = new List<string>();
+
+            foreach (var player in CurrentGames[game.IdGame].Players)
+            {
+                if(player.Piece != null)
+                {
+                    pieces.Add(player.Piece.Name);
+                }
+            }
+
+            return pieces;
+
+        }
+
+        public void checkTakenPieces(Game game, int idPlayer)
+        {
+            List<string> pieces = GetSelectedPieces(game);
+
+            foreach (var player in CurrentGames[game.IdGame].Players)
+            {
+                if (player.IdPlayer ==  idPlayer)
+                {
+                    if (pieces != null && pieces.Count > 0)
+                    {
+                        foreach (var piece in pieces)
+                        {
+                            player.GameManagerCallBack.BlockPiece(piece, -1);
+                        }
+                    }
+                    break;
+                }
+            }
+            
         private string getFriendEmail(int idFriend)
         {
             string friendEmail;
