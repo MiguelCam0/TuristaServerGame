@@ -31,7 +31,16 @@ namespace Services.DataBaseManager
                         var friendData = new FriendList();
                         friendData.IdFriend = friend.PlayerSet1.Id;
                         friendData.FriendName = friend.PlayerSet1.Nickname;
-                        friendData.Email = friend.PlayerSet1.eMail;
+                        friendData.Games = (int)friend.PlayerSet1.Games;
+                        friendData.GamesWins = (int)friend.PlayerSet1.Wins;
+                        if(friend.PlayerSet1.Games > 0)
+                        {
+                            friendData.WinRate = ((friend.PlayerSet1.Wins / friend.PlayerSet1.Games) * 100).ToString() + "%";
+                        }
+                        else
+                        {
+                            friendData.WinRate = "N/A";
+                        }
                         friends.Add(friendData);
                     }
 
@@ -41,6 +50,16 @@ namespace Services.DataBaseManager
                         var friendData = new FriendList();
                         friendData.IdFriend = friend.PlayerSet.Id;
                         friendData.FriendName = friend.PlayerSet.Nickname;
+                        friendData.Games = (int)friend.PlayerSet.Games;
+                        friendData.GamesWins = (int)friend.PlayerSet.Wins;
+                        if (friend.PlayerSet1.Games > 0)
+                        {
+                            friendData.WinRate = ((friend.PlayerSet.Wins / friend.PlayerSet.Games) * 100).ToString() + "%";
+                        }
+                        else
+                        {
+                            friendData.WinRate = "N/A";
+                        }
                         friends.Add(friendData);
                     }
 

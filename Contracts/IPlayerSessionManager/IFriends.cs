@@ -26,8 +26,6 @@ namespace Contracts.ISessionManager
         [OperationContract(IsOneWay = true)]
         void UpdatePlayerSession(int idPlayer);
 
-        [OperationContract]
-        int LogOut(int idPlayer);
     }
 
     [ServiceContract]

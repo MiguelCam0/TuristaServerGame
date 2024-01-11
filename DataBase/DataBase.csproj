@@ -83,13 +83,13 @@
       <DependentUpon>BaseDatosPrueba.edmx</DependentUpon>
     </Compile>
     <Compile Include="FriendRequest.cs">
-      <DependentUpon>BaseDatosPrueba.tt</DependentUpon>
+      <DependentUpon>TuristaMundialDB.tt</DependentUpon>
     </Compile>
     <Compile Include="friendship.cs">
-      <DependentUpon>BaseDatosPrueba.tt</DependentUpon>
+      <DependentUpon>TuristaMundialDB.tt</DependentUpon>
     </Compile>
     <Compile Include="PlayerSet.cs">
-      <DependentUpon>BaseDatosPrueba.tt</DependentUpon>
+      <DependentUpon>TuristaMundialDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TuristaMundialDB.Context.cs">

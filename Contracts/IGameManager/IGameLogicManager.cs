@@ -53,6 +53,7 @@ namespace Contracts.IGameManager
 
         [OperationContract]
         void PayConstruction(int idPlayer, long constructionCost, int idGame);
+
     }
 
     [ServiceContract]
