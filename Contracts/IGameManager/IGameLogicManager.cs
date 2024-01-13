@@ -9,19 +9,16 @@ using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace Contracts.IGameManager
 {
-    [ServiceContract(CallbackContract = typeof(IGamerLogicManagerCallBack))]
+    [ServiceContract(CallbackContract = typeof(IGamerLogicManagerCallback))]
     public interface IGameLogicManager
     {
-        [OperationContract]
-        bool ConnectionExists();
-
         [OperationContract(IsOneWay = true)]
         void PlayTurn(Game game);
         
         [OperationContract(IsOneWay = true)]
         void UpdatePlayerService(int idPlayer, int idGame);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void PurchaseProperty(Property property, Player buyer, int idGame);
 
         [OperationContract(IsOneWay = true)]
@@ -57,7 +54,7 @@ namespace Contracts.IGameManager
     }
 
     [ServiceContract]
-    public interface IGamerLogicManagerCallBack
+    public interface IGamerLogicManagerCallback
     {
         [OperationContract]
         void PlayDie(int firstDieValue, int SecondDieValue);
@@ -91,5 +88,8 @@ namespace Contracts.IGameManager
 
         [OperationContract]
         void ExitToGame();
+
+        [OperationContract]
+        void ShowButtonsForEnd();
     }
 }
