@@ -14,12 +14,9 @@ using System.Xml.Linq;
 
 namespace Contracts.IGameManager
 {
-    [ServiceContract(CallbackContract = typeof(IGameManagerCallBack))]
+    [ServiceContract(CallbackContract = typeof(IGameManagerCallback))]
     public interface IGameManager
     {
-        [OperationContract]
-        int Ping();
-
         [OperationContract]
         void AddGame(Game game); 
 
@@ -41,14 +38,14 @@ namespace Contracts.IGameManager
         [OperationContract(IsOneWay = true)]
         void InitializeGame(Game game);
 
-        [OperationContract(IsOneWay = true)]
-        void UpdatePlayerGame(Game game, int idPlayer, Piece playersPiece); 
+        [OperationContract]
+        int UpdatePlayerGame(Game game, int idPlayer, Piece playersPiece); 
 
         [OperationContract(IsOneWay = true)]
         void SelectedPiece(Game game, string piece, int idPlayer); 
 
         [OperationContract(IsOneWay = true)]
-        void UnSelectedPiece(Game game, string piece); 
+        void UnSelectedPiece(Game game, string piece, int idPlayer); 
 
         [OperationContract(IsOneWay =true)]
         void CheckReadyToStartGame(Game game); 
@@ -60,14 +57,14 @@ namespace Contracts.IGameManager
         void InactivateBeginGameControls(int idGame);
 
         [OperationContract(IsOneWay = true)]
-        void checkTakenPieces(Game game, int idPlayer);
+        void CheckTakenPieces(Game game, int idPlayer);
 
         [OperationContract]
         void InviteFriendToGame(string codeGame, int friendId);
     }
 
     [ServiceContract]
-    public interface IGameManagerCallBack
+    public interface IGameManagerCallback
     {
         [OperationContract]
         void AddVisualPlayers();
@@ -131,7 +128,7 @@ namespace Contracts.IGameManager
             Money = 500;
             Position = 0;
             Jail = false;
-            IsGuest = isGuest;
+            Guest = isGuest;
             Loser = false;
         }
 
@@ -148,13 +145,13 @@ namespace Contracts.IGameManager
         [DataMember]
         public int VotesToExpel { get; set; }
         [DataMember]
-        public bool IsGuest {  get; set; }
+        public bool Guest {  get; set; }
         [DataMember]
         public bool Loser { get; set; }
         [DataMember]
         public Piece Piece { get; set; }
-        public IGameManagerCallBack GameManagerCallBack { get; set; }
-        public IGamerLogicManagerCallBack GameLogicManagerCallBack { get; set; }
+        public IGameManagerCallback GameManagerCallback { get; set; }
+        public IGamerLogicManagerCallback GameLogicManagerCallback { get; set; }
         [DataMember]
         public int Games {  get; set; } = 0;
         [DataMember]
@@ -230,8 +227,8 @@ namespace Contracts.IGameManager
         public int NumberHouses { get; set; }
         [DataMember]
         public bool IsMortgaged { get; set; }
-        public IGameManagerCallBack GameManagerCallBack { get; set; }
-        public IGameManagerCallBack GameLogicManagerCallBack { get; set; }
+        public IGameManagerCallback GameManagerCallback { get; set; }
+        public IGameManagerCallback GameLogicManagerCallback { get; set; }
     }
 
     [DataContract]

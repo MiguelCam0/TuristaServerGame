@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/08/2023 00:13:04
--- Generated from EDMX file: D:\repos\Juego\TuristaServerGame\DataBase\TuristaMundialDB.edmx
+-- Date Created: 01/11/2024 19:23:27
+-- Generated from EDMX file: D:\Proyectos .NET\Juego\TuristaServerGame\DataBase\TuristaMundialDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,31 +17,31 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_FriendRequest_PlayerSet1ID]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FriendRequest] DROP CONSTRAINT [FK_FriendRequest_PlayerSet1ID];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FriendRequest_PlayerSet2ID]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FriendRequest] DROP CONSTRAINT [FK_FriendRequest_PlayerSet2ID];
-GO
 IF OBJECT_ID(N'[dbo].[FK_friendship_player1]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[friendship] DROP CONSTRAINT [FK_friendship_player1];
 GO
 IF OBJECT_ID(N'[dbo].[FK_friendship_player2]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[friendship] DROP CONSTRAINT [FK_friendship_player2];
 GO
+IF OBJECT_ID(N'[dbo].[FK_FriendRequest_PlayerSet1ID]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FriendRequest] DROP CONSTRAINT [FK_FriendRequest_PlayerSet1ID];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FriendRequest_PlayerSet2ID]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FriendRequest] DROP CONSTRAINT [FK_FriendRequest_PlayerSet2ID];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FriendRequest]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[FriendRequest];
+IF OBJECT_ID(N'[dbo].[PlayerSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PlayerSet];
 GO
 IF OBJECT_ID(N'[dbo].[friendship]', 'U') IS NOT NULL
     DROP TABLE [dbo].[friendship];
 GO
-IF OBJECT_ID(N'[dbo].[PlayerSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PlayerSet];
+IF OBJECT_ID(N'[dbo].[FriendRequest]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FriendRequest];
 GO
 
 -- --------------------------------------------------
@@ -53,7 +53,10 @@ CREATE TABLE [dbo].[PlayerSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Nickname] nvarchar(max)  NOT NULL,
     [eMail] nvarchar(max)  NOT NULL,
-    [Password] nvarchar(max)  NOT NULL
+    [Password] nvarchar(max)  NOT NULL,
+    [Games] int  NOT NULL,
+    [Wins] int  NOT NULL,
+    [Description] nvarchar(250)  NOT NULL
 );
 GO
 

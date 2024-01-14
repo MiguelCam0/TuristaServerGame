@@ -21,6 +21,7 @@ namespace Services.DataBaseManager
         {
             List<friendship> friendsList = new List<friendship>();
             List<FriendList> friends = new List<FriendList>();
+            
             try
             {
                 using (var context = new TuristaMundialEntitiesDB())
@@ -86,6 +87,7 @@ namespace Services.DataBaseManager
 
             try
             {
+
                 using (var Context = new TuristaMundialEntitiesDB())
                 {
                     dataBaseData = Context.FriendRequest.Where(P => P.PlayerSet2ID == idPlayer).ToList();

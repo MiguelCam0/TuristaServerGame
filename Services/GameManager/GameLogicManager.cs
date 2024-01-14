@@ -1,6 +1,7 @@
 ﻿using Contracts.IDataBase;
 using Contracts.IGameManager;
 using DataBase;
+using log4net;
 using Services.GameManager;
 using System;
 using System.Collections.Generic;
@@ -21,25 +22,29 @@ namespace Services.DataBaseManager
         /// <param name="game">Instancia del juego en curso.</param>
         public void PlayTurn(Game game)
         {
+            Random random = new Random();
+            int dieOne = random.Next(1, 6);
+            int dieSecond = random.Next(1, 6);
+
+            Player currentPlayer = GetCurrentPlayer(game);
+
             try
-            {
-                Random random = new Random();
-                int dieOne = random.Next(1, 6);
-                int dieSecond = random.Next(1, 6);
-
-                Player currentPlayer = GetCurrentPlayer(game);
-
-                int playerPosition = currentPlayer.Position + dieOne + dieSecond;
-                currentPlayer.Position = playerPosition;
-
-                UpdatingDiceNumbersInGame(game, dieOne, dieSecond);
-
-                MoveAndAdvance(game, playerPosition, ref currentPlayer);
+            {    
+                currentPlayer.GameLogicManagerCallback.ShowButtonsForEnd();
             }
-            catch (Exception ex)
+            catch (TimeoutException exception)
             {
-                HandleException(ex);
+                _ilog.Error(exception.ToString());
+                DeclareLosingPlayer(currentPlayer, game.IdGame);
             }
+
+            int playerPosition = currentPlayer.Position + dieOne + dieSecond;
+            currentPlayer.Position = playerPosition;
+
+            AdvanceTurn(game.IdGame);
+            MovePlayer(game.IdGame, playerPosition, ref currentPlayer);
+            UpdatingDiceNumbersInGame(game, dieOne, dieSecond);
+
         }
 
         /// <summary>
@@ -60,54 +65,18 @@ namespace Services.DataBaseManager
         /// <param name="dieSecond">Número obtenido en el segundo dado.</param>
         private void UpdatingDiceNumbersInGame(Game game, int dieOne, int dieSecond)
         {
-            foreach (var player in CurrentGames[game.IdGame].Players)
+            foreach (Player playerInGame in CurrentGames[game.IdGame].Players)
             {
                 try
                 {
-                    player.GameLogicManagerCallBack.PlayDie(dieOne, dieSecond);
+                    playerInGame.GameLogicManagerCallback.PlayDie(dieOne, dieSecond);
                 }
-                catch (Exception ex)
+                catch (TimeoutException exception)
                 {
-                    DeclareLosingPlayer(player, game.IdGame);
-                    HandleNotificationException(player, ex);
-                    throw;
+                    _ilog.Error(exception.ToString());
+                    DeclareLosingPlayer(playerInGame, game.IdGame);
                 }
             }
-        }
-
-        /// <summary>
-        /// Mueve al jugador a la posición indicada y avanza al siguiente turno en el juego.
-        /// </summary>
-        /// <param name="game">Instancia del juego en curso.</param>
-        /// <param name="playerPosition">Nueva posición a la que se mueve el jugador.</param>
-        /// <param name="currentPlayer">Referencia al jugador actual en turno.</param>
-        private void MoveAndAdvance(Game game, int playerPosition, ref Player currentPlayer)
-        {
-            try
-            {
-                MovePlayer(game.IdGame, playerPosition, ref currentPlayer);
-                AdvanceTurn(game.IdGame);
-            }
-            catch (Exception ex)
-            {
-                HandleMovementException(ex);
-            }
-        }
-
-
-        private void HandleException(Exception ex)
-        {
-            Console.WriteLine($"Error en el bloque principal: {ex.Message}");
-        }
-
-        private void HandleNotificationException(Player player, Exception ex)
-        {
-            Console.WriteLine($"Error en PlayDie para el jugador {player.Name}: {ex.Message}");
-        }
-
-        private void HandleMovementException(Exception ex)
-        {
-            Console.WriteLine($"Error en MovePlayer o AdvanceTurn: {ex.Message}");
         }
 
         /// <summary>
@@ -140,33 +109,25 @@ namespace Services.DataBaseManager
         {
             int result = 0;
 
-            try
+            foreach (Player playerInGame in CurrentGames[idGame].Players)
             {
-                foreach (var player in CurrentGames[idGame].Players)
+                if (playerInGame.IdPlayer == idRenter)
                 {
-                    if (player.IdPlayer == idRenter)
+                    bool isPaymentSuccessful = ProcessRentalPayment(playerInGame, amountOfRent, idGame);
+
+                    if (!isPaymentSuccessful)
                     {
-                        bool isPaymentSuccessful = ProcessRentalPayment(player, amountOfRent, idGame);
-
-                        if (!isPaymentSuccessful)
-                        {
-                            DeclareLosingPlayer(player, idGame);
-                            result = 1;
-                        }
-                        break;
+                        DeclareLosingPlayer(playerInGame, idGame);
+                        result = 1;
                     }
-                }
-
-                if (result == 0)
-                {
-                    ProcessPaymentForLandlord(idOwnerLand, amountOfRent, idGame);
-                    ProcessPaymentForRenter(idRenter, amountOfRent, idGame);
+                    break;
                 }
             }
-            catch (Exception ex)
+
+            if (result == 0)
             {
-                HandleException(ex);
-                result = 2;
+                ProcessPaymentForLandlord(idOwnerLand, amountOfRent, idGame);
+                ProcessPaymentForRenter(idRenter, amountOfRent, idGame);
             }
 
             return result;
@@ -211,19 +172,19 @@ namespace Services.DataBaseManager
         {
             bool result = false;
 
-            foreach (var property in CurrentBoards[idGame].board)
+            foreach (Property property in CurrentBoards[idGame].board)
             {
                 if (property.Owner != null && property.Owner.IdPlayer == renter.IdPlayer && !property.IsMortgaged)
                 {
                     try
                     {
                         RealizePropertyMortgage(idGame, property, renter.IdPlayer);
-                        renter.GameLogicManagerCallBack.UpdatePropertyStatus(property);
+                        renter.GameLogicManagerCallback.UpdatePropertyStatus(property);
                     }
-                    catch (Exception ex)
+                    catch (TimeoutException exception)
                     {
-                        HandleException(ex);
-                        throw;
+                        _ilog.Error(exception.ToString());
+                        DeclareLosingPlayer(renter, idGame);
                     }
                 }
 
@@ -245,22 +206,21 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         private void ProcessPaymentForLandlord(int idOwnerLand, long amountOfRent, int idGame)
         {
-            foreach (var player in CurrentGames[idGame].Players)
+            foreach (Player playerInGame in CurrentGames[idGame].Players)
             {
-                if (player.IdPlayer == idOwnerLand)
+                if (playerInGame.IdPlayer == idOwnerLand)
                 {
                     try
                     {
-                        player.Money += amountOfRent;
-                        player.GameLogicManagerCallBack.UpgradePlayerMoney(player.Money);
-                        player.GameLogicManagerCallBack.NotifyPlayerOfEvent(0);
+                        playerInGame.Money += amountOfRent;
+                        playerInGame.GameLogicManagerCallback.UpgradePlayerMoney(playerInGame.Money);
+                        playerInGame.GameLogicManagerCallback.NotifyPlayerOfEvent(0);
                     }
-                    catch (Exception ex)
+                    catch (TimeoutException exception)
                     {
-                        HandleException(ex);
-                        throw;
+                        _ilog.Error(exception.ToString());
+                        DeclareLosingPlayer(playerInGame, idGame);
                     }
-                    
                 }
             }
         }
@@ -273,21 +233,22 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         private void ProcessPaymentForRenter(int idRenter, long amountOfRent, int idGame)
         {
-            foreach (var player in CurrentGames[idGame].Players)
+            foreach (Player playerInGame in CurrentGames[idGame].Players)
             {
-                if(player.IdPlayer == idRenter)
+                if(playerInGame.IdPlayer == idRenter)
                 {
                     try
                     {
-                        player.Money -= amountOfRent;
-                        player.GameLogicManagerCallBack.UpgradePlayerMoney(player.Money);
-                        player.GameLogicManagerCallBack.NotifyPlayerOfEvent(1);
+                        playerInGame.Money -= amountOfRent;
+                        playerInGame.GameLogicManagerCallback.UpgradePlayerMoney(playerInGame.Money);
+                        playerInGame.GameLogicManagerCallback.NotifyPlayerOfEvent(1);
                     }
-                    catch (Exception ex)
+                    catch (TimeoutException exception)
                     {
-                        HandleException(ex);
-                        throw;
+                        _ilog.Error(exception.ToString());
+                        DeclareLosingPlayer(playerInGame, idGame);
                     }
+
                     break;
                 }
             }
@@ -299,9 +260,17 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         public void UpdatePlayersInGame(int idGame)
         {
-            foreach(var player in CurrentGames[idGame].Players)
+            foreach(Player playerInGame in CurrentGames[idGame].Players)
             {
-                player.GameLogicManagerCallBack.LoadFriends(CurrentGames[idGame].Players);
+                try
+                {
+                    playerInGame.GameLogicManagerCallback.LoadFriends(CurrentGames[idGame].Players);
+                }
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                    DeclareLosingPlayer(playerInGame, idGame);
+                }
             }
         }
 
@@ -313,12 +282,14 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         public void PurchaseProperty(Property property, Player buyer, int idGame)
         {
-            foreach (var playerAux in CurrentGames[idGame].Players)
+            Game currentGame = CurrentGames[idGame];
+
+            foreach (Player playerInGame in currentGame.Players)
             {
-                if(playerAux.IdPlayer == buyer.IdPlayer)
+                if (playerInGame.IdPlayer == buyer.IdPlayer)
                 {
-                    playerAux.Money -= property.BuyingCost;              
-                    CurrentBoards[idGame].RegisterPurchaseProperty(playerAux, property);
+                    playerInGame.Money -= property.BuyingCost;
+                    CurrentBoards[idGame].RegisterPurchaseProperty(playerInGame, property);
                     break;
                 }
             }
@@ -331,12 +302,12 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         public void UpdatePlayerService(int idPlayer, int idGame)
         {
-            IGamerLogicManagerCallBack context = OperationContext.Current.GetCallbackChannel<IGamerLogicManagerCallBack>();
-            foreach (Player player in CurrentGames[idGame].PlayersInGame)
+            IGamerLogicManagerCallback context = OperationContext.Current.GetCallbackChannel<IGamerLogicManagerCallback>();
+            foreach (Player playerInGame in CurrentGames[idGame].PlayersInGame)
             {
-                if (player.IdPlayer == idPlayer)
+                if (playerInGame.IdPlayer == idPlayer)
                 {
-                    player.GameLogicManagerCallBack = context;
+                    playerInGame.GameLogicManagerCallback = context;
                     break;
                 }
             }
@@ -348,14 +319,22 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         public void UpdateQueu(int idGame)
         {
-            Queue<Player> turns = CurrentGames[idGame].Players;
-            foreach(Player player in turns)
+            foreach(Player playerInGame in CurrentGames[idGame].Players)
             {
-                if(!player.Loser)
+                if(!playerInGame.Loser)
                 {
-                    player.GameLogicManagerCallBack.UpdateTurns(turns);
+                    try
+                    {
+                        playerInGame.GameLogicManagerCallback.UpdateTurns(CurrentGames[idGame].Players);
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                        DeclareLosingPlayer(playerInGame, idGame);
+                    }
                 }
             }
+
             UpdatePlayersInGame(idGame);
         }
 
@@ -386,11 +365,11 @@ namespace Services.DataBaseManager
         {
             Player player = null;
             
-            foreach (var playerAux in CurrentGames[idGame].Players)
+            foreach (Player playerInGame in CurrentGames[idGame].Players)
             {
-                if(playerAux.IdPlayer == idPlayer)
+                if(playerInGame.IdPlayer == idPlayer)
                 {
-                    player = playerAux;
+                    player = playerInGame;
                     break;
                 }
             }
@@ -405,9 +384,9 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         private void PayTaxes(ref Player player, int idGame)
         {
-            foreach(var playerAux in CurrentGames[idGame].Players)
+            foreach(Player playerInGame in CurrentGames[idGame].Players)
             {
-                if(playerAux.IdPlayer == player.IdPlayer)
+                if(playerInGame.IdPlayer == player.IdPlayer)
                 {
                     player.Money -= 200;
 
@@ -415,7 +394,16 @@ namespace Services.DataBaseManager
                     {
                         player.Money = 0;
                     }
-                    playerAux.GameLogicManagerCallBack.LoadFriends(CurrentGames[idGame].Players);
+
+                    try
+                    {
+                        playerInGame.GameLogicManagerCallback.LoadFriends(CurrentGames[idGame].Players);
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                        DeclareLosingPlayer(player, idGame);
+                    }
                 }
             }
         }
@@ -427,12 +415,20 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         private void GetPay(ref Player player, int idGame)
         {
-            foreach (var playerAux in CurrentGames[idGame].Players)
+            foreach (Player playerInGame in CurrentGames[idGame].Players)
             {
-                if (playerAux.IdPlayer == player.IdPlayer)
+                if (playerInGame.IdPlayer == player.IdPlayer)
                 {
                     player.Money += 200;
-                    playerAux.GameLogicManagerCallBack.LoadFriends(CurrentGames[idGame].Players);
+                    try
+                    {
+                        playerInGame.GameLogicManagerCallback.LoadFriends(CurrentGames[idGame].Players);
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                        DeclareLosingPlayer(player, idGame);
+                    }
                 }
             }
         }
@@ -449,6 +445,7 @@ namespace Services.DataBaseManager
             GetPay(ref playerAux, idGame);
         }
 
+
         /// <summary>
         /// Mueve al jugador en el tablero de juego y realiza acciones asociadas al nuevo posicionamiento.
         /// </summary>
@@ -460,21 +457,39 @@ namespace Services.DataBaseManager
             if (player.Position >= 40)
             {
                 player.Money += 200;
-                player.GameLogicManagerCallBack.UpgradePlayerMoney(player.Money);
+
+                try
+                {
+                    player.GameLogicManagerCallback.UpgradePlayerMoney(player.Money);
+                }
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                    DeclareLosingPlayer(player, idGame);
+                }
+                
                 player.Position -= 40;
                 playerPosition = player.Position;
             }
 
-            foreach (var playerAux in CurrentGames[idGame].PlayersInGame)
+            foreach (Player playerInGame in CurrentGames[idGame].PlayersInGame)
             {
-                playerAux.GameLogicManagerCallBack.MovePlayerPieceOnBoard(player, CurrentBoards[idGame].GetProperty(playerPosition));
+                playerInGame.GameLogicManagerCallback.MovePlayerPieceOnBoard(player, CurrentBoards[idGame].GetProperty(playerPosition));
 
-                if (playerAux.IdPlayer == player.IdPlayer)
+                if (playerInGame.IdPlayer == player.IdPlayer)
                 {
                     Property currentProperty = CurrentBoards[idGame].board[playerPosition];
                     if (currentProperty.Owner == null)
                     {
-                        playerAux.GameLogicManagerCallBack.ShowCard(CurrentBoards[idGame].GetProperty(playerPosition));
+                        try
+                        {
+                            playerInGame.GameLogicManagerCallback.ShowCard(CurrentBoards[idGame].GetProperty(playerPosition));
+                        }
+                        catch (TimeoutException exception)
+                        {
+                            _ilog.Error(exception.ToString());
+                            DeclareLosingPlayer(player, idGame);
+                        }
                     }
                     else if (currentProperty.Owner.IdPlayer != player.IdPlayer && currentProperty.IsMortgaged == false)
                     {
@@ -491,11 +506,11 @@ namespace Services.DataBaseManager
         /// <param name="idPlayer">Identificador único del jugador a enviar a la cárcel.</param>
         public void JailPlayer(int idGame, int idPlayer)
         {
-            foreach (var player in CurrentGames[idGame].Players)
+            foreach (Player playerInGame in CurrentGames[idGame].Players)
             {
-                if (player.IdPlayer == idPlayer)
+                if (playerInGame.IdPlayer == idPlayer)
                 {
-                    player.Jail = true;
+                    playerInGame.Jail = true;
                 }
             }
         }
@@ -509,12 +524,20 @@ namespace Services.DataBaseManager
         public void RealizePropertyMortgage(int idGame, Property property, int idPlayer)
         {
             CurrentBoards[idGame].RegisterPropertyMortgage(property);
-            foreach(var player in CurrentGames[idGame].Players)
+            foreach(Player playerInGame in CurrentGames[idGame].Players)
             {
-                if(player.IdPlayer == idPlayer)
+                if(playerInGame.IdPlayer == idPlayer)
                 {
-                    player.Money += property.BuyingCost / 2;
-                    player.GameLogicManagerCallBack.UpgradePlayerMoney(player.Money);
+                    try
+                    {
+                        playerInGame.Money += property.BuyingCost / 2;
+                        playerInGame.GameLogicManagerCallback.UpgradePlayerMoney(playerInGame.Money);
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                        DeclareLosingPlayer(playerInGame, idGame);
+                    }
                 }
             }
         }
@@ -526,16 +549,25 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         public void DeclareLosingPlayer(Player loserPlayer, int idGame)
         {
-            foreach (Player player in CurrentGames[idGame].Players)
+            foreach (Player playerInGame in CurrentGames[idGame].Players)
             {
-                if (player.IdPlayer == loserPlayer.IdPlayer)
+                if (playerInGame.IdPlayer == loserPlayer.IdPlayer)
                 {
-                    AddGameToProfile(player.IdPlayer);
-                    player.Loser = true;
+                    AddGameToProfile(playerInGame.IdPlayer);
+                    playerInGame.Loser = true;
                 }
-                if(player.IdPlayer != loserPlayer.IdPlayer)
+
+                if(playerInGame.IdPlayer != loserPlayer.IdPlayer)
                 {
-                    player.GameLogicManagerCallBack.RemoveGamePiece(loserPlayer);
+                    try
+                    {
+                        playerInGame.GameLogicManagerCallback.RemoveGamePiece(loserPlayer);
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                        DeclareLosingPlayer(playerInGame, idGame);
+                    }
                 }
             }
 
@@ -545,26 +577,57 @@ namespace Services.DataBaseManager
         /// <summary>
         /// Verifica si el juego ha sido completado, determina al ganador y realiza acciones asociadas.
         /// </summary>
-        /// <param name="idGame">Identificador único del juego.</param>
-        public void VerifyGameCompletion(int idGame)
+        /// <param name="gameId">Identificador único del juego.</param>
+        public void VerifyGameCompletion(int gameId)
         {
-            int activePlayers = 0;
-            int idWinner = 0;
-            foreach (var player in CurrentGames[idGame].Players)
+            List<Player> activePlayers = GetActivePlayers(gameId);
+
+            if (activePlayers.Count == 1)
             {
-                if(!player.Loser)
+                int winnerId = activePlayers[0].IdPlayer;
+                RegisterWinner(winnerId);
+                NotifyEndGame(activePlayers, winnerId, gameId);
+            }
+        }
+
+        /// <summary>
+        /// Obtiene la lista de jugadores activos en un juego específico, excluyendo a los perdedores.
+        /// </summary>
+        /// <param name="gameId">Identificador único del juego.</param>
+        /// <returns>Lista de jugadores activos.</returns>
+        private List<Player> GetActivePlayers(int gameId)
+        {
+            List<Player> activePlayers = new List<Player>();
+
+            foreach (Player playerInGame in CurrentGames[gameId].Players)
+            {
+                if (!playerInGame.Loser)
                 {
-                    idWinner = player.IdPlayer;
-                    activePlayers++;
-                    RegisterWinner(idWinner);
+                    activePlayers.Add(playerInGame);
                 }
             }
 
-            if(activePlayers == 1)
+            return activePlayers;
+        }
+
+        /// <summary>
+        /// Notifica el fin del juego a todos los jugadores en el juego actual, indicando al ganador.
+        /// </summary>
+        /// <param name="playersInGame">Lista de jugadores en el juego actual.</param>
+        /// <param name="winnerId">Identificador único del jugador ganador.</param>
+        /// <param name="gameId">Identificador único del juego.</param>
+        private void NotifyEndGame(List<Player> playersInGame, int winnerId, int gameId)
+        {
+            foreach (Player playerInGame in playersInGame)
             {
-                foreach (var player in CurrentGames[idGame].Players)
+                try
                 {
-                    player.GameLogicManagerCallBack.EndGame(idWinner);
+                    playerInGame.GameLogicManagerCallback.EndGame(winnerId);
+                }
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                    DeclareLosingPlayer(playerInGame, gameId);
                 }
             }
         }
@@ -576,7 +639,6 @@ namespace Services.DataBaseManager
         {
             using (var context = new TuristaMundialEntitiesDB())
             {
-                Console.WriteLine("GANOOOOOOOOOOOOO");
                 var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
                 player.Wins++;
                 player.Games++;
@@ -592,7 +654,6 @@ namespace Services.DataBaseManager
         {
             using (var context = new TuristaMundialEntitiesDB())
             {
-                Console.WriteLine("PERDIOOOOOOOOOOOOOOOOOOOOOOOOOOOOoo");
                 var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
                 player.Games++;
                 context.PlayerSet.AddOrUpdate(player);
@@ -608,7 +669,7 @@ namespace Services.DataBaseManager
         /// <param name="mortgagedProperty">Objeto Property que representa la propiedad hipotecada.</param>
         public void PayPropertyMortgage(Game game, int idPlayer, Property mortgagedProperty)
         {
-            foreach (var property in CurrentBoards[game.IdGame].board)
+            foreach (Property property in CurrentBoards[game.IdGame].board)
             {
                 if(property.Name == mortgagedProperty.Name)
                 {
@@ -617,13 +678,21 @@ namespace Services.DataBaseManager
                 }
             }
 
-            foreach (var player in CurrentGames[game.IdGame].Players)
+            foreach (Player playerInGame in CurrentGames[game.IdGame].Players)
             {
-                if (player.IdPlayer == idPlayer)
+                if (playerInGame.IdPlayer == idPlayer)
                 {
-                    player.Money -= mortgagedProperty.BuyingCost / 2;
-                    player.GameLogicManagerCallBack.UpgradePlayerMoney(player.Money);
-                    break;
+                    try
+                    {
+                        playerInGame.Money -= mortgagedProperty.BuyingCost / 2;
+                        playerInGame.GameLogicManagerCallback.UpgradePlayerMoney(playerInGame.Money);
+                        break;
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                        DeclareLosingPlayer(playerInGame, game.IdGame);
+                    }
                 }
             }
         }
@@ -648,7 +717,17 @@ namespace Services.DataBaseManager
             }
 
             MovePlayer(idGame, player.Position, ref player);
-            player.GameLogicManagerCallBack.ShowCard(CurrentBoards[idGame].board[player.Position]);
+
+            try
+            {
+                player.GameLogicManagerCallback.ShowCard(CurrentBoards[idGame].board[player.Position]);
+            }
+            catch(TimeoutException exception)
+            {           
+                _ilog.Error(exception.ToString());
+                DeclareLosingPlayer(player, idGame);
+            }
+
         }
 
         /// <summary>
@@ -658,13 +737,13 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         public void ModifyProperty(Property property, int idGame)
         {
-            foreach (var propertyAux in CurrentBoards[idGame].board)
+            foreach (Property boardProperty in CurrentBoards[idGame].board)
             {
-                if(propertyAux.Name == property.Name)
+                if(boardProperty.Name == property.Name)
                 {
-                    propertyAux.Taxes = property.Taxes;
-                    propertyAux.NumberHouses = property.NumberHouses;
-                    propertyAux.Situation = property.Situation;
+                    boardProperty.Taxes = property.Taxes;
+                    boardProperty.NumberHouses = property.NumberHouses;
+                    boardProperty.Situation = property.Situation;
                     break;
                 }
             }
@@ -679,24 +758,32 @@ namespace Services.DataBaseManager
         {
             var playersCopy = CurrentGames[idGame].Players.ToList();
 
-            foreach (var player in playersCopy)
+            foreach (var playerInGame in playersCopy)
             {
-                if (player.IdPlayer == idPlayer)
+                try
                 {
-                    player.VotesToExpel++;
-                    if (player.VotesToExpel == CurrentGames[idGame].Players.Count - (1 + GetNumberLosersInGame(idGame)))
+                    if (playerInGame.IdPlayer == idPlayer)
                     {
-                        player.GameLogicManagerCallBack.ExitToGame();
-                        DeclareLosingPlayer(player, idGame);
-
-                        if (CurrentGames[idGame].Players.Peek().IdPlayer == idPlayer)
+                        playerInGame.VotesToExpel++;
+                        if (playerInGame.VotesToExpel == CurrentGames[idGame].Players.Count - (1 + GetNumberLosersInGame(idGame)))
                         {
-                            AdvanceTurn(idGame);
-                            UpdateQueu(idGame);
+                            playerInGame.GameLogicManagerCallback.ExitToGame();
+                            DeclareLosingPlayer(playerInGame, idGame);
+
+                            if (CurrentGames[idGame].Players.Peek().IdPlayer == idPlayer)
+                            {
+                                AdvanceTurn(idGame);
+                                UpdateQueu(idGame);
+                            }
                         }
                     }
+                    playerInGame.GameLogicManagerCallback.LoadFriends(CurrentGames[idGame].Players);
                 }
-                player.GameLogicManagerCallBack.LoadFriends(CurrentGames[idGame].Players);
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                    DeclareLosingPlayer(playerInGame, idGame);
+                }
             }
         }
 
@@ -709,9 +796,9 @@ namespace Services.DataBaseManager
         {
             int numberLosers = 0;
 
-            foreach (var player in CurrentGames[idGame].Players)
+            foreach (var playerInGame in CurrentGames[idGame].Players)
             {
-                if(player.Loser)
+                if(playerInGame.Loser)
                 {
                     numberLosers++;
                 }
@@ -728,19 +815,14 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         public void PayConstruction(int idPlayer, long constructionCost, int idGame)
         {
-            foreach(Player player in CurrentGames[idGame].Players)
+            foreach(Player playerInGame in CurrentGames[idGame].Players)
             {
-                if (player.IdPlayer == idPlayer)
+                if (playerInGame.IdPlayer == idPlayer)
                 {
-                    player.Money -= constructionCost;
+                    playerInGame.Money -= constructionCost;
                     break;
                 }
             }
-        }
-
-        public bool ConnectionExists()
-        {
-            return true;
         }
     }
 }                                                                                                                                                                                         

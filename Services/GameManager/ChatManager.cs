@@ -1,4 +1,5 @@
 ﻿
+using Contracts.IDataBase;
 using Contracts.IGameManager;
 using DataBase;
 using EASendMail;
@@ -23,76 +24,101 @@ namespace Services.DataBaseManager
         /// <param name="message">Mensaje a enviar a los jugadores.</param>
         public void SendMessage(int idGame, string message)
         {
-            foreach (var player in CurrentGames[idGame].Players) 
+            foreach (Player playerInGame in CurrentGames[idGame].Players) 
             {
                 try
                 {
-                    player.GameManagerCallBack.GetMessage(message);
+                    playerInGame.GameManagerCallback.GetMessage(message);
                 }
                 catch (TimeoutException exception)
                 {
                     _ilog.Error(exception.ToString());
                 }
             }
-            
+        }
+
+        private readonly object LockObject = new object();
+
+        /// <summary>
+        /// Actualiza la información de juego de un jugador, asignando una nueva pieza y número de turno.
+        /// </summary>
+        /// <param name="game">Objeto Game que representa el juego actual.</param>
+        /// <param name="idPlayer">Identificador único del jugador a actualizar.</param>
+        /// <param name="playersPiece">Objeto Piece que representa la nueva pieza del jugador.</param>
+        /// <returns>Entero que indica el resultado de la operación (0 si no se actualizó, 1 si se actualizó correctamente).</returns>
+        public int UpdatePlayerGame(Game game, int idPlayer, Piece playersPiece)
+        {
+            int result = 0;
+            int turn = 0;
+
+            Monitor.Enter(LockObject);
+            try
+            {
+                if (CheckPieceAvailability(game, playersPiece.Name))
+                {
+                    foreach (Player playerInGame in CurrentGames[game.IdGame].Players)
+                    {
+                        if (playerInGame.IdPlayer == idPlayer)
+                        {
+                            try
+                            {
+                                playerInGame.Piece = playersPiece;
+                                result = 1;
+                            }
+                            catch (TimeoutException exception)
+                            {
+                                _ilog.Error(exception.ToString());
+                            }
+
+                            playerInGame.Piece.PartNumber = turn;
+                            break;
+                        }
+                        turn++;
+                    }
+                }
+            }
+            finally
+            {
+                Monitor.Exit(LockObject);
+            }
+
+            return result;
         }
 
         /// <summary>
-        /// Actualiza la información del jugador en un juego específico.
+        /// Notifica a todos los jugadores en un juego que una pieza específica ha sido seleccionada por un jugador.
         /// </summary>
-        /// <param name="game">Objeto Game que representa el juego.</param>
-        /// <param name="idPlayer">Identificador del jugador cuya información se actualizará.</param>
-        public void UpdatePlayerGame(Game game, int idPlayer, Piece playersPiece)
-        {
-            int turn = 0;
-            foreach (var player in CurrentGames[game.IdGame].Players)
-            {
-                if (player.IdPlayer == idPlayer)
-                {
-                    try
-                    {
-                        player.Piece = playersPiece;
-                    }
-                    catch (TimeoutException exception)
-                    {
-                        _ilog.Error(exception.ToString());
-                    }
-
-                    player.Piece.PartNumber = turn;
-                    break;
-                }
-                turn++;
-            }
-        }
-
-
+        /// <param name="game">Objeto Game que representa el juego actual.</param>
+        /// <param name="piece">Nombre de la pieza seleccionada.</param>
+        /// <param name="idPlayer">Identificador único del jugador que seleccionó la pieza.</param>
         public void SelectedPiece(Game game, string piece, int idPlayer)
-        {
-            if (Check(game, piece))
+        {            
+            foreach (Player playerInGame in CurrentGames[game.IdGame].PlayersInGame)
             {
-                foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+                try
                 {
-                    try
-                    {
-
-                        player.GameManagerCallBack.BlockPiece(piece, idPlayer);
-
-                    }
-                    catch (TimeoutException exception)
-                    {
-                        _ilog.Error(exception.ToString());
-                    }
+                    playerInGame.GameManagerCallback.BlockPiece(piece, idPlayer);
+                }
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
                 }
             }
         }
 
-        private bool Check(Game game, string selectedPiece)
+        /// <summary>
+        /// Verifica la disponibilidad de una pieza específica en el juego.
+        /// </summary>
+        /// <param name="game">Objeto Game que representa el juego actual.</param>
+        /// <param name="selectedPiece">Nombre de la pieza seleccionada.</param>
+        /// <returns>True si la pieza está disponible, False si está ocupada por otro jugador.</returns>
+        private bool CheckPieceAvailability(Game game, string selectedPiece)
         {
             bool result = true;
 
-            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+            foreach (Player playerInGame in CurrentGames[game.IdGame].PlayersInGame)
             {
-                if (player.Piece.Name == selectedPiece)
+                if (playerInGame.Piece != null && playerInGame.Piece.Name == selectedPiece)
                 {
                     result = false; break;
                 }
@@ -102,17 +128,23 @@ namespace Services.DataBaseManager
         }
 
         /// <summary>
-        /// Notifica a todos los jugadores en un juego específico sobre la liberación de una pieza.
+        /// Notifica a todos los jugadores en un juego que una pieza específica ha sido deseleccionada por un jugador.
         /// </summary>
-        /// <param name="game">Objeto Game que representa el juego.</param>
-        /// <param name="piece">Pieza que se liberará y estará disponible para selección.</param>
-        public void UnSelectedPiece(Game game, string piece)
+        /// <param name="game">Objeto Game que representa el juego actual.</param>
+        /// <param name="piece">Nombre de la pieza deseleccionada.</param>
+        /// <param name="idPlayer">Identificador único del jugador que deseleccionó la pieza.</param>
+        public void UnSelectedPiece(Game game, string piece, int idPlayer)
         {
-            foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+            foreach (Player playerInGame in CurrentGames[game.IdGame].PlayersInGame)
             {
+                if(playerInGame.IdPlayer == idPlayer)
+                {
+                    playerInGame.Piece = null;
+                }
+
                 try
                 {
-                    player.GameManagerCallBack.UnblockPiece(piece);
+                    playerInGame.GameManagerCallback.UnblockPiece(piece);
                 }
                 catch (TimeoutException exception)
                 {
@@ -131,19 +163,19 @@ namespace Services.DataBaseManager
         public void AddGuestToGame(int idGame, int idPlayer)
         {
             TotalGuestPlayers++;
-            Player player = new Player(idPlayer, "Invitado0" + TotalGuestPlayers);
+            Player guestPlayer = new Player(idPlayer, "Invitado0" + TotalGuestPlayers);
 
             try
             {
-                player.GameManagerCallBack = OperationContext.Current.GetCallbackChannel<IGameManagerCallBack>();
+                guestPlayer.GameManagerCallback = OperationContext.Current.GetCallbackChannel<IGameManagerCallback>();
             }
             catch (TimeoutException exception)
             {
                 _ilog.Error(exception.ToString());
             }
 
-            CurrentGames[idGame].Players.Enqueue(player);
-            CurrentGames[idGame].PlayersInGame.Add(player);
+            CurrentGames[idGame].Players.Enqueue(guestPlayer);
+            CurrentGames[idGame].PlayersInGame.Add(guestPlayer);
         }
 
         /// <summary>
@@ -155,11 +187,11 @@ namespace Services.DataBaseManager
             CurrentGames[game.IdGame].NumberPlayersReady++;
             if (CurrentGames[game.IdGame].NumberPlayersReady == CurrentGames[game.IdGame].PlayersInGame.Count && CurrentGames[game.IdGame].PlayersInGame.Count > 1)
             {
-                foreach (var player in CurrentGames[game.IdGame].PlayersInGame)
+                foreach (Player playerInGame in CurrentGames[game.IdGame].PlayersInGame)
                 {
                     try
                     {
-                        player.GameManagerCallBack.EnableStartGameButton();
+                        playerInGame.GameManagerCallback.EnableStartGameButton();
                     }
                     catch (TimeoutException exception)
                     {
@@ -188,11 +220,11 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador del juego al que se aplicará la desactivación.</param>
         public void InactivateBeginGameControls(int idGame)
         {
-            foreach (var player in CurrentGames[idGame].PlayersInGame)
+            foreach (Player playerInGame in CurrentGames[idGame].PlayersInGame)
             {
                 try
                 {
-                    player.GameManagerCallBack.DisableStartGameButton();
+                    playerInGame.GameManagerCallback.DisableStartGameButton();
                 }
                 catch (TimeoutException exception)
                 {
@@ -201,6 +233,11 @@ namespace Services.DataBaseManager
             }
         }
 
+        /// <summary>
+        /// Invita a un amigo a unirse a un juego enviándole un correo electrónico con un código de verificación.
+        /// </summary>
+        /// <param name="codeGame">Código de verificación del juego.</param>
+        /// <param name="friendId">Identificador único del amigo a invitar.</param>
         public void InviteFriendToGame(string codeGame, int friendId)
         {
             try
@@ -208,7 +245,7 @@ namespace Services.DataBaseManager
                 
                 SmtpMail mail = new SmtpMail("TryIt");
                 mail.From = "yusgus02@gmail.com";
-                mail.To = getFriendEmail(friendId);
+                mail.To = GetFriendEmail(friendId);
                 mail.Subject = "Codigo de verificacion";
                 mail.TextBody = "Tu codigo de verificacion es: " + codeGame;
 
@@ -229,6 +266,11 @@ namespace Services.DataBaseManager
             }
         }
 
+        /// <summary>
+        /// Obtiene una lista de nombres de piezas seleccionadas por jugadores en un juego específico.
+        /// </summary>
+        /// <param name="game">Objeto Game que representa el juego actual.</param>
+        /// <returns>Lista de nombres de piezas seleccionadas.</returns>
         private List<string> GetSelectedPieces(Game game)
         {
             List<string> pieces = new List<string>();
@@ -245,31 +287,41 @@ namespace Services.DataBaseManager
 
         }
 
-        public void checkTakenPieces(Game game, int idPlayer)
+        /// <summary>
+        /// Verifica las piezas seleccionadas por otros jugadores en el juego y notifica al jugador especificado.
+        /// </summary>
+        /// <param name="game">Objeto Game que representa el juego actual.</param>
+        /// <param name="idPlayer">Identificador único del jugador a notificar.</param>
+        public void CheckTakenPieces(Game game, int idPlayer)
         {
             List<string> pieces = GetSelectedPieces(game);
 
-            foreach (var player in CurrentGames[game.IdGame].Players)
+            foreach (Player playerInGame in CurrentGames[game.IdGame].Players)
             {
-                if (player.IdPlayer ==  idPlayer)
+                if (playerInGame.IdPlayer == idPlayer)
                 {
                     if (pieces != null && pieces.Count > 0)
                     {
                         foreach (var piece in pieces)
                         {
-                            player.GameManagerCallBack.BlockPiece(piece, -1);
+                            playerInGame.GameManagerCallback.BlockPiece(piece, -1);
                         }
                     }
                     break;
                 }
             }
-            
-        private string getFriendEmail(int idFriend)
+        }
+
+        /// <summary>
+        /// Obtiene la dirección de correo electrónico de un amigo mediante su identificador único.
+        /// </summary>
+        /// <param name="idFriend">Identificador único del amigo.</param>
+        /// <returns>Dirección de correo electrónico del amigo.</returns>
+        private string GetFriendEmail(int idFriend)
         {
             string friendEmail;
             using (var Context = new TuristaMundialEntitiesDB())
             {
-
                 var friend = Context.PlayerSet.Where(P => P.Id == idFriend).First();
                 friendEmail = friend.eMail;
             }

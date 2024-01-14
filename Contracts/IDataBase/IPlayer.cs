@@ -29,10 +29,10 @@ namespace Contracts.IDataBase
         int SendEmail(String verifyCode, String userEmail);
 
         [OperationContract]
-        Player GePlayerInfo(int idPlayer);
+        Player GetPlayerData(int idPlayer);
 
         [OperationContract]
-        int UpdatePlayerInfo(int idPlayer, String Description);
+        int UpdatePlayerData(int idPlayer, String Description);
 
         [OperationContract]
         int LogOut(int idPlayer);

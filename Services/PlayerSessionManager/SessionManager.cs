@@ -29,22 +29,22 @@ namespace Services.DataBaseManager
         /// </returns>
         public int MakeFriendRequest(int Sender, string Reciber)
         {
-            int Result = 0;
+            int result = 0;
             try
             {
                 using (var Context = new TuristaMundialEntitiesDB())
                 {
                     if (VerifyUserExistence(Reciber) == 1)
                     {
-                        Result = 2;
+                        result = 2;
                     } 
                     else if (CheckAlredyFriends(Sender, Reciber) == 0)
                     {
-                        Result = 1;
+                        result = 1;
                     }
                     else if (CheckPreviousFriendRequest(Sender, Reciber) == 1)
                     {
-                        Result = 3;
+                        result = 3;
                     }
                     else
                     {
@@ -55,16 +55,19 @@ namespace Services.DataBaseManager
                             Request.PlayerSet1ID = Sender;
                             Request.PlayerSet2ID = SecondPlayer.Id;
                             Context.FriendRequest.Add(Request);
-                            Result = Context.SaveChanges();
+                            result = Context.SaveChanges();
                             NotifyRequest(SecondPlayer.Id);
                         }
                     }
                 }
-            } catch (Exception ex)
-            {
-                Console.WriteLine("Error en RegisterPlayer: " + ex.Message);
             }
-            return Result;
+            catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -74,6 +77,7 @@ namespace Services.DataBaseManager
         public void SavePlayerSession(int idPlayer)
         {
             INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();
+
             if (currentUsers.ContainsKey(idPlayer))
             {
                 currentUsers[idPlayer] = context;
@@ -106,10 +110,13 @@ namespace Services.DataBaseManager
                     result = context.SaveChanges();
                     NotifyFriendOline(friendship.PlayerSet1.Id);
                 }
-            }catch(Exception ex) 
-            {
-                Console.WriteLine("Error en CheckAlredyFriends: " + ex.Message);
             }
+            catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
+            }
+
             return result;
         }
 
@@ -130,10 +137,12 @@ namespace Services.DataBaseManager
                     result = context.SaveChanges();
                 }
             }
-            catch (Exception ex)
+            catch (SqlException exception)
             {
-                Console.WriteLine("Error en CheckAlredyFriends: " + ex.Message);
+                _ilog.Error(exception.ToString());
+                result = -1;
             }
+
             return result;
         }
 
@@ -162,10 +171,12 @@ namespace Services.DataBaseManager
                     }
                 }
             }
-            catch (Exception ex) 
-            { 
-                Console.WriteLine("Error en CheckAlredyFriends: " + ex.Message); 
+            catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
             }
+
             return result;
         }
 
@@ -176,19 +187,23 @@ namespace Services.DataBaseManager
         /// <returns>Entero que indica el resultado de la verificación (0 si el jugador existe, 1 si no existe o hay un error).</returns>
         private int VerifyUserExistence(String userName)
         {
+            int result;
+
             try
             {
                 using (var context = new TuristaMundialEntitiesDB())
                 {
                     var existingPlayer = context.PlayerSet.Any(p => p.Nickname == userName);
-                    return existingPlayer ? 0 : 1;
+                    result = existingPlayer ? 0 : 1;
                 }
             }
-            catch (Exception ex)
+            catch (SqlException exception)
             {
-                Console.WriteLine("Error en CheckUserExistence: " + ex.Message);
-                return -1;
+                _ilog.Error(exception.ToString());
+                result = - 1;
             }
+
+            return result;
         }
 
         /// <summary>
@@ -217,10 +232,11 @@ namespace Services.DataBaseManager
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException exception)
             {
-                Console.WriteLine("Error en CheckPreviousFriendRequest: " + ex.Message);
+                _ilog.Error(exception.ToString());
             }
+
             return result;
         }
 
@@ -234,9 +250,7 @@ namespace Services.DataBaseManager
             {
                 if(idPlayer == user.Key)
                 {
-                    Console.WriteLine(idPlayer);
                     user.Value.UpdateFriendRequest();
-                    Console.WriteLine("Notifica la request");
                 }
             }
 
@@ -266,17 +280,25 @@ namespace Services.DataBaseManager
                     try
                     {
                         currentUsers[friend.IdFriend].UpdateFriendDisplay();
-                    }catch (Exception ex) { Console.WriteLine(ex.InnerException); }
+                    }
+                    catch (Exception ex) 
+                    { 
+                        Console.WriteLine(ex.InnerException); 
+                    }
                 }
             }
         }
 
+        /// <summary>
+        /// Realiza el proceso de cierre de sesión para un jugador.
+        /// </summary>
+        /// <param name="idPlayer">Identificador único del jugador.</param>
+        /// <returns>1 si el cierre de sesión fue exitoso, 0 si hubo un error.</returns>
         public int LogOut(int idPlayer)
         {
             int result = 0;
             try
             {
-                Console.WriteLine("SALIOOOOOOOOOOOOOOOOOOOOO");
                 currentUsers.Remove(idPlayer);
                 result = 1;
             }
