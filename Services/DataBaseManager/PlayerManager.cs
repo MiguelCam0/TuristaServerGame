@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 using Contracts.IGameManager;
 using EASendMail;
+using System.Data.Entity.Validation;
 
 namespace Services.DataBaseManager
 {
@@ -148,11 +149,11 @@ namespace Services.DataBaseManager
         public string GetMyPlayersName(int idPlayer, int idGame)
         {
             string PlayerName = "";
-            foreach (var player in CurrentGames[idGame].PlayersInGame)
+            foreach (Player playerInGame in CurrentGames[idGame].PlayersInGame)
             {
-                if (player.IdPlayer == idPlayer)
+                if (playerInGame.IdPlayer == idPlayer)
                 {
-                    PlayerName = player.Name;
+                    PlayerName = playerInGame.Name;
                     break;
                 }
             }
@@ -205,30 +206,53 @@ namespace Services.DataBaseManager
             return result;
         }
 
-        public Player GePlayerInfo(int idPlayer)
+        /// <summary>
+        /// Obtiene la información del jugador por su identificador único.
+        /// </summary>
+        /// <param name="idPlayer">Identificador único del jugador.</param>
+        /// <returns>Objeto Player que contiene la información del jugador.</returns>
+        public Player GetPlayerData(int idPlayer)
         {
             Player playerInfo = new Player();
-            using (var context = new TuristaMundialEntitiesDB())
-            {
-                var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
-                playerInfo.Name = player.Nickname;
-                playerInfo.Games = (int)player.Games;
-                playerInfo.GamesWin = (int)player.Wins;
-                playerInfo.Description = player.Description;
-            }
 
+            try
+            {
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
+                    playerInfo.Name = player.Nickname;
+                    playerInfo.Games = (int)player.Games;
+                    playerInfo.GamesWin = (int)player.Wins;
+                    playerInfo.Description = player.Description;
+                }
+            }
+            catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            
             return playerInfo;
         }
 
-        public int UpdatePlayerInfo(int idPlayer, string Description)
+
+        public int UpdatePlayerData(int idPlayer, string Description)
         {
             int result = 0;
-            using (var context = new TuristaMundialEntitiesDB())
+
+            try
             {
-                var player = context.PlayerSet.Where(playerInfo => playerInfo.Id == idPlayer).First();
-                player.Description = Description;
-                result = context.SaveChanges();
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    var player = context.PlayerSet.Where(playerInfo => playerInfo.Id == idPlayer).First();
+                    player.Description = Description;
+                    result = context.SaveChanges();
+                }
             }
+            catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            
             return result;  
         }
     }
