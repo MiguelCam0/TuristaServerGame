@@ -38,9 +38,9 @@ namespace Services.DataBaseManager
                     {
                         result = 2;
                     } 
-                    else if (CheckAlredyFriends(Sender, Reciber) == 0)
+                    else if (CheckAlredyFriends(Sender, Reciber) == 1)
                     {
-                        result = 1;
+                        result = 0;
                     }
                     else if (CheckPreviousFriendRequest(Sender, Reciber) == 1)
                     {
@@ -78,11 +78,7 @@ namespace Services.DataBaseManager
         {
             INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();
 
-            if (currentUsers.ContainsKey(idPlayer))
-            {
-                currentUsers[idPlayer] = context;
-            }
-            else
+            if (!currentUsers.ContainsKey(idPlayer))
             {
                 currentUsers.Add(idPlayer, context);
                 NotifyFriendOline(idPlayer);
@@ -101,14 +97,17 @@ namespace Services.DataBaseManager
             {
                 using (var context = new TuristaMundialEntitiesDB())
                 {
-                    var request = context.FriendRequest.Where(r => r.IDRequest == IdRequest).First();
-                    friendship friendship = new friendship();
-                    friendship.PlayerSet = request.PlayerSet;
-                    friendship.PlayerSet1 = request.PlayerSet1;
-                    context.friendship.Add(friendship);
-                    context.FriendRequest.Remove(request);
-                    result = context.SaveChanges();
-                    NotifyFriendOline(friendship.PlayerSet1.Id);
+                    var request = context.FriendRequest.Where(r => r.IDRequest == IdRequest).FirstOrDefault();
+                    if(request != null)
+                    {
+                        friendship friendship = new friendship();
+                        friendship.PlayerSet = request.PlayerSet;
+                        friendship.PlayerSet1 = request.PlayerSet1;
+                        context.friendship.Add(friendship);
+                        context.FriendRequest.Remove(request);
+                        result = context.SaveChanges();
+                        NotifyFriendOline(friendship.PlayerSet1.Id);
+                    }
                 }
             }
             catch (SqlException exception)
@@ -132,9 +131,12 @@ namespace Services.DataBaseManager
             {
                 using (var context = new TuristaMundialEntitiesDB())
                 {
-                    var request = context.FriendRequest.Where(r => r.IDRequest == IdRequest).First();
-                    context.FriendRequest.Remove(request);
-                    result = context.SaveChanges();
+                    var request = context.FriendRequest.Where(r => r.IDRequest == IdRequest).FirstOrDefault();
+                    if(request != null)
+                    {
+                        context.FriendRequest.Remove(request);
+                        result = context.SaveChanges();
+                    }
                 }
             }
             catch (SqlException exception)
@@ -163,8 +165,8 @@ namespace Services.DataBaseManager
                     if (player != null)
                     {
                         var check = context.friendship.Where(fs => (fs.player1_id == Sender || fs.player1_id == player.Id) 
-                        && ((fs.player2_id == Sender || fs.player2_id == player.Id))).FirstOrDefault();
-                        if(check == null)
+                        && ((fs.player2_id == Sender || fs.player2_id == player.Id))).Any();
+                        if (check)
                         {
                             result = 1;
                         }
@@ -260,10 +262,26 @@ namespace Services.DataBaseManager
         /// Actualiza la sesión de notificaciones de un jugador.
         /// </summary>
         /// <param name="idPlayer">ID del jugador cuya sesión se actualizará.</param>
-        public void UpdatePlayerSession(int idPlayer)
+        /// <returns>1 si se actualizo correctamente 0 si no se actualizo y -1 si hubo un error </returns>
+        public int UpdatePlayerSession(int idPlayer)
         {
-            INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();
-            currentUsers[idPlayer] = context;
+            int result = 0;
+            try
+            {
+                if (currentUsers.ContainsKey(idPlayer))
+                {
+                    INotificationsCallBack context = OperationContext.Current.GetCallbackChannel<INotificationsCallBack>();
+                    currentUsers[idPlayer] = context;
+                    result = 1;
+                }
+            }
+            catch (ArgumentNullException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -299,12 +317,17 @@ namespace Services.DataBaseManager
             int result = 0;
             try
             {
-                currentUsers.Remove(idPlayer);
-                result = 1;
+                if (currentUsers.ContainsKey(idPlayer))
+                {
+                    currentUsers.Remove(idPlayer);
+                    NotifyFriendOline(idPlayer);
+                    result = 1;
+                }
             }
             catch (Exception ex) 
             {
                 Console.WriteLine(ex.InnerException);
+                result = -1;
             }
             return result;
         }

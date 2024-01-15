@@ -18,10 +18,10 @@ namespace Contracts.IGameManager
     public interface IGameManager
     {
         [OperationContract]
-        void AddGame(Game game); 
+        int AddGame(Game game); 
 
         [OperationContract]
-        void AddPlayerToGame(int game, Player player); 
+        int AddPlayerToGame(int game, Player player); 
         
         [OperationContract]
         void AddGuestToGame(int idGame, int idPlayer); 
@@ -159,6 +159,19 @@ namespace Contracts.IGameManager
         [DataMember]
         public string Description { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            bool result = false;
+            if (obj != null && GetType() == obj.GetType())
+            {
+                Player player = obj as Player;
+                if (player.IdPlayer == this.IdPlayer && this.Description.Equals(player.Description))
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
     }
 
     [DataContract]

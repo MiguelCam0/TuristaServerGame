@@ -27,43 +27,47 @@ namespace Services.DataBaseManager
                 using (var context = new TuristaMundialEntitiesDB())
                 {
                     friendsList = context.friendship.Where(friend => friend.PlayerSet.Id == idPlayer).ToList();
-                    foreach (var friend in friendsList)
+                    if(friendsList != null)
                     {
-                        var friendData = new FriendList();
-                        friendData.IdFriend = friend.PlayerSet1.Id;
-                        friendData.FriendName = friend.PlayerSet1.Nickname;
-                        friendData.Games = (int)friend.PlayerSet1.Games;
-                        friendData.GamesWins = (int)friend.PlayerSet1.Wins;
-                        if(friend.PlayerSet1.Games > 0)
+                        foreach (var friend in friendsList)
                         {
-                            friendData.WinRate = ((friend.PlayerSet1.Wins / friend.PlayerSet1.Games) * 100).ToString() + "%";
+                            var friendData = new FriendList();
+                            friendData.IdFriend = friend.PlayerSet1.Id;
+                            friendData.FriendName = friend.PlayerSet1.Nickname;
+                            friendData.Games = (int)friend.PlayerSet1.Games;
+                            friendData.GamesWins = (int)friend.PlayerSet1.Wins;
+                            if (friend.PlayerSet1.Games > 0)
+                            {
+                                friendData.WinRate = ((friend.PlayerSet1.Wins / friend.PlayerSet1.Games) * 100).ToString() + "%";
+                            }
+                            else
+                            {
+                                friendData.WinRate = "N/A";
+                            }
+                            friends.Add(friendData);
                         }
-                        else
-                        {
-                            friendData.WinRate = "N/A";
-                        }
-                        friends.Add(friendData);
                     }
-
-                    friendsList = context.friendship.Where(friend => friend.PlayerSet1.Id == idPlayer).ToList();
-                    foreach (var friend in friendsList)
+                    if (friendsList != null)
                     {
-                        var friendData = new FriendList();
-                        friendData.IdFriend = friend.PlayerSet.Id;
-                        friendData.FriendName = friend.PlayerSet.Nickname;
-                        friendData.Games = (int)friend.PlayerSet.Games;
-                        friendData.GamesWins = (int)friend.PlayerSet.Wins;
-                        if (friend.PlayerSet1.Games > 0)
+                        friendsList = context.friendship.Where(friend => friend.PlayerSet1.Id == idPlayer).ToList();
+                        foreach (var friend in friendsList)
                         {
-                            friendData.WinRate = ((friend.PlayerSet.Wins / friend.PlayerSet.Games) * 100).ToString() + "%";
+                            var friendData = new FriendList();
+                            friendData.IdFriend = friend.PlayerSet.Id;
+                            friendData.FriendName = friend.PlayerSet.Nickname;
+                            friendData.Games = (int)friend.PlayerSet.Games;
+                            friendData.GamesWins = (int)friend.PlayerSet.Wins;
+                            if (friend.PlayerSet1.Games > 0)
+                            {
+                                friendData.WinRate = ((friend.PlayerSet.Wins / friend.PlayerSet.Games) * 100).ToString() + "%";
+                            }
+                            else
+                            {
+                                friendData.WinRate = "N/A";
+                            }
+                            friends.Add(friendData);
                         }
-                        else
-                        {
-                            friendData.WinRate = "N/A";
-                        }
-                        friends.Add(friendData);
                     }
-
                 }
             }
             catch (SqlException exception)
