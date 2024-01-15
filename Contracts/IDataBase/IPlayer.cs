@@ -19,6 +19,9 @@ namespace Contracts.IDataBase
         [OperationContract]
         int PlayerSearch(PlayerSet player);
         [OperationContract]
+        int ModifyPassword(int playerId, string currentPassword, string newPassword);
+
+        [OperationContract]
         string GetPlayerName(int IdPlayer);
         [OperationContract]
         Game GetGame(int Game);

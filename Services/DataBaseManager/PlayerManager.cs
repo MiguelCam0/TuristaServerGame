@@ -14,6 +14,8 @@ using System.Data.Entity.Validation;
 using System.Runtime.CompilerServices;
 using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
+using System.Data.Entity.Core;
+using System.Threading;
 
 namespace Services.DataBaseManager
 {
@@ -21,6 +23,7 @@ namespace Services.DataBaseManager
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.PerSession)]
     public partial class PlayerManager : IPlayer
     {
+
         /// <summary>
         /// Busca un jugador en la base de datos utilizando el nombre de usuario (Nickname) y la contraseña.
         /// </summary>
@@ -46,30 +49,29 @@ namespace Services.DataBaseManager
                         }
                         else
                         {
-                            check = -1;
+                            check = -2;
                         }
                     }
                 }
             }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+                check = -1;
+            }
             catch (SqlException exception)
             {
                 _ilog.Error(exception.ToString());
+                check = -1;
             }
 
             return check;
         }
 
-        /// <summary>
-        /// Registra un nuevo jugador en la base de datos.
-        /// </summary>
-        /// <param name="player">Objeto PlayerSet que representa al jugador a registrar.</param>
-        /// <returns>
-        /// Devuelve el número de cambios realizados en la base de datos.
-        /// Si el registro es exitoso, el valor devuelto debería ser 1; de lo contrario, será 0.
-        /// </returns>
+ 
         public int RegisterPlayer(PlayerSet player)
         {
-            int band = 0;
+            int result = 0;
 
             try
             {
@@ -79,22 +81,65 @@ namespace Services.DataBaseManager
                     {
                         player.BanEnd = null;
                         context.PlayerSet.Add(player);
-                        band = context.SaveChanges();
+                        result = context.SaveChanges();
                     }
                 }
             }
             catch (SqlException exception)
             {
                 _ilog.Error(exception.ToString());
-                band = -1;
+                result = -1;
             }
             catch(DbEntityValidationException exception)
             {
                 _ilog.Error(exception.ToString());
-                band = -1;
+                result = -1;
+            }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
             }
 
-            return band;
+            return result;
+        }
+
+        public int ModifyPassword(int playerId, string currentPassword, string newPassword)
+        {
+            int result = 0;
+
+            try
+            {
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    var player = context.PlayerSet.SingleOrDefault(p => p.Id == playerId);
+
+                    if (player != null)
+                    {
+                        if (player.Password == currentPassword)
+                        {
+                            player.Password = newPassword;
+                            result = context.SaveChanges();
+                        }
+                        else
+                        {
+                            result = -2;
+                        }
+                    }
+                }
+            }
+            catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
+            }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -142,6 +187,10 @@ namespace Services.DataBaseManager
                 }
             }
             catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            catch (EntityException exception)
             {
                 _ilog.Error(exception.ToString());
             }
@@ -253,7 +302,11 @@ namespace Services.DataBaseManager
             {
                 _ilog.Error(exception.ToString());
             }
-            
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+
             return playerInfo;
         }
 
@@ -274,9 +327,15 @@ namespace Services.DataBaseManager
                     }
                 }
             }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
+            }
             catch (SqlException exception)
             {
                 _ilog.Error(exception.ToString());
+                result = -1;
             }
             catch (ArgumentNullException exception)
             {

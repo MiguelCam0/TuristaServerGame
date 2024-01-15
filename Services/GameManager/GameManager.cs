@@ -40,6 +40,9 @@ namespace Services.DataBaseManager
                 _ilog.Error(exception.ToString());
             }
             return result;
+
+            Board board = new Board();
+            CurrentBoards.Add(game.IdGame, board);
         }
 
         /// <summary>
@@ -114,11 +117,9 @@ namespace Services.DataBaseManager
                         _ilog.Error(exception.ToString());
                     }
                 }
-                Board board = new Board();
-                CurrentBoards.Add(game.IdGame, board);
                 UpdateQueu(game.IdGame);
             }
-            
+            UpdateQueu(game.IdGame);
         }
 
         /// <summary>

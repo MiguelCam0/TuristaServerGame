@@ -1,0 +1,2607 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PlayerManager
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PlayerManager
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Services.DataBaseManager.PlayerManager">
+  
+  
+  <h1 id="Services_DataBaseManager_PlayerManager" data-uid="Services.DataBaseManager.PlayerManager" class="text-break">Class PlayerManager
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">PlayerManager</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">Contracts.IDataBase.IPlayer</span></div>
+    <div><span class="xref">Contracts.IGameManager.IGameManager</span></div>
+    <div><span class="xref">Contracts.IGameManager.IGameLogicManager</span></div>
+    <div><span class="xref">Contracts.IGameManager.IPlayAsGuestManager</span></div>
+    <div><span class="xref">Contracts.IPlayerSessionManager.IFriendList</span></div>
+    <div><span class="xref">Contracts.ISessionManager.IFriends</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Services.DataBaseManager.html">Services.DataBaseManager</a></h6>
+  <h6><strong>Assembly</strong>: Services.dll</h6>
+  <h5 id="Services_DataBaseManager_PlayerManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.PerSession)]
+public class PlayerManager : IPlayer, IGameManager, IGameLogicManager, IPlayAsGuestManager, IFriendList, IFriends</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_CurrentGames.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.CurrentGames%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameManager.cs/#L20">View Source</a>
+  </span>
+  <h4 id="Services_DataBaseManager_PlayerManager_CurrentGames" data-uid="Services.DataBaseManager.PlayerManager.CurrentGames">CurrentGames</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Dictionary&lt;int, Game&gt; CurrentGames</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">Contracts.IGameManager.Game</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_currentUsers.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.currentUsers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/PlayerSessionManager/SessionManager.cs/#L18">View Source</a>
+  </span>
+  <h4 id="Services_DataBaseManager_PlayerManager_currentUsers" data-uid="Services.DataBaseManager.PlayerManager.currentUsers">currentUsers</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Dictionary&lt;int, INotificationsCallBack&gt; currentUsers</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">Contracts.ISessionManager.INotificationsCallBack</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_AcceptFriendRequest_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.AcceptFriendRequest(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/PlayerSessionManager/SessionManager.cs/#L105">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_AcceptFriendRequest_" data-uid="Services.DataBaseManager.PlayerManager.AcceptFriendRequest*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_AcceptFriendRequest_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.AcceptFriendRequest(System.Int32)">AcceptFriendRequest(Int32)</h4>
+  <div class="markdown level1 summary"><p>Acepta una solicitud de amistad y establece una conexión de amistad entre dos jugadores.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AcceptFriendRequest(int IdRequest)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">IdRequest</span></td>
+        <td><p>ID de la solicitud de amistad que se va a aceptar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Entero que indica el resultado de la operación (0 si hay un error, otro valor si es exitoso).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_AddGame_Contracts_IGameManager_Game_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.AddGame(Contracts.IGameManager.Game)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameManager.cs/#L26">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_AddGame_" data-uid="Services.DataBaseManager.PlayerManager.AddGame*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_AddGame_Contracts_IGameManager_Game_" data-uid="Services.DataBaseManager.PlayerManager.AddGame(Contracts.IGameManager.Game)">AddGame(Game)</h4>
+  <div class="markdown level1 summary"><p>Agrega un nuevo juego a la colección de juegos actuales.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddGame(Game game)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>Objeto idGame que representa el juego a agregar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_AddGuestToGame_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.AddGuestToGame(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/ChatManager.cs/#L163">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_AddGuestToGame_" data-uid="Services.DataBaseManager.PlayerManager.AddGuestToGame*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_AddGuestToGame_System_Int32_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.AddGuestToGame(System.Int32,System.Int32)">AddGuestToGame(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Agrega un jugador invitado a un juego específico.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddGuestToGame(int idGame, int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador del juego al que se agregará el jugador invitado.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador del jugador invitado.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_AddPlayerToGame_System_Int32_Contracts_IGameManager_Player_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.AddPlayerToGame(System.Int32%2CContracts.IGameManager.Player)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameManager.cs/#L40">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_AddPlayerToGame_" data-uid="Services.DataBaseManager.PlayerManager.AddPlayerToGame*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_AddPlayerToGame_System_Int32_Contracts_IGameManager_Player_" data-uid="Services.DataBaseManager.PlayerManager.AddPlayerToGame(System.Int32,Contracts.IGameManager.Player)">AddPlayerToGame(Int32, Player)</h4>
+  <div class="markdown level1 summary"><p>Agrega un jugador a un juego específico en la colección de juegos actuales.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddPlayerToGame(int idGame, Player player)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador del juego al que se agregará el jugador.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Player</span></td>
+        <td><span class="parametername">player</span></td>
+        <td><p>Objeto Player que representa al jugador a agregar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_CheckPreviousFriendRequest_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.CheckPreviousFriendRequest(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/PlayerSessionManager/SessionManager.cs/#L243">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_CheckPreviousFriendRequest_" data-uid="Services.DataBaseManager.PlayerManager.CheckPreviousFriendRequest*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_CheckPreviousFriendRequest_System_Int32_System_String_" data-uid="Services.DataBaseManager.PlayerManager.CheckPreviousFriendRequest(System.Int32,System.String)">CheckPreviousFriendRequest(Int32, String)</h4>
+  <div class="markdown level1 summary"><p>Verifica si existe una solicitud de amistad previa entre dos jugadores.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CheckPreviousFriendRequest(int Sender, string Reciber)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">Sender</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">Reciber</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Entero que indica el resultado de la verificación (1 si hay una solicitud previa, 0 si no hay).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_CheckReadyToStartGame_Contracts_IGameManager_Game_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.CheckReadyToStartGame(Contracts.IGameManager.Game)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/ChatManager.cs/#L185">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_CheckReadyToStartGame_" data-uid="Services.DataBaseManager.PlayerManager.CheckReadyToStartGame*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_CheckReadyToStartGame_Contracts_IGameManager_Game_" data-uid="Services.DataBaseManager.PlayerManager.CheckReadyToStartGame(Contracts.IGameManager.Game)">CheckReadyToStartGame(Game)</h4>
+  <div class="markdown level1 summary"><p>Verifica si todos los jugadores en un juego específico están listos para comenzar el juego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CheckReadyToStartGame(Game game)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>Objeto Game que representa el juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_CheckTakenPieces_Contracts_IGameManager_Game_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.CheckTakenPieces(Contracts.IGameManager.Game%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/ChatManager.cs/#L294">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_CheckTakenPieces_" data-uid="Services.DataBaseManager.PlayerManager.CheckTakenPieces*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_CheckTakenPieces_Contracts_IGameManager_Game_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.CheckTakenPieces(Contracts.IGameManager.Game,System.Int32)">CheckTakenPieces(Game, Int32)</h4>
+  <div class="markdown level1 summary"><p>Verifica las piezas seleccionadas por otros jugadores en el juego y notifica al jugador especificado.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CheckTakenPieces(Game game, int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>Objeto Game que representa el juego actual.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador a notificar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_DeclareLosingPlayer_Contracts_IGameManager_Player_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.DeclareLosingPlayer(Contracts.IGameManager.Player%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L563">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_DeclareLosingPlayer_" data-uid="Services.DataBaseManager.PlayerManager.DeclareLosingPlayer*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_DeclareLosingPlayer_Contracts_IGameManager_Player_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.DeclareLosingPlayer(Contracts.IGameManager.Player,System.Int32)">DeclareLosingPlayer(Player, Int32)</h4>
+  <div class="markdown level1 summary"><p>Declara a un jugador como perdedor en el juego especificado y realiza acciones asociadas.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeclareLosingPlayer(Player loserPlayer, int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Player</span></td>
+        <td><span class="parametername">loserPlayer</span></td>
+        <td><p>Jugador que se declara como perdedor.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_ExpelPlayer_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.ExpelPlayer(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L800">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_ExpelPlayer_" data-uid="Services.DataBaseManager.PlayerManager.ExpelPlayer*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_ExpelPlayer_System_Int32_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.ExpelPlayer(System.Int32,System.Int32)">ExpelPlayer(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Expulsa a un jugador del juego si acumula suficientes votos para ser expulsado.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ExpelPlayer(int idPlayer, int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_GetActionCard_System_Int32_System_Int32_Contracts_IGameManager_Wildcard_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.GetActionCard(System.Int32%2CSystem.Int32%2CContracts.IGameManager.Wildcard)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L360">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_GetActionCard_" data-uid="Services.DataBaseManager.PlayerManager.GetActionCard*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_GetActionCard_System_Int32_System_Int32_Contracts_IGameManager_Wildcard_" data-uid="Services.DataBaseManager.PlayerManager.GetActionCard(System.Int32,System.Int32,Contracts.IGameManager.Wildcard)">GetActionCard(Int32, Int32, Wildcard)</h4>
+  <div class="markdown level1 summary"><p>Realiza la acción asociada a una carta de acción para un jugador en el juego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetActionCard(int idGame, int idPlayer, Wildcard wildcard)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Wildcard</span></td>
+        <td><span class="parametername">wildcard</span></td>
+        <td><p>Carta de acción a ejecutar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_GetFriendRequests_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.GetFriendRequests(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/PlayerSessionManager/FriendList.cs/#L88">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_GetFriendRequests_" data-uid="Services.DataBaseManager.PlayerManager.GetFriendRequests*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_GetFriendRequests_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.GetFriendRequests(System.Int32)">GetFriendRequests(Int32)</h4>
+  <div class="markdown level1 summary"><p>Obtiene las solicitudes de amistad pendientes para un jugador específico.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;FriendRequestData&gt; GetFriendRequests(int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>ID del jugador para el cual se obtienen las solicitudes de amistad.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">Contracts.IDataBase.FriendRequestData</span>&gt;</td>
+        <td><p>Lista de datos de solicitudes de amistad, incluyendo el nombre del remitente y el ID de la solicitud.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_GetFriends_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.GetFriends(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/PlayerSessionManager/FriendList.cs/#L21">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_GetFriends_" data-uid="Services.DataBaseManager.PlayerManager.GetFriends*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_GetFriends_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.GetFriends(System.Int32)">GetFriends(Int32)</h4>
+  <div class="markdown level1 summary"><p>Obtiene la lista de amigos para un jugador específico.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;FriendList&gt; GetFriends(int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>ID del jugador para el cual se obtiene la lista de amigos.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">Contracts.IDataBase.FriendList</span>&gt;</td>
+        <td><p>Lista de amigos del jugador, incluyendo información como ID y nombre del amigo.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_GetGame_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.GetGame(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/DataBaseManager/PlayerManager.cs/#L225">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_GetGame_" data-uid="Services.DataBaseManager.PlayerManager.GetGame*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_GetGame_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.GetGame(System.Int32)">GetGame(Int32)</h4>
+  <div class="markdown level1 summary"><p>Obtiene el objeto idGame asociado al identificador del juego proporcionado.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Game GetGame(int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><p>Devuelve el objeto idGame si se encuentra en la colección de juegos actuales.
+Si no se encuentra ningún juego con el identificador proporcionado, devuelve null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_GetMyPlayersName_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.GetMyPlayersName(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/DataBaseManager/PlayerManager.cs/#L202">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_GetMyPlayersName_" data-uid="Services.DataBaseManager.PlayerManager.GetMyPlayersName*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_GetMyPlayersName_System_Int32_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.GetMyPlayersName(System.Int32,System.Int32)">GetMyPlayersName(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Obtiene el nombre del jugador asociado al identificador del jugador y al identificador del juego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetMyPlayersName(int idPlayer, int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador del jugador.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Devuelve el nombre del jugador si se encuentra en la lista de jugadores del juego actual.
+Si no se encuentra ningún jugador con el identificador proporcionado, devuelve una cadena vacía.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_GetPlayerData_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.GetPlayerData(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/DataBaseManager/PlayerManager.cs/#L267">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_GetPlayerData_" data-uid="Services.DataBaseManager.PlayerManager.GetPlayerData*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_GetPlayerData_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.GetPlayerData(System.Int32)">GetPlayerData(Int32)</h4>
+  <div class="markdown level1 summary"><p>Obtiene la información del jugador por su identificador único.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Player GetPlayerData(int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Player</span></td>
+        <td><p>Objeto Player que contiene la información del jugador.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_GetPlayerName_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.GetPlayerName(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/DataBaseManager/PlayerManager.cs/#L165">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_GetPlayerName_" data-uid="Services.DataBaseManager.PlayerManager.GetPlayerName*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_GetPlayerName_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.GetPlayerName(System.Int32)">GetPlayerName(Int32)</h4>
+  <div class="markdown level1 summary"><p>Obtiene el nombre del jugador asociado al identificador proporcionado.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetPlayerName(int IdPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">IdPlayer</span></td>
+        <td><p>Identificador del jugador.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Devuelve el nombre del jugador si se encuentra en la base de datos.
+Si no se encuentra ningún jugador, devuelve una cadena vacía.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_GoToJail_Contracts_IGameManager_Player_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.GoToJail(Contracts.IGameManager.Player%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L748">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_GoToJail_" data-uid="Services.DataBaseManager.PlayerManager.GoToJail*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_GoToJail_Contracts_IGameManager_Player_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.GoToJail(Contracts.IGameManager.Player,System.Int32)">GoToJail(Player, Int32)</h4>
+  <div class="markdown level1 summary"><p>Envía al jugador a la cárcel en función de su posición actual en el tablero del juego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GoToJail(Player player, int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Player</span></td>
+        <td><span class="parametername">player</span></td>
+        <td><p>Jugador que será enviado a la cárcel.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_InactivateBeginGameControls_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.InactivateBeginGameControls(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/ChatManager.cs/#L221">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_InactivateBeginGameControls_" data-uid="Services.DataBaseManager.PlayerManager.InactivateBeginGameControls*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_InactivateBeginGameControls_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.InactivateBeginGameControls(System.Int32)">InactivateBeginGameControls(Int32)</h4>
+  <div class="markdown level1 summary"><p>Desactiva los controles de inicio de juego para todos los jugadores en un juego específico.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InactivateBeginGameControls(int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador del juego al que se aplicará la desactivación.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_InitializeGame_Contracts_IGameManager_Game_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.InitializeGame(Contracts.IGameManager.Game)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameManager.cs/#L93">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_InitializeGame_" data-uid="Services.DataBaseManager.PlayerManager.InitializeGame*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_InitializeGame_Contracts_IGameManager_Game_" data-uid="Services.DataBaseManager.PlayerManager.InitializeGame(Contracts.IGameManager.Game)">InitializeGame(Game)</h4>
+  <div class="markdown level1 summary"><p>Inicializa un juego preparando las piezas y cargando la lista de amigos para cada jugador.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InitializeGame(Game game)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>Objeto Game que representa el juego a inicializar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_InviteFriendToGame_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.InviteFriendToGame(System.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/ChatManager.cs/#L241">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_InviteFriendToGame_" data-uid="Services.DataBaseManager.PlayerManager.InviteFriendToGame*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_InviteFriendToGame_System_String_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.InviteFriendToGame(System.String,System.Int32)">InviteFriendToGame(String, Int32)</h4>
+  <div class="markdown level1 summary"><p>Invita a un amigo a unirse a un juego enviándole un correo electrónico con un código de verificación.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InviteFriendToGame(string codeGame, int friendId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">codeGame</span></td>
+        <td><p>Código de verificación del juego.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">friendId</span></td>
+        <td><p>Identificador único del amigo a invitar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_IsGameFull_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.IsGameFull(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/PlayAsGuestManager.cs/#L17">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_IsGameFull_" data-uid="Services.DataBaseManager.PlayerManager.IsGameFull*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_IsGameFull_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.IsGameFull(System.Int32)">IsGameFull(Int32)</h4>
+  <div class="markdown level1 summary"><p>Verifica si el juego está completo basándose en el límite máximo de jugadores.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IsGameFull(int code)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">code</span></td>
+        <td><p>Código identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>0 si el juego no está completo, 1 si el juego está completo.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_IsGameOngoing_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.IsGameOngoing(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/PlayAsGuestManager.cs/#L34">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_IsGameOngoing_" data-uid="Services.DataBaseManager.PlayerManager.IsGameOngoing*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_IsGameOngoing_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.IsGameOngoing(System.Int32)">IsGameOngoing(Int32)</h4>
+  <div class="markdown level1 summary"><p>Verifica si el juego está en curso basándose en su estado actual.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IsGameOngoing(int code)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">code</span></td>
+        <td><p>Código identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>0 si el juego está en curso, 1 si el juego no está en curso.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_JailPlayer_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.JailPlayer(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L520">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_JailPlayer_" data-uid="Services.DataBaseManager.PlayerManager.JailPlayer*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_JailPlayer_System_Int32_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.JailPlayer(System.Int32,System.Int32)">JailPlayer(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Envía al jugador a la cárcel en el juego especificado.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void JailPlayer(int idGame, int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador a enviar a la cárcel.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_LogOut_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.LogOut(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/PlayerSessionManager/SessionManager.cs/#L330">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_LogOut_" data-uid="Services.DataBaseManager.PlayerManager.LogOut*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_LogOut_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.LogOut(System.Int32)">LogOut(Int32)</h4>
+  <div class="markdown level1 summary"><p>Realiza el proceso de cierre de sesión para un jugador.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LogOut(int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>1 si el cierre de sesión fue exitoso, 0 si hubo un error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_MakeFriendRequest_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.MakeFriendRequest(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/PlayerSessionManager/SessionManager.cs/#L31">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_MakeFriendRequest_" data-uid="Services.DataBaseManager.PlayerManager.MakeFriendRequest*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_MakeFriendRequest_System_Int32_System_String_" data-uid="Services.DataBaseManager.PlayerManager.MakeFriendRequest(System.Int32,System.String)">MakeFriendRequest(Int32, String)</h4>
+  <div class="markdown level1 summary"><p>Envía una solicitud de amistad desde un jugador remitente a un jugador destinatario.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MakeFriendRequest(int Sender, string Reciber)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">Sender</span></td>
+        <td><p>ID del jugador remitente.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">Reciber</span></td>
+        <td><p>Nombre del jugador destinatario.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>0: La solicitud se envió con éxito.
+1: Los jugadores ya son amigos.
+2: El jugador destinatario no existe.
+3: Ya hay una solicitud de amistad pendiente entre los jugadores.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_MakeRentalPayment_System_Int32_System_Int32_System_Int64_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.MakeRentalPayment(System.Int32%2CSystem.Int32%2CSystem.Int64%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L110">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_MakeRentalPayment_" data-uid="Services.DataBaseManager.PlayerManager.MakeRentalPayment*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_MakeRentalPayment_System_Int32_System_Int32_System_Int64_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.MakeRentalPayment(System.Int32,System.Int32,System.Int64,System.Int32)">MakeRentalPayment(Int32, Int32, Int64, Int32)</h4>
+  <div class="markdown level1 summary"><p>Realiza el pago de alquiler entre un inquilino y un propietario de una propiedad en el juego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MakeRentalPayment(int idOwnerLand, int idRenter, long amountOfRent, int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idOwnerLand</span></td>
+        <td><p>Identificador único del propietario de la tierra.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idRenter</span></td>
+        <td><p>Identificador único del inquilino.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">amountOfRent</span></td>
+        <td><p>Cantidad de dinero a pagar como alquiler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>0 si el pago se realizó con éxito, 1 si el inquilino perdió y 2 si ocurrió una excepción.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_ModifyPassword_System_Int32_System_String_System_String_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.ModifyPassword(System.Int32%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/DataBaseManager/PlayerManager.cs/#L99">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_ModifyPassword_" data-uid="Services.DataBaseManager.PlayerManager.ModifyPassword*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_ModifyPassword_System_Int32_System_String_System_String_" data-uid="Services.DataBaseManager.PlayerManager.ModifyPassword(System.Int32,System.String,System.String)">ModifyPassword(Int32, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ModifyPassword(int playerId, string currentPassword, string newPassword)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">playerId</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">currentPassword</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">newPassword</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_ModifyProperty_Contracts_IGameManager_Property_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.ModifyProperty(Contracts.IGameManager.Property%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L781">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_ModifyProperty_" data-uid="Services.DataBaseManager.PlayerManager.ModifyProperty*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_ModifyProperty_Contracts_IGameManager_Property_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.ModifyProperty(Contracts.IGameManager.Property,System.Int32)">ModifyProperty(Property, Int32)</h4>
+  <div class="markdown level1 summary"><p>Modifica las características de una propiedad en el tablero del juego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ModifyProperty(Property property, int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Property</span></td>
+        <td><span class="parametername">property</span></td>
+        <td><p>Propiedad con las nuevas características.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_MovePlayer_System_Int32_System_Int32_Contracts_IGameManager_Player__.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.MovePlayer(System.Int32%2CSystem.Int32%2CContracts.IGameManager.Player%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L468">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_MovePlayer_" data-uid="Services.DataBaseManager.PlayerManager.MovePlayer*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_MovePlayer_System_Int32_System_Int32_Contracts_IGameManager_Player__" data-uid="Services.DataBaseManager.PlayerManager.MovePlayer(System.Int32,System.Int32,Contracts.IGameManager.Player@)">MovePlayer(Int32, Int32, ref Player)</h4>
+  <div class="markdown level1 summary"><p>Mueve al jugador en el tablero de juego y realiza acciones asociadas al nuevo posicionamiento.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MovePlayer(int idGame, int playerPosition, ref Player player)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">playerPosition</span></td>
+        <td><p>Posición a la que se moverá el jugador.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Player</span></td>
+        <td><span class="parametername">player</span></td>
+        <td><p>Jugador que se moverá en el tablero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_PayConstruction_System_Int32_System_Int64_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.PayConstruction(System.Int32%2CSystem.Int64%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L859">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_PayConstruction_" data-uid="Services.DataBaseManager.PlayerManager.PayConstruction*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_PayConstruction_System_Int32_System_Int64_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.PayConstruction(System.Int32,System.Int64,System.Int32)">PayConstruction(Int32, Int64, Int32)</h4>
+  <div class="markdown level1 summary"><p>Paga los costos de construcción de casas o hoteles para un jugador en el juego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PayConstruction(int idPlayer, long constructionCost, int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">constructionCost</span></td>
+        <td><p>Costo de construcción a pagar por el jugador.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_PayPropertyMortgage_Contracts_IGameManager_Game_System_Int32_Contracts_IGameManager_Property_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.PayPropertyMortgage(Contracts.IGameManager.Game%2CSystem.Int32%2CContracts.IGameManager.Property)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L713">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_PayPropertyMortgage_" data-uid="Services.DataBaseManager.PlayerManager.PayPropertyMortgage*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_PayPropertyMortgage_Contracts_IGameManager_Game_System_Int32_Contracts_IGameManager_Property_" data-uid="Services.DataBaseManager.PlayerManager.PayPropertyMortgage(Contracts.IGameManager.Game,System.Int32,Contracts.IGameManager.Property)">PayPropertyMortgage(Game, Int32, Property)</h4>
+  <div class="markdown level1 summary"><p>Paga la hipoteca de una propiedad, deshipotecando la propiedad y realizando ajustes financieros al jugador.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PayPropertyMortgage(Game game, int idPlayer, Property mortgagedProperty)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>Objeto Game que representa el juego actual.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Property</span></td>
+        <td><span class="parametername">mortgagedProperty</span></td>
+        <td><p>Objeto Property que representa la propiedad hipotecada.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_PlayerSearch_DataBase_PlayerSet_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.PlayerSearch(DataBase.PlayerSet)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/DataBaseManager/PlayerManager.cs/#L32">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_PlayerSearch_" data-uid="Services.DataBaseManager.PlayerManager.PlayerSearch*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_PlayerSearch_DataBase_PlayerSet_" data-uid="Services.DataBaseManager.PlayerManager.PlayerSearch(DataBase.PlayerSet)">PlayerSearch(PlayerSet)</h4>
+  <div class="markdown level1 summary"><p>Busca un jugador en la base de datos utilizando el nombre de usuario (Nickname) y la contraseña.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PlayerSearch(PlayerSet player)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DataBase.PlayerSet</span></td>
+        <td><span class="parametername">player</span></td>
+        <td><p>Objeto PlayerSet con el nombre de usuario y la contraseña a buscar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Devuelve el identificador (Id) del jugador si se encuentra en la base de datos.
+Si no se encuentra ningún jugador, devuelve 0.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_PlayTurn_Contracts_IGameManager_Game_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.PlayTurn(Contracts.IGameManager.Game)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L25">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_PlayTurn_" data-uid="Services.DataBaseManager.PlayerManager.PlayTurn*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_PlayTurn_Contracts_IGameManager_Game_" data-uid="Services.DataBaseManager.PlayerManager.PlayTurn(Contracts.IGameManager.Game)">PlayTurn(Game)</h4>
+  <div class="markdown level1 summary"><p>Inicia y ejecuta el turno de juego para un jugador en específico.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PlayTurn(Game game)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>Instancia del juego en curso.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_PurchaseProperty_Contracts_IGameManager_Property_Contracts_IGameManager_Player_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.PurchaseProperty(Contracts.IGameManager.Property%2CContracts.IGameManager.Player%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L285">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_PurchaseProperty_" data-uid="Services.DataBaseManager.PlayerManager.PurchaseProperty*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_PurchaseProperty_Contracts_IGameManager_Property_Contracts_IGameManager_Player_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.PurchaseProperty(Contracts.IGameManager.Property,Contracts.IGameManager.Player,System.Int32)">PurchaseProperty(Property, Player, Int32)</h4>
+  <div class="markdown level1 summary"><p>Realiza la compra de una propiedad por parte de un jugador en el juego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PurchaseProperty(Property property, Player buyer, int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Property</span></td>
+        <td><span class="parametername">property</span></td>
+        <td><p>Propiedad que se va a comprar.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Player</span></td>
+        <td><span class="parametername">buyer</span></td>
+        <td><p>Jugador que realiza la compra.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_RealizePropertyMortgage_System_Int32_Contracts_IGameManager_Property_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.RealizePropertyMortgage(System.Int32%2CContracts.IGameManager.Property%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L537">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_RealizePropertyMortgage_" data-uid="Services.DataBaseManager.PlayerManager.RealizePropertyMortgage*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_RealizePropertyMortgage_System_Int32_Contracts_IGameManager_Property_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.RealizePropertyMortgage(System.Int32,Contracts.IGameManager.Property,System.Int32)">RealizePropertyMortgage(Int32, Property, Int32)</h4>
+  <div class="markdown level1 summary"><p>Realiza la hipoteca de una propiedad en el juego especificado y proporciona fondos al jugador correspondiente.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RealizePropertyMortgage(int idGame, Property property, int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Property</span></td>
+        <td><span class="parametername">property</span></td>
+        <td><p>Propiedad que se va a hipotecar.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador asociado a la propiedad.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_RegisterPlayer_DataBase_PlayerSet_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.RegisterPlayer(DataBase.PlayerSet)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/DataBaseManager/PlayerManager.cs/#L69">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_RegisterPlayer_" data-uid="Services.DataBaseManager.PlayerManager.RegisterPlayer*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_RegisterPlayer_DataBase_PlayerSet_" data-uid="Services.DataBaseManager.PlayerManager.RegisterPlayer(DataBase.PlayerSet)">RegisterPlayer(PlayerSet)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RegisterPlayer(PlayerSet player)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DataBase.PlayerSet</span></td>
+        <td><span class="parametername">player</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_RejectFriendRequest_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.RejectFriendRequest(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/PlayerSessionManager/SessionManager.cs/#L141">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_RejectFriendRequest_" data-uid="Services.DataBaseManager.PlayerManager.RejectFriendRequest*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_RejectFriendRequest_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.RejectFriendRequest(System.Int32)">RejectFriendRequest(Int32)</h4>
+  <div class="markdown level1 summary"><p>Rechaza una solicitud de amistad y la elimina de la base de datos.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RejectFriendRequest(int IdRequest)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">IdRequest</span></td>
+        <td><p>ID de la solicitud de amistad que se va a rechazar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Entero que indica el resultado de la operación (0 si hay un error, otro valor si es exitoso).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_SavePlayerSession_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.SavePlayerSession(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/PlayerSessionManager/SessionManager.cs/#L85">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_SavePlayerSession_" data-uid="Services.DataBaseManager.PlayerManager.SavePlayerSession*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_SavePlayerSession_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.SavePlayerSession(System.Int32)">SavePlayerSession(Int32)</h4>
+  <div class="markdown level1 summary"><p>Guarda la sesión de notificaciones de un jugador.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SavePlayerSession(int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>ID del jugador cuya sesión se va a guardar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_SearchGameByCode_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.SearchGameByCode(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/PlayAsGuestManager.cs/#L51">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_SearchGameByCode_" data-uid="Services.DataBaseManager.PlayerManager.SearchGameByCode*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_SearchGameByCode_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.SearchGameByCode(System.Int32)">SearchGameByCode(Int32)</h4>
+  <div class="markdown level1 summary"><p>Busca un juego en la colección de juegos actual basándose en su código identificador único.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SearchGameByCode(int code)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">code</span></td>
+        <td><p>Código identificador único del juego a buscar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>0 si el juego se encuentra, 1 si el juego no se encuentra.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_SelectedPiece_Contracts_IGameManager_Game_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.SelectedPiece(Contracts.IGameManager.Game%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/ChatManager.cs/#L87">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_SelectedPiece_" data-uid="Services.DataBaseManager.PlayerManager.SelectedPiece*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_SelectedPiece_Contracts_IGameManager_Game_System_String_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.SelectedPiece(Contracts.IGameManager.Game,System.String,System.Int32)">SelectedPiece(Game, String, Int32)</h4>
+  <div class="markdown level1 summary"><p>Notifica a todos los jugadores en un juego que una pieza específica ha sido seleccionada por un jugador.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SelectedPiece(Game game, string piece, int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>Objeto Game que representa el juego actual.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">piece</span></td>
+        <td><p>Nombre de la pieza seleccionada.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador que seleccionó la pieza.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_SendEmail_System_String_System_String_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.SendEmail(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/DataBaseManager/PlayerManager.cs/#L230">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_SendEmail_" data-uid="Services.DataBaseManager.PlayerManager.SendEmail*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_SendEmail_System_String_System_String_" data-uid="Services.DataBaseManager.PlayerManager.SendEmail(System.String,System.String)">SendEmail(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SendEmail(string verifyCode, string userEmail)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">verifyCode</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userEmail</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_SendMessage_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.SendMessage(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/ChatManager.cs/#L27">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_SendMessage_" data-uid="Services.DataBaseManager.PlayerManager.SendMessage*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_SendMessage_System_Int32_System_String_" data-uid="Services.DataBaseManager.PlayerManager.SendMessage(System.Int32,System.String)">SendMessage(Int32, String)</h4>
+  <div class="markdown level1 summary"><p>Envía un mensaje a todos los jugadores de un juego específico.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SendMessage(int idGame, string message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador del juego al que se enviará el mensaje.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Mensaje a enviar a los jugadores.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_StartGame_Contracts_IGameManager_Game_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.StartGame(Contracts.IGameManager.Game)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameManager.cs/#L71">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_StartGame_" data-uid="Services.DataBaseManager.PlayerManager.StartGame*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_StartGame_Contracts_IGameManager_Game_" data-uid="Services.DataBaseManager.PlayerManager.StartGame(Contracts.IGameManager.Game)">StartGame(Game)</h4>
+  <div class="markdown level1 summary"><p>Inicia un juego, actualiza el estado del juego y notifica a todos los jugadores.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StartGame(Game game)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>Objeto Game que representa el juego a iniciar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_UnCheckReadyToStartGame_Contracts_IGameManager_Game_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.UnCheckReadyToStartGame(Contracts.IGameManager.Game)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/ChatManager.cs/#L208">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_UnCheckReadyToStartGame_" data-uid="Services.DataBaseManager.PlayerManager.UnCheckReadyToStartGame*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_UnCheckReadyToStartGame_Contracts_IGameManager_Game_" data-uid="Services.DataBaseManager.PlayerManager.UnCheckReadyToStartGame(Contracts.IGameManager.Game)">UnCheckReadyToStartGame(Game)</h4>
+  <div class="markdown level1 summary"><p>Anula la verificación de si todos los jugadores en un juego específico están listos para comenzar el juego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnCheckReadyToStartGame(Game game)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>Objeto Game que representa el juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_UnSelectedPiece_Contracts_IGameManager_Game_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.UnSelectedPiece(Contracts.IGameManager.Game%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/ChatManager.cs/#L136">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_UnSelectedPiece_" data-uid="Services.DataBaseManager.PlayerManager.UnSelectedPiece*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_UnSelectedPiece_Contracts_IGameManager_Game_System_String_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.UnSelectedPiece(Contracts.IGameManager.Game,System.String,System.Int32)">UnSelectedPiece(Game, String, Int32)</h4>
+  <div class="markdown level1 summary"><p>Notifica a todos los jugadores en un juego que una pieza específica ha sido deseleccionada por un jugador.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnSelectedPiece(Game game, string piece, int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>Objeto Game que representa el juego actual.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">piece</span></td>
+        <td><p>Nombre de la pieza deseleccionada.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador que deseleccionó la pieza.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_UpdatePlayerData_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.UpdatePlayerData(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/DataBaseManager/PlayerManager.cs/#L295">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_UpdatePlayerData_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayerData*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_UpdatePlayerData_System_Int32_System_String_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayerData(System.Int32,System.String)">UpdatePlayerData(Int32, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int UpdatePlayerData(int idPlayer, string Description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">Description</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_UpdatePlayerGame_Contracts_IGameManager_Game_System_Int32_Contracts_IGameManager_Piece_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.UpdatePlayerGame(Contracts.IGameManager.Game%2CSystem.Int32%2CContracts.IGameManager.Piece)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/ChatManager.cs/#L50">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_UpdatePlayerGame_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayerGame*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_UpdatePlayerGame_Contracts_IGameManager_Game_System_Int32_Contracts_IGameManager_Piece_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayerGame(Contracts.IGameManager.Game,System.Int32,Contracts.IGameManager.Piece)">UpdatePlayerGame(Game, Int32, Piece)</h4>
+  <div class="markdown level1 summary"><p>Actualiza la información de juego de un jugador, asignando una nueva pieza y número de turno.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int UpdatePlayerGame(Game game, int idPlayer, Piece playersPiece)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Game</span></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>Objeto Game que representa el juego actual.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador a actualizar.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Contracts.IGameManager.Piece</span></td>
+        <td><span class="parametername">playersPiece</span></td>
+        <td><p>Objeto Piece que representa la nueva pieza del jugador.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Entero que indica el resultado de la operación (0 si no se actualizó, 1 si se actualizó correctamente).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_UpdatePlayers_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.UpdatePlayers(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameManager.cs/#L51">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_UpdatePlayers_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayers*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_UpdatePlayers_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayers(System.Int32)">UpdatePlayers(Int32)</h4>
+  <div class="markdown level1 summary"><p>Actualiza la información de todos los jugadores en un juego específico.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdatePlayers(int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador del juego cuyos jugadores se actualizarán.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_UpdatePlayerService_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.UpdatePlayerService(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L305">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_UpdatePlayerService_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayerService*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_UpdatePlayerService_System_Int32_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayerService(System.Int32,System.Int32)">UpdatePlayerService(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Actualiza el servicio de lógica de juego para un jugador específico en el juego.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdatePlayerService(int idPlayer, int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>Identificador único del jugador.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_UpdatePlayerSession_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.UpdatePlayerSession(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/PlayerSessionManager/SessionManager.cs/#L296">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_UpdatePlayerSession_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayerSession*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_UpdatePlayerSession_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayerSession(System.Int32)">UpdatePlayerSession(Int32)</h4>
+  <div class="markdown level1 summary"><p>Actualiza la sesión de notificaciones de un jugador.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdatePlayerSession(int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td><p>ID del jugador cuya sesión se actualizará.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_UpdatePlayersInGame_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.UpdatePlayersInGame(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L263">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_UpdatePlayersInGame_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayersInGame*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_UpdatePlayersInGame_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.UpdatePlayersInGame(System.Int32)">UpdatePlayersInGame(Int32)</h4>
+  <div class="markdown level1 summary"><p>Actualiza la información de los jugadores en el juego, cargando la lista de amigos para cada jugador.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdatePlayersInGame(int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_UpdateQueu_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.UpdateQueu(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L322">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_UpdateQueu_" data-uid="Services.DataBaseManager.PlayerManager.UpdateQueu*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_UpdateQueu_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.UpdateQueu(System.Int32)">UpdateQueu(Int32)</h4>
+  <div class="markdown level1 summary"><p>Actualiza la cola de turnos y notifica a los jugadores no perdedores sobre los turnos actuales.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateQueu(int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager_VerifyGameCompletion_System_Int32_.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager.VerifyGameCompletion(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/GameManager/GameLogicManager.cs/#L594">View Source</a>
+  </span>
+  <a id="Services_DataBaseManager_PlayerManager_VerifyGameCompletion_" data-uid="Services.DataBaseManager.PlayerManager.VerifyGameCompletion*"></a>
+  <h4 id="Services_DataBaseManager_PlayerManager_VerifyGameCompletion_System_Int32_" data-uid="Services.DataBaseManager.PlayerManager.VerifyGameCompletion(System.Int32)">VerifyGameCompletion(Int32)</h4>
+  <div class="markdown level1 summary"><p>Verifica si el juego ha sido completado, determina al ganador y realiza acciones asociadas.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void VerifyGameCompletion(int gameId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">gameId</span></td>
+        <td><p>Identificador único del juego.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">Contracts.IDataBase.IPlayer</span>
+  </div>
+  <div>
+      <span class="xref">Contracts.IGameManager.IGameManager</span>
+  </div>
+  <div>
+      <span class="xref">Contracts.IGameManager.IGameLogicManager</span>
+  </div>
+  <div>
+      <span class="xref">Contracts.IGameManager.IPlayAsGuestManager</span>
+  </div>
+  <div>
+      <span class="xref">Contracts.IPlayerSessionManager.IFriendList</span>
+  </div>
+  <div>
+      <span class="xref">Contracts.ISessionManager.IFriends</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Services_DataBaseManager_PlayerManager.md&amp;value=---%0Auid%3A%20Services.DataBaseManager.PlayerManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Services/PlayerSessionManager/SessionManager.cs/#L16" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

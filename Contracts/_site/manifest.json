@@ -1,0 +1,402 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/Proyectos .NET/Juego/TuristaServerGame/Contracts",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "C7VF9KZ5F++tX9pCUgjC5i68eB6wZHIbXjx05Jt3y+s="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "87+l1bEdyFyAvdDtRCFtWofYO37wRpBLB9pQ2tINllw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "09XR85JSed4BRaWWkLPG4iLInwmjoKSDu3FEESg+BIM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IDataBase.FriendList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IDataBase.FriendList.html",
+          "hash": "//D4vL8Jo5Sobf+bcBuZY4VZQ/NqOSXVWmGNzyKiqks="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IDataBase.FriendRequestData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IDataBase.FriendRequestData.html",
+          "hash": "HAIkFlHDy/URWjo3vmkltN+xknO9hslACxDYrHrorIc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IDataBase.IPlayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IDataBase.IPlayer.html",
+          "hash": "i+TtPklt2nvRn6HAjSUQRVK03tsaORqhhkRnYVOFlHQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IDataBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IDataBase.html",
+          "hash": "yjZ6JzrqWlvMbRELyfXLUghEIffr1XIMLUoP2hWCeE8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.Game.GameSituation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.Game.GameSituation.html",
+          "hash": "H9vNVpyh4KYp9sulGh4ieQ4MkE3nadlK0dWB6lQJ5/8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.Game.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.Game.html",
+          "hash": "SRXou+sIP8JUFNWD2zyNIzaIJApLrcBrE1w0wcVpKVs="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.IGameLogicManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.IGameLogicManager.html",
+          "hash": "chAPJi2M1fpP+i3Oxfd+D8eqsA37RLK2evchAYwUC14="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.IGameManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.IGameManager.html",
+          "hash": "dbvyH08B7J2riYaX6r5k0XY70BMdN2Nm/pZvSDk6Unw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.IGameManagerCallback.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.IGameManagerCallback.html",
+          "hash": "fe/fFAp+UAjAAkaEXyjZzQ4KOGYwFmGBF57LJSCNXUk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.IGamerLogicManagerCallback.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.IGamerLogicManagerCallback.html",
+          "hash": "rObTEMuKrQUH165MbpCxDKY25yTup72PQ3ZHVSPX/QI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.IPlayAsGuestManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.IPlayAsGuestManager.html",
+          "hash": "bj05wz4PBcIYQeV/jPlqxh9YpX+19B/Fpa4ypvL2vkU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.Piece.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.Piece.html",
+          "hash": "ouyKcXgT2dcj1CwjXhAOMD9bxBGIRrQ0AJpcOBqzST4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.Player.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.Player.html",
+          "hash": "3aBZftrXLSRGxJNqygUgGTnB/HyECP6UqsJzgzjU1O0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.Property.PropertySituation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.Property.PropertySituation.html",
+          "hash": "RQVTbdnMmrWDRbczlXTzHTBAllJ2+vKwvxZeB19iDms="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.Property.TypeProperty.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.Property.TypeProperty.html",
+          "hash": "v4z5bPUX6amc+VXAxsr2DQzYvgFh6lO3AWsNgySIjPQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.Property.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.Property.html",
+          "hash": "p+MOmz0vhs0dkfTYrc4wPdZ175MEdQZz4xQgOXIaET8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.Wildcard.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.Wildcard.html",
+          "hash": "edj3SxBrQLYE6wiTj5etmBgoUZ/tHg5FD+sMNSpHx80="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IGameManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IGameManager.html",
+          "hash": "rGuV6jGYKNUjRDTJ68UtRe1JAZkOewoAxCshV9hbIug="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IPlayerSessionManager.IFriendList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IPlayerSessionManager.IFriendList.html",
+          "hash": "PI/iyTm/veaV7NXGkXKentv7GQ8mgKb5bYAOpXjzWRs="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.IPlayerSessionManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.IPlayerSessionManager.html",
+          "hash": "N4bItbq/IpCmXxcJR2s9lAqAwy7iJ1iDtHDdMdPvbkM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.ISessionManager.IFriends.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.ISessionManager.IFriends.html",
+          "hash": "q4tmib0396/hCWw5Zwj0ywMiO5uqu0L+ao9qY9dqGac="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.ISessionManager.INotificationsCallBack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.ISessionManager.INotificationsCallBack.html",
+          "hash": "8IDi7/4tU/2gjXk9hd3OxRMAGuIMR0s6Kzd/I3AgRyc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Contracts.ISessionManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Contracts.ISessionManager.html",
+          "hash": "g/CTxUUoJkx3XylfBPwO3mTax7F1Z4n2mqPy3M04ONg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "VjBTayyo5UTHCC7b/2j+vuaLt3rJ7ZHby/y5IEjcixY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "Oa9PuD4E1hvZnCkVjUgzNBX6S00Zo5YilamTERTZo54="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 3
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 23,
+          "skipped_file_count": 23
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
