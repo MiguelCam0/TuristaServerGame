@@ -28,6 +28,8 @@ namespace Services.DataBaseManager
             CurrentGames.Add(game.IdGame, game);
             CurrentGames[game.IdGame].Players = new Queue<Player>();
             CurrentGames[game.IdGame].PlayersInGame = new List<Player>();
+            Board board = new Board();
+            CurrentBoards.Add(game.IdGame, board);
         }
 
         /// <summary>
@@ -81,8 +83,6 @@ namespace Services.DataBaseManager
                 }
             }
 
-            Board board = new Board();
-            CurrentBoards.Add(game.IdGame, board);
             UpdateQueu(game.IdGame);
         }
 

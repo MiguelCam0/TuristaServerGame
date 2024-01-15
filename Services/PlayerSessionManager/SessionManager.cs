@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Data.SqlClient;
 using System.Linq;
 using System.ServiceModel;
@@ -51,9 +52,11 @@ namespace Services.DataBaseManager
                         var SecondPlayer = Context.PlayerSet.Where(P => P.Nickname == Reciber).First();
                         if (Context.FriendRequest.Where(r => r.PlayerSet1ID == Sender && r.PlayerSet2ID == SecondPlayer.Id).FirstOrDefault() == null)
                         {
-                            FriendRequest Request = new FriendRequest();
-                            Request.PlayerSet1ID = Sender;
-                            Request.PlayerSet2ID = SecondPlayer.Id;
+                            FriendRequest Request = new FriendRequest
+                            {
+                                PlayerSet1ID = Sender,
+                                PlayerSet2ID = SecondPlayer.Id
+                            };
                             Context.FriendRequest.Add(Request);
                             result = Context.SaveChanges();
                             NotifyRequest(SecondPlayer.Id);
@@ -62,6 +65,11 @@ namespace Services.DataBaseManager
                 }
             }
             catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
+            }
+            catch (EntityException exception)
             {
                 _ilog.Error(exception.ToString());
                 result = -1;
@@ -116,6 +124,11 @@ namespace Services.DataBaseManager
                 _ilog.Error(exception.ToString());
                 result = -1;
             }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
+            }
 
             return result;
         }
@@ -138,6 +151,11 @@ namespace Services.DataBaseManager
                 }
             }
             catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
+            }
+            catch (EntityException exception)
             {
                 _ilog.Error(exception.ToString());
                 result = -1;
@@ -176,6 +194,11 @@ namespace Services.DataBaseManager
                 _ilog.Error(exception.ToString());
                 result = -1;
             }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
+            }
 
             return result;
         }
@@ -201,6 +224,11 @@ namespace Services.DataBaseManager
             {
                 _ilog.Error(exception.ToString());
                 result = - 1;
+            }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
             }
 
             return result;
@@ -235,6 +263,11 @@ namespace Services.DataBaseManager
             catch (SqlException exception)
             {
                 _ilog.Error(exception.ToString());
+            }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+                result = -1;
             }
 
             return result;

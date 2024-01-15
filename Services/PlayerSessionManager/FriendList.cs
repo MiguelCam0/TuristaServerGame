@@ -3,6 +3,7 @@ using Contracts.IPlayerSessionManager;
 using DataBase;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -70,6 +71,10 @@ namespace Services.DataBaseManager
             {
                 _ilog.Error(exception.ToString());
             }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
 
             friends = AreOnline(friends);
             return friends;
@@ -104,6 +109,10 @@ namespace Services.DataBaseManager
                 }
             }
             catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            catch (EntityException exception)
             {
                 _ilog.Error(exception.ToString());
             }

@@ -109,19 +109,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="api\index.md" />
     <None Include="App.Config" />
     <EntityDeploy Include="BaseDatosPrueba.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BaseDatosPrueba.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="articles\intro.md" />
+    <None Include="articles\toc.md" />
     <None Include="BaseDatosPrueba.edmx.diagram">
       <DependentUpon>BaseDatosPrueba.edmx</DependentUpon>
     </None>
+    <None Include="docfx.json" />
+    <None Include="index.md" />
     <None Include="packages.config" />
     <EntityDeploy Include="TuristaMundialDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TuristaMundialDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="toc.yml" />
     <None Include="TuristaMundialDB.edmx.diagram">
       <DependentUpon>TuristaMundialDB.edmx</DependentUpon>
     </None>
@@ -159,6 +165,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\docfx.console.2.59.4\build\docfx.console.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\docfx.console.2.59.4\build\docfx.console.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\docfx.console.2.59.4\build\docfx.console.targets" Condition="Exists('..\packages\docfx.console.2.59.4\build\docfx.console.targets')" />
 </Project>

@@ -1,0 +1,802 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Services.DataBaseManager
+  name: Services.DataBaseManager
+  href: obj/api/Services.DataBaseManager.html
+  commentId: N:Services.DataBaseManager
+  fullName: Services.DataBaseManager
+  nameWithType: Services.DataBaseManager
+- uid: Services.DataBaseManager.PlayerManager
+  name: PlayerManager
+  href: obj/api/Services.DataBaseManager.PlayerManager.html
+  commentId: T:Services.DataBaseManager.PlayerManager
+  fullName: Services.DataBaseManager.PlayerManager
+  nameWithType: PlayerManager
+- uid: Services.DataBaseManager.PlayerManager.AcceptFriendRequest(System.Int32)
+  name: AcceptFriendRequest(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_AcceptFriendRequest_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.AcceptFriendRequest(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.AcceptFriendRequest(System.Int32)
+  nameWithType: PlayerManager.AcceptFriendRequest(Int32)
+- uid: Services.DataBaseManager.PlayerManager.AcceptFriendRequest*
+  name: AcceptFriendRequest
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_AcceptFriendRequest_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.AcceptFriendRequest
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.AcceptFriendRequest
+  nameWithType: PlayerManager.AcceptFriendRequest
+- uid: Services.DataBaseManager.PlayerManager.AddGame(Contracts.IGameManager.Game)
+  name: AddGame(Game)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_AddGame_Contracts_IGameManager_Game_
+  commentId: M:Services.DataBaseManager.PlayerManager.AddGame(Contracts.IGameManager.Game)
+  fullName: Services.DataBaseManager.PlayerManager.AddGame(Contracts.IGameManager.Game)
+  nameWithType: PlayerManager.AddGame(Game)
+- uid: Services.DataBaseManager.PlayerManager.AddGame*
+  name: AddGame
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_AddGame_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.AddGame
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.AddGame
+  nameWithType: PlayerManager.AddGame
+- uid: Services.DataBaseManager.PlayerManager.AddGuestToGame(System.Int32,System.Int32)
+  name: AddGuestToGame(Int32, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_AddGuestToGame_System_Int32_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.AddGuestToGame(System.Int32,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.AddGuestToGame(System.Int32, System.Int32)
+  nameWithType: PlayerManager.AddGuestToGame(Int32, Int32)
+- uid: Services.DataBaseManager.PlayerManager.AddGuestToGame*
+  name: AddGuestToGame
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_AddGuestToGame_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.AddGuestToGame
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.AddGuestToGame
+  nameWithType: PlayerManager.AddGuestToGame
+- uid: Services.DataBaseManager.PlayerManager.AddPlayerToGame(System.Int32,Contracts.IGameManager.Player)
+  name: AddPlayerToGame(Int32, Player)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_AddPlayerToGame_System_Int32_Contracts_IGameManager_Player_
+  commentId: M:Services.DataBaseManager.PlayerManager.AddPlayerToGame(System.Int32,Contracts.IGameManager.Player)
+  fullName: Services.DataBaseManager.PlayerManager.AddPlayerToGame(System.Int32, Contracts.IGameManager.Player)
+  nameWithType: PlayerManager.AddPlayerToGame(Int32, Player)
+- uid: Services.DataBaseManager.PlayerManager.AddPlayerToGame*
+  name: AddPlayerToGame
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_AddPlayerToGame_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.AddPlayerToGame
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.AddPlayerToGame
+  nameWithType: PlayerManager.AddPlayerToGame
+- uid: Services.DataBaseManager.PlayerManager.CheckPreviousFriendRequest(System.Int32,System.String)
+  name: CheckPreviousFriendRequest(Int32, String)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_CheckPreviousFriendRequest_System_Int32_System_String_
+  commentId: M:Services.DataBaseManager.PlayerManager.CheckPreviousFriendRequest(System.Int32,System.String)
+  fullName: Services.DataBaseManager.PlayerManager.CheckPreviousFriendRequest(System.Int32, System.String)
+  nameWithType: PlayerManager.CheckPreviousFriendRequest(Int32, String)
+- uid: Services.DataBaseManager.PlayerManager.CheckPreviousFriendRequest*
+  name: CheckPreviousFriendRequest
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_CheckPreviousFriendRequest_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.CheckPreviousFriendRequest
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.CheckPreviousFriendRequest
+  nameWithType: PlayerManager.CheckPreviousFriendRequest
+- uid: Services.DataBaseManager.PlayerManager.CheckReadyToStartGame(Contracts.IGameManager.Game)
+  name: CheckReadyToStartGame(Game)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_CheckReadyToStartGame_Contracts_IGameManager_Game_
+  commentId: M:Services.DataBaseManager.PlayerManager.CheckReadyToStartGame(Contracts.IGameManager.Game)
+  fullName: Services.DataBaseManager.PlayerManager.CheckReadyToStartGame(Contracts.IGameManager.Game)
+  nameWithType: PlayerManager.CheckReadyToStartGame(Game)
+- uid: Services.DataBaseManager.PlayerManager.CheckReadyToStartGame*
+  name: CheckReadyToStartGame
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_CheckReadyToStartGame_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.CheckReadyToStartGame
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.CheckReadyToStartGame
+  nameWithType: PlayerManager.CheckReadyToStartGame
+- uid: Services.DataBaseManager.PlayerManager.CheckTakenPieces(Contracts.IGameManager.Game,System.Int32)
+  name: CheckTakenPieces(Game, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_CheckTakenPieces_Contracts_IGameManager_Game_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.CheckTakenPieces(Contracts.IGameManager.Game,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.CheckTakenPieces(Contracts.IGameManager.Game, System.Int32)
+  nameWithType: PlayerManager.CheckTakenPieces(Game, Int32)
+- uid: Services.DataBaseManager.PlayerManager.CheckTakenPieces*
+  name: CheckTakenPieces
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_CheckTakenPieces_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.CheckTakenPieces
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.CheckTakenPieces
+  nameWithType: PlayerManager.CheckTakenPieces
+- uid: Services.DataBaseManager.PlayerManager.CurrentGames
+  name: CurrentGames
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_CurrentGames
+  commentId: F:Services.DataBaseManager.PlayerManager.CurrentGames
+  fullName: Services.DataBaseManager.PlayerManager.CurrentGames
+  nameWithType: PlayerManager.CurrentGames
+- uid: Services.DataBaseManager.PlayerManager.currentUsers
+  name: currentUsers
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_currentUsers
+  commentId: F:Services.DataBaseManager.PlayerManager.currentUsers
+  fullName: Services.DataBaseManager.PlayerManager.currentUsers
+  nameWithType: PlayerManager.currentUsers
+- uid: Services.DataBaseManager.PlayerManager.DeclareLosingPlayer(Contracts.IGameManager.Player,System.Int32)
+  name: DeclareLosingPlayer(Player, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_DeclareLosingPlayer_Contracts_IGameManager_Player_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.DeclareLosingPlayer(Contracts.IGameManager.Player,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.DeclareLosingPlayer(Contracts.IGameManager.Player, System.Int32)
+  nameWithType: PlayerManager.DeclareLosingPlayer(Player, Int32)
+- uid: Services.DataBaseManager.PlayerManager.DeclareLosingPlayer*
+  name: DeclareLosingPlayer
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_DeclareLosingPlayer_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.DeclareLosingPlayer
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.DeclareLosingPlayer
+  nameWithType: PlayerManager.DeclareLosingPlayer
+- uid: Services.DataBaseManager.PlayerManager.ExpelPlayer(System.Int32,System.Int32)
+  name: ExpelPlayer(Int32, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_ExpelPlayer_System_Int32_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.ExpelPlayer(System.Int32,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.ExpelPlayer(System.Int32, System.Int32)
+  nameWithType: PlayerManager.ExpelPlayer(Int32, Int32)
+- uid: Services.DataBaseManager.PlayerManager.ExpelPlayer*
+  name: ExpelPlayer
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_ExpelPlayer_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.ExpelPlayer
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.ExpelPlayer
+  nameWithType: PlayerManager.ExpelPlayer
+- uid: Services.DataBaseManager.PlayerManager.GetActionCard(System.Int32,System.Int32,Contracts.IGameManager.Wildcard)
+  name: GetActionCard(Int32, Int32, Wildcard)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetActionCard_System_Int32_System_Int32_Contracts_IGameManager_Wildcard_
+  commentId: M:Services.DataBaseManager.PlayerManager.GetActionCard(System.Int32,System.Int32,Contracts.IGameManager.Wildcard)
+  fullName: Services.DataBaseManager.PlayerManager.GetActionCard(System.Int32, System.Int32, Contracts.IGameManager.Wildcard)
+  nameWithType: PlayerManager.GetActionCard(Int32, Int32, Wildcard)
+- uid: Services.DataBaseManager.PlayerManager.GetActionCard*
+  name: GetActionCard
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetActionCard_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.GetActionCard
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.GetActionCard
+  nameWithType: PlayerManager.GetActionCard
+- uid: Services.DataBaseManager.PlayerManager.GetFriendRequests(System.Int32)
+  name: GetFriendRequests(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetFriendRequests_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.GetFriendRequests(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.GetFriendRequests(System.Int32)
+  nameWithType: PlayerManager.GetFriendRequests(Int32)
+- uid: Services.DataBaseManager.PlayerManager.GetFriendRequests*
+  name: GetFriendRequests
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetFriendRequests_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.GetFriendRequests
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.GetFriendRequests
+  nameWithType: PlayerManager.GetFriendRequests
+- uid: Services.DataBaseManager.PlayerManager.GetFriends(System.Int32)
+  name: GetFriends(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetFriends_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.GetFriends(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.GetFriends(System.Int32)
+  nameWithType: PlayerManager.GetFriends(Int32)
+- uid: Services.DataBaseManager.PlayerManager.GetFriends*
+  name: GetFriends
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetFriends_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.GetFriends
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.GetFriends
+  nameWithType: PlayerManager.GetFriends
+- uid: Services.DataBaseManager.PlayerManager.GetGame(System.Int32)
+  name: GetGame(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetGame_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.GetGame(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.GetGame(System.Int32)
+  nameWithType: PlayerManager.GetGame(Int32)
+- uid: Services.DataBaseManager.PlayerManager.GetGame*
+  name: GetGame
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetGame_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.GetGame
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.GetGame
+  nameWithType: PlayerManager.GetGame
+- uid: Services.DataBaseManager.PlayerManager.GetMyPlayersName(System.Int32,System.Int32)
+  name: GetMyPlayersName(Int32, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetMyPlayersName_System_Int32_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.GetMyPlayersName(System.Int32,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.GetMyPlayersName(System.Int32, System.Int32)
+  nameWithType: PlayerManager.GetMyPlayersName(Int32, Int32)
+- uid: Services.DataBaseManager.PlayerManager.GetMyPlayersName*
+  name: GetMyPlayersName
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetMyPlayersName_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.GetMyPlayersName
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.GetMyPlayersName
+  nameWithType: PlayerManager.GetMyPlayersName
+- uid: Services.DataBaseManager.PlayerManager.GetPlayerData(System.Int32)
+  name: GetPlayerData(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetPlayerData_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.GetPlayerData(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.GetPlayerData(System.Int32)
+  nameWithType: PlayerManager.GetPlayerData(Int32)
+- uid: Services.DataBaseManager.PlayerManager.GetPlayerData*
+  name: GetPlayerData
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetPlayerData_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.GetPlayerData
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.GetPlayerData
+  nameWithType: PlayerManager.GetPlayerData
+- uid: Services.DataBaseManager.PlayerManager.GetPlayerName(System.Int32)
+  name: GetPlayerName(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetPlayerName_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.GetPlayerName(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.GetPlayerName(System.Int32)
+  nameWithType: PlayerManager.GetPlayerName(Int32)
+- uid: Services.DataBaseManager.PlayerManager.GetPlayerName*
+  name: GetPlayerName
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GetPlayerName_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.GetPlayerName
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.GetPlayerName
+  nameWithType: PlayerManager.GetPlayerName
+- uid: Services.DataBaseManager.PlayerManager.GoToJail(Contracts.IGameManager.Player,System.Int32)
+  name: GoToJail(Player, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GoToJail_Contracts_IGameManager_Player_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.GoToJail(Contracts.IGameManager.Player,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.GoToJail(Contracts.IGameManager.Player, System.Int32)
+  nameWithType: PlayerManager.GoToJail(Player, Int32)
+- uid: Services.DataBaseManager.PlayerManager.GoToJail*
+  name: GoToJail
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_GoToJail_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.GoToJail
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.GoToJail
+  nameWithType: PlayerManager.GoToJail
+- uid: Services.DataBaseManager.PlayerManager.InactivateBeginGameControls(System.Int32)
+  name: InactivateBeginGameControls(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_InactivateBeginGameControls_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.InactivateBeginGameControls(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.InactivateBeginGameControls(System.Int32)
+  nameWithType: PlayerManager.InactivateBeginGameControls(Int32)
+- uid: Services.DataBaseManager.PlayerManager.InactivateBeginGameControls*
+  name: InactivateBeginGameControls
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_InactivateBeginGameControls_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.InactivateBeginGameControls
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.InactivateBeginGameControls
+  nameWithType: PlayerManager.InactivateBeginGameControls
+- uid: Services.DataBaseManager.PlayerManager.InitializeGame(Contracts.IGameManager.Game)
+  name: InitializeGame(Game)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_InitializeGame_Contracts_IGameManager_Game_
+  commentId: M:Services.DataBaseManager.PlayerManager.InitializeGame(Contracts.IGameManager.Game)
+  fullName: Services.DataBaseManager.PlayerManager.InitializeGame(Contracts.IGameManager.Game)
+  nameWithType: PlayerManager.InitializeGame(Game)
+- uid: Services.DataBaseManager.PlayerManager.InitializeGame*
+  name: InitializeGame
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_InitializeGame_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.InitializeGame
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.InitializeGame
+  nameWithType: PlayerManager.InitializeGame
+- uid: Services.DataBaseManager.PlayerManager.InviteFriendToGame(System.String,System.Int32)
+  name: InviteFriendToGame(String, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_InviteFriendToGame_System_String_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.InviteFriendToGame(System.String,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.InviteFriendToGame(System.String, System.Int32)
+  nameWithType: PlayerManager.InviteFriendToGame(String, Int32)
+- uid: Services.DataBaseManager.PlayerManager.InviteFriendToGame*
+  name: InviteFriendToGame
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_InviteFriendToGame_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.InviteFriendToGame
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.InviteFriendToGame
+  nameWithType: PlayerManager.InviteFriendToGame
+- uid: Services.DataBaseManager.PlayerManager.IsGameFull(System.Int32)
+  name: IsGameFull(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_IsGameFull_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.IsGameFull(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.IsGameFull(System.Int32)
+  nameWithType: PlayerManager.IsGameFull(Int32)
+- uid: Services.DataBaseManager.PlayerManager.IsGameFull*
+  name: IsGameFull
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_IsGameFull_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.IsGameFull
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.IsGameFull
+  nameWithType: PlayerManager.IsGameFull
+- uid: Services.DataBaseManager.PlayerManager.IsGameOngoing(System.Int32)
+  name: IsGameOngoing(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_IsGameOngoing_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.IsGameOngoing(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.IsGameOngoing(System.Int32)
+  nameWithType: PlayerManager.IsGameOngoing(Int32)
+- uid: Services.DataBaseManager.PlayerManager.IsGameOngoing*
+  name: IsGameOngoing
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_IsGameOngoing_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.IsGameOngoing
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.IsGameOngoing
+  nameWithType: PlayerManager.IsGameOngoing
+- uid: Services.DataBaseManager.PlayerManager.JailPlayer(System.Int32,System.Int32)
+  name: JailPlayer(Int32, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_JailPlayer_System_Int32_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.JailPlayer(System.Int32,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.JailPlayer(System.Int32, System.Int32)
+  nameWithType: PlayerManager.JailPlayer(Int32, Int32)
+- uid: Services.DataBaseManager.PlayerManager.JailPlayer*
+  name: JailPlayer
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_JailPlayer_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.JailPlayer
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.JailPlayer
+  nameWithType: PlayerManager.JailPlayer
+- uid: Services.DataBaseManager.PlayerManager.LogOut(System.Int32)
+  name: LogOut(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_LogOut_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.LogOut(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.LogOut(System.Int32)
+  nameWithType: PlayerManager.LogOut(Int32)
+- uid: Services.DataBaseManager.PlayerManager.LogOut*
+  name: LogOut
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_LogOut_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.LogOut
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.LogOut
+  nameWithType: PlayerManager.LogOut
+- uid: Services.DataBaseManager.PlayerManager.MakeFriendRequest(System.Int32,System.String)
+  name: MakeFriendRequest(Int32, String)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_MakeFriendRequest_System_Int32_System_String_
+  commentId: M:Services.DataBaseManager.PlayerManager.MakeFriendRequest(System.Int32,System.String)
+  fullName: Services.DataBaseManager.PlayerManager.MakeFriendRequest(System.Int32, System.String)
+  nameWithType: PlayerManager.MakeFriendRequest(Int32, String)
+- uid: Services.DataBaseManager.PlayerManager.MakeFriendRequest*
+  name: MakeFriendRequest
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_MakeFriendRequest_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.MakeFriendRequest
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.MakeFriendRequest
+  nameWithType: PlayerManager.MakeFriendRequest
+- uid: Services.DataBaseManager.PlayerManager.MakeRentalPayment(System.Int32,System.Int32,System.Int64,System.Int32)
+  name: MakeRentalPayment(Int32, Int32, Int64, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_MakeRentalPayment_System_Int32_System_Int32_System_Int64_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.MakeRentalPayment(System.Int32,System.Int32,System.Int64,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.MakeRentalPayment(System.Int32, System.Int32, System.Int64, System.Int32)
+  nameWithType: PlayerManager.MakeRentalPayment(Int32, Int32, Int64, Int32)
+- uid: Services.DataBaseManager.PlayerManager.MakeRentalPayment*
+  name: MakeRentalPayment
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_MakeRentalPayment_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.MakeRentalPayment
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.MakeRentalPayment
+  nameWithType: PlayerManager.MakeRentalPayment
+- uid: Services.DataBaseManager.PlayerManager.ModifyPassword(System.Int32,System.String,System.String)
+  name: ModifyPassword(Int32, String, String)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_ModifyPassword_System_Int32_System_String_System_String_
+  commentId: M:Services.DataBaseManager.PlayerManager.ModifyPassword(System.Int32,System.String,System.String)
+  fullName: Services.DataBaseManager.PlayerManager.ModifyPassword(System.Int32, System.String, System.String)
+  nameWithType: PlayerManager.ModifyPassword(Int32, String, String)
+- uid: Services.DataBaseManager.PlayerManager.ModifyPassword*
+  name: ModifyPassword
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_ModifyPassword_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.ModifyPassword
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.ModifyPassword
+  nameWithType: PlayerManager.ModifyPassword
+- uid: Services.DataBaseManager.PlayerManager.ModifyProperty(Contracts.IGameManager.Property,System.Int32)
+  name: ModifyProperty(Property, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_ModifyProperty_Contracts_IGameManager_Property_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.ModifyProperty(Contracts.IGameManager.Property,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.ModifyProperty(Contracts.IGameManager.Property, System.Int32)
+  nameWithType: PlayerManager.ModifyProperty(Property, Int32)
+- uid: Services.DataBaseManager.PlayerManager.ModifyProperty*
+  name: ModifyProperty
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_ModifyProperty_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.ModifyProperty
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.ModifyProperty
+  nameWithType: PlayerManager.ModifyProperty
+- uid: Services.DataBaseManager.PlayerManager.MovePlayer(System.Int32,System.Int32,Contracts.IGameManager.Player@)
+  name: MovePlayer(Int32, Int32, ref Player)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_MovePlayer_System_Int32_System_Int32_Contracts_IGameManager_Player__
+  commentId: M:Services.DataBaseManager.PlayerManager.MovePlayer(System.Int32,System.Int32,Contracts.IGameManager.Player@)
+  name.vb: MovePlayer(Int32, Int32, ByRef Player)
+  fullName: Services.DataBaseManager.PlayerManager.MovePlayer(System.Int32, System.Int32, ref Contracts.IGameManager.Player)
+  fullName.vb: Services.DataBaseManager.PlayerManager.MovePlayer(System.Int32, System.Int32, ByRef Contracts.IGameManager.Player)
+  nameWithType: PlayerManager.MovePlayer(Int32, Int32, ref Player)
+  nameWithType.vb: PlayerManager.MovePlayer(Int32, Int32, ByRef Player)
+- uid: Services.DataBaseManager.PlayerManager.MovePlayer*
+  name: MovePlayer
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_MovePlayer_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.MovePlayer
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.MovePlayer
+  nameWithType: PlayerManager.MovePlayer
+- uid: Services.DataBaseManager.PlayerManager.PayConstruction(System.Int32,System.Int64,System.Int32)
+  name: PayConstruction(Int32, Int64, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_PayConstruction_System_Int32_System_Int64_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.PayConstruction(System.Int32,System.Int64,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.PayConstruction(System.Int32, System.Int64, System.Int32)
+  nameWithType: PlayerManager.PayConstruction(Int32, Int64, Int32)
+- uid: Services.DataBaseManager.PlayerManager.PayConstruction*
+  name: PayConstruction
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_PayConstruction_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.PayConstruction
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.PayConstruction
+  nameWithType: PlayerManager.PayConstruction
+- uid: Services.DataBaseManager.PlayerManager.PayPropertyMortgage(Contracts.IGameManager.Game,System.Int32,Contracts.IGameManager.Property)
+  name: PayPropertyMortgage(Game, Int32, Property)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_PayPropertyMortgage_Contracts_IGameManager_Game_System_Int32_Contracts_IGameManager_Property_
+  commentId: M:Services.DataBaseManager.PlayerManager.PayPropertyMortgage(Contracts.IGameManager.Game,System.Int32,Contracts.IGameManager.Property)
+  fullName: Services.DataBaseManager.PlayerManager.PayPropertyMortgage(Contracts.IGameManager.Game, System.Int32, Contracts.IGameManager.Property)
+  nameWithType: PlayerManager.PayPropertyMortgage(Game, Int32, Property)
+- uid: Services.DataBaseManager.PlayerManager.PayPropertyMortgage*
+  name: PayPropertyMortgage
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_PayPropertyMortgage_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.PayPropertyMortgage
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.PayPropertyMortgage
+  nameWithType: PlayerManager.PayPropertyMortgage
+- uid: Services.DataBaseManager.PlayerManager.PlayerSearch(DataBase.PlayerSet)
+  name: PlayerSearch(PlayerSet)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_PlayerSearch_DataBase_PlayerSet_
+  commentId: M:Services.DataBaseManager.PlayerManager.PlayerSearch(DataBase.PlayerSet)
+  fullName: Services.DataBaseManager.PlayerManager.PlayerSearch(DataBase.PlayerSet)
+  nameWithType: PlayerManager.PlayerSearch(PlayerSet)
+- uid: Services.DataBaseManager.PlayerManager.PlayerSearch*
+  name: PlayerSearch
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_PlayerSearch_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.PlayerSearch
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.PlayerSearch
+  nameWithType: PlayerManager.PlayerSearch
+- uid: Services.DataBaseManager.PlayerManager.PlayTurn(Contracts.IGameManager.Game)
+  name: PlayTurn(Game)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_PlayTurn_Contracts_IGameManager_Game_
+  commentId: M:Services.DataBaseManager.PlayerManager.PlayTurn(Contracts.IGameManager.Game)
+  fullName: Services.DataBaseManager.PlayerManager.PlayTurn(Contracts.IGameManager.Game)
+  nameWithType: PlayerManager.PlayTurn(Game)
+- uid: Services.DataBaseManager.PlayerManager.PlayTurn*
+  name: PlayTurn
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_PlayTurn_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.PlayTurn
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.PlayTurn
+  nameWithType: PlayerManager.PlayTurn
+- uid: Services.DataBaseManager.PlayerManager.PurchaseProperty(Contracts.IGameManager.Property,Contracts.IGameManager.Player,System.Int32)
+  name: PurchaseProperty(Property, Player, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_PurchaseProperty_Contracts_IGameManager_Property_Contracts_IGameManager_Player_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.PurchaseProperty(Contracts.IGameManager.Property,Contracts.IGameManager.Player,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.PurchaseProperty(Contracts.IGameManager.Property, Contracts.IGameManager.Player, System.Int32)
+  nameWithType: PlayerManager.PurchaseProperty(Property, Player, Int32)
+- uid: Services.DataBaseManager.PlayerManager.PurchaseProperty*
+  name: PurchaseProperty
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_PurchaseProperty_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.PurchaseProperty
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.PurchaseProperty
+  nameWithType: PlayerManager.PurchaseProperty
+- uid: Services.DataBaseManager.PlayerManager.RealizePropertyMortgage(System.Int32,Contracts.IGameManager.Property,System.Int32)
+  name: RealizePropertyMortgage(Int32, Property, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_RealizePropertyMortgage_System_Int32_Contracts_IGameManager_Property_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.RealizePropertyMortgage(System.Int32,Contracts.IGameManager.Property,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.RealizePropertyMortgage(System.Int32, Contracts.IGameManager.Property, System.Int32)
+  nameWithType: PlayerManager.RealizePropertyMortgage(Int32, Property, Int32)
+- uid: Services.DataBaseManager.PlayerManager.RealizePropertyMortgage*
+  name: RealizePropertyMortgage
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_RealizePropertyMortgage_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.RealizePropertyMortgage
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.RealizePropertyMortgage
+  nameWithType: PlayerManager.RealizePropertyMortgage
+- uid: Services.DataBaseManager.PlayerManager.RegisterPlayer(DataBase.PlayerSet)
+  name: RegisterPlayer(PlayerSet)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_RegisterPlayer_DataBase_PlayerSet_
+  commentId: M:Services.DataBaseManager.PlayerManager.RegisterPlayer(DataBase.PlayerSet)
+  fullName: Services.DataBaseManager.PlayerManager.RegisterPlayer(DataBase.PlayerSet)
+  nameWithType: PlayerManager.RegisterPlayer(PlayerSet)
+- uid: Services.DataBaseManager.PlayerManager.RegisterPlayer*
+  name: RegisterPlayer
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_RegisterPlayer_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.RegisterPlayer
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.RegisterPlayer
+  nameWithType: PlayerManager.RegisterPlayer
+- uid: Services.DataBaseManager.PlayerManager.RejectFriendRequest(System.Int32)
+  name: RejectFriendRequest(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_RejectFriendRequest_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.RejectFriendRequest(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.RejectFriendRequest(System.Int32)
+  nameWithType: PlayerManager.RejectFriendRequest(Int32)
+- uid: Services.DataBaseManager.PlayerManager.RejectFriendRequest*
+  name: RejectFriendRequest
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_RejectFriendRequest_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.RejectFriendRequest
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.RejectFriendRequest
+  nameWithType: PlayerManager.RejectFriendRequest
+- uid: Services.DataBaseManager.PlayerManager.SavePlayerSession(System.Int32)
+  name: SavePlayerSession(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_SavePlayerSession_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.SavePlayerSession(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.SavePlayerSession(System.Int32)
+  nameWithType: PlayerManager.SavePlayerSession(Int32)
+- uid: Services.DataBaseManager.PlayerManager.SavePlayerSession*
+  name: SavePlayerSession
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_SavePlayerSession_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.SavePlayerSession
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.SavePlayerSession
+  nameWithType: PlayerManager.SavePlayerSession
+- uid: Services.DataBaseManager.PlayerManager.SearchGameByCode(System.Int32)
+  name: SearchGameByCode(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_SearchGameByCode_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.SearchGameByCode(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.SearchGameByCode(System.Int32)
+  nameWithType: PlayerManager.SearchGameByCode(Int32)
+- uid: Services.DataBaseManager.PlayerManager.SearchGameByCode*
+  name: SearchGameByCode
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_SearchGameByCode_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.SearchGameByCode
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.SearchGameByCode
+  nameWithType: PlayerManager.SearchGameByCode
+- uid: Services.DataBaseManager.PlayerManager.SelectedPiece(Contracts.IGameManager.Game,System.String,System.Int32)
+  name: SelectedPiece(Game, String, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_SelectedPiece_Contracts_IGameManager_Game_System_String_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.SelectedPiece(Contracts.IGameManager.Game,System.String,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.SelectedPiece(Contracts.IGameManager.Game, System.String, System.Int32)
+  nameWithType: PlayerManager.SelectedPiece(Game, String, Int32)
+- uid: Services.DataBaseManager.PlayerManager.SelectedPiece*
+  name: SelectedPiece
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_SelectedPiece_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.SelectedPiece
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.SelectedPiece
+  nameWithType: PlayerManager.SelectedPiece
+- uid: Services.DataBaseManager.PlayerManager.SendEmail(System.String,System.String)
+  name: SendEmail(String, String)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_SendEmail_System_String_System_String_
+  commentId: M:Services.DataBaseManager.PlayerManager.SendEmail(System.String,System.String)
+  fullName: Services.DataBaseManager.PlayerManager.SendEmail(System.String, System.String)
+  nameWithType: PlayerManager.SendEmail(String, String)
+- uid: Services.DataBaseManager.PlayerManager.SendEmail*
+  name: SendEmail
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_SendEmail_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.SendEmail
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.SendEmail
+  nameWithType: PlayerManager.SendEmail
+- uid: Services.DataBaseManager.PlayerManager.SendMessage(System.Int32,System.String)
+  name: SendMessage(Int32, String)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_SendMessage_System_Int32_System_String_
+  commentId: M:Services.DataBaseManager.PlayerManager.SendMessage(System.Int32,System.String)
+  fullName: Services.DataBaseManager.PlayerManager.SendMessage(System.Int32, System.String)
+  nameWithType: PlayerManager.SendMessage(Int32, String)
+- uid: Services.DataBaseManager.PlayerManager.SendMessage*
+  name: SendMessage
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_SendMessage_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.SendMessage
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.SendMessage
+  nameWithType: PlayerManager.SendMessage
+- uid: Services.DataBaseManager.PlayerManager.StartGame(Contracts.IGameManager.Game)
+  name: StartGame(Game)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_StartGame_Contracts_IGameManager_Game_
+  commentId: M:Services.DataBaseManager.PlayerManager.StartGame(Contracts.IGameManager.Game)
+  fullName: Services.DataBaseManager.PlayerManager.StartGame(Contracts.IGameManager.Game)
+  nameWithType: PlayerManager.StartGame(Game)
+- uid: Services.DataBaseManager.PlayerManager.StartGame*
+  name: StartGame
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_StartGame_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.StartGame
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.StartGame
+  nameWithType: PlayerManager.StartGame
+- uid: Services.DataBaseManager.PlayerManager.UnCheckReadyToStartGame(Contracts.IGameManager.Game)
+  name: UnCheckReadyToStartGame(Game)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UnCheckReadyToStartGame_Contracts_IGameManager_Game_
+  commentId: M:Services.DataBaseManager.PlayerManager.UnCheckReadyToStartGame(Contracts.IGameManager.Game)
+  fullName: Services.DataBaseManager.PlayerManager.UnCheckReadyToStartGame(Contracts.IGameManager.Game)
+  nameWithType: PlayerManager.UnCheckReadyToStartGame(Game)
+- uid: Services.DataBaseManager.PlayerManager.UnCheckReadyToStartGame*
+  name: UnCheckReadyToStartGame
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UnCheckReadyToStartGame_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.UnCheckReadyToStartGame
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.UnCheckReadyToStartGame
+  nameWithType: PlayerManager.UnCheckReadyToStartGame
+- uid: Services.DataBaseManager.PlayerManager.UnSelectedPiece(Contracts.IGameManager.Game,System.String,System.Int32)
+  name: UnSelectedPiece(Game, String, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UnSelectedPiece_Contracts_IGameManager_Game_System_String_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.UnSelectedPiece(Contracts.IGameManager.Game,System.String,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.UnSelectedPiece(Contracts.IGameManager.Game, System.String, System.Int32)
+  nameWithType: PlayerManager.UnSelectedPiece(Game, String, Int32)
+- uid: Services.DataBaseManager.PlayerManager.UnSelectedPiece*
+  name: UnSelectedPiece
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UnSelectedPiece_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.UnSelectedPiece
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.UnSelectedPiece
+  nameWithType: PlayerManager.UnSelectedPiece
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayerData(System.Int32,System.String)
+  name: UpdatePlayerData(Int32, String)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayerData_System_Int32_System_String_
+  commentId: M:Services.DataBaseManager.PlayerManager.UpdatePlayerData(System.Int32,System.String)
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayerData(System.Int32, System.String)
+  nameWithType: PlayerManager.UpdatePlayerData(Int32, String)
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayerData*
+  name: UpdatePlayerData
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayerData_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.UpdatePlayerData
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayerData
+  nameWithType: PlayerManager.UpdatePlayerData
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayerGame(Contracts.IGameManager.Game,System.Int32,Contracts.IGameManager.Piece)
+  name: UpdatePlayerGame(Game, Int32, Piece)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayerGame_Contracts_IGameManager_Game_System_Int32_Contracts_IGameManager_Piece_
+  commentId: M:Services.DataBaseManager.PlayerManager.UpdatePlayerGame(Contracts.IGameManager.Game,System.Int32,Contracts.IGameManager.Piece)
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayerGame(Contracts.IGameManager.Game, System.Int32, Contracts.IGameManager.Piece)
+  nameWithType: PlayerManager.UpdatePlayerGame(Game, Int32, Piece)
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayerGame*
+  name: UpdatePlayerGame
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayerGame_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.UpdatePlayerGame
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayerGame
+  nameWithType: PlayerManager.UpdatePlayerGame
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayers(System.Int32)
+  name: UpdatePlayers(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayers_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.UpdatePlayers(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayers(System.Int32)
+  nameWithType: PlayerManager.UpdatePlayers(Int32)
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayers*
+  name: UpdatePlayers
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayers_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.UpdatePlayers
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayers
+  nameWithType: PlayerManager.UpdatePlayers
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayerService(System.Int32,System.Int32)
+  name: UpdatePlayerService(Int32, Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayerService_System_Int32_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.UpdatePlayerService(System.Int32,System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayerService(System.Int32, System.Int32)
+  nameWithType: PlayerManager.UpdatePlayerService(Int32, Int32)
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayerService*
+  name: UpdatePlayerService
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayerService_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.UpdatePlayerService
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayerService
+  nameWithType: PlayerManager.UpdatePlayerService
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayerSession(System.Int32)
+  name: UpdatePlayerSession(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayerSession_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.UpdatePlayerSession(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayerSession(System.Int32)
+  nameWithType: PlayerManager.UpdatePlayerSession(Int32)
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayerSession*
+  name: UpdatePlayerSession
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayerSession_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.UpdatePlayerSession
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayerSession
+  nameWithType: PlayerManager.UpdatePlayerSession
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayersInGame(System.Int32)
+  name: UpdatePlayersInGame(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayersInGame_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.UpdatePlayersInGame(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayersInGame(System.Int32)
+  nameWithType: PlayerManager.UpdatePlayersInGame(Int32)
+- uid: Services.DataBaseManager.PlayerManager.UpdatePlayersInGame*
+  name: UpdatePlayersInGame
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdatePlayersInGame_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.UpdatePlayersInGame
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.UpdatePlayersInGame
+  nameWithType: PlayerManager.UpdatePlayersInGame
+- uid: Services.DataBaseManager.PlayerManager.UpdateQueu(System.Int32)
+  name: UpdateQueu(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdateQueu_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.UpdateQueu(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.UpdateQueu(System.Int32)
+  nameWithType: PlayerManager.UpdateQueu(Int32)
+- uid: Services.DataBaseManager.PlayerManager.UpdateQueu*
+  name: UpdateQueu
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_UpdateQueu_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.UpdateQueu
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.UpdateQueu
+  nameWithType: PlayerManager.UpdateQueu
+- uid: Services.DataBaseManager.PlayerManager.VerifyGameCompletion(System.Int32)
+  name: VerifyGameCompletion(Int32)
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_VerifyGameCompletion_System_Int32_
+  commentId: M:Services.DataBaseManager.PlayerManager.VerifyGameCompletion(System.Int32)
+  fullName: Services.DataBaseManager.PlayerManager.VerifyGameCompletion(System.Int32)
+  nameWithType: PlayerManager.VerifyGameCompletion(Int32)
+- uid: Services.DataBaseManager.PlayerManager.VerifyGameCompletion*
+  name: VerifyGameCompletion
+  href: obj/api/Services.DataBaseManager.PlayerManager.html#Services_DataBaseManager_PlayerManager_VerifyGameCompletion_
+  commentId: Overload:Services.DataBaseManager.PlayerManager.VerifyGameCompletion
+  isSpec: "True"
+  fullName: Services.DataBaseManager.PlayerManager.VerifyGameCompletion
+  nameWithType: PlayerManager.VerifyGameCompletion
+- uid: Services.GameManager
+  name: Services.GameManager
+  href: obj/api/Services.GameManager.html
+  commentId: N:Services.GameManager
+  fullName: Services.GameManager
+  nameWithType: Services.GameManager
+- uid: Services.GameManager.Board
+  name: Board
+  href: obj/api/Services.GameManager.Board.html
+  commentId: T:Services.GameManager.Board
+  fullName: Services.GameManager.Board
+  nameWithType: Board
+- uid: Services.GameManager.Board.#ctor
+  name: Board()
+  href: obj/api/Services.GameManager.Board.html#Services_GameManager_Board__ctor
+  commentId: M:Services.GameManager.Board.#ctor
+  fullName: Services.GameManager.Board.Board()
+  nameWithType: Board.Board()
+- uid: Services.GameManager.Board.#ctor*
+  name: Board
+  href: obj/api/Services.GameManager.Board.html#Services_GameManager_Board__ctor_
+  commentId: Overload:Services.GameManager.Board.#ctor
+  isSpec: "True"
+  fullName: Services.GameManager.Board.Board
+  nameWithType: Board.Board
+- uid: Services.GameManager.Board.board
+  name: board
+  href: obj/api/Services.GameManager.Board.html#Services_GameManager_Board_board
+  commentId: F:Services.GameManager.Board.board
+  fullName: Services.GameManager.Board.board
+  nameWithType: Board.board
+- uid: Services.GameManager.Board.CreateBoard
+  name: CreateBoard()
+  href: obj/api/Services.GameManager.Board.html#Services_GameManager_Board_CreateBoard
+  commentId: M:Services.GameManager.Board.CreateBoard
+  fullName: Services.GameManager.Board.CreateBoard()
+  nameWithType: Board.CreateBoard()
+- uid: Services.GameManager.Board.CreateBoard*
+  name: CreateBoard
+  href: obj/api/Services.GameManager.Board.html#Services_GameManager_Board_CreateBoard_
+  commentId: Overload:Services.GameManager.Board.CreateBoard
+  isSpec: "True"
+  fullName: Services.GameManager.Board.CreateBoard
+  nameWithType: Board.CreateBoard
+- uid: Services.GameManager.Board.GetProperty(System.Int32)
+  name: GetProperty(Int32)
+  href: obj/api/Services.GameManager.Board.html#Services_GameManager_Board_GetProperty_System_Int32_
+  commentId: M:Services.GameManager.Board.GetProperty(System.Int32)
+  fullName: Services.GameManager.Board.GetProperty(System.Int32)
+  nameWithType: Board.GetProperty(Int32)
+- uid: Services.GameManager.Board.GetProperty*
+  name: GetProperty
+  href: obj/api/Services.GameManager.Board.html#Services_GameManager_Board_GetProperty_
+  commentId: Overload:Services.GameManager.Board.GetProperty
+  isSpec: "True"
+  fullName: Services.GameManager.Board.GetProperty
+  nameWithType: Board.GetProperty
+- uid: Services.GameManager.Board.RegisterPropertyMortgage(Contracts.IGameManager.Property)
+  name: RegisterPropertyMortgage(Property)
+  href: obj/api/Services.GameManager.Board.html#Services_GameManager_Board_RegisterPropertyMortgage_Contracts_IGameManager_Property_
+  commentId: M:Services.GameManager.Board.RegisterPropertyMortgage(Contracts.IGameManager.Property)
+  fullName: Services.GameManager.Board.RegisterPropertyMortgage(Contracts.IGameManager.Property)
+  nameWithType: Board.RegisterPropertyMortgage(Property)
+- uid: Services.GameManager.Board.RegisterPropertyMortgage*
+  name: RegisterPropertyMortgage
+  href: obj/api/Services.GameManager.Board.html#Services_GameManager_Board_RegisterPropertyMortgage_
+  commentId: Overload:Services.GameManager.Board.RegisterPropertyMortgage
+  isSpec: "True"
+  fullName: Services.GameManager.Board.RegisterPropertyMortgage
+  nameWithType: Board.RegisterPropertyMortgage
+- uid: Services.GameManager.Board.RegisterPurchaseProperty(Contracts.IGameManager.Player,Contracts.IGameManager.Property)
+  name: RegisterPurchaseProperty(Player, Property)
+  href: obj/api/Services.GameManager.Board.html#Services_GameManager_Board_RegisterPurchaseProperty_Contracts_IGameManager_Player_Contracts_IGameManager_Property_
+  commentId: M:Services.GameManager.Board.RegisterPurchaseProperty(Contracts.IGameManager.Player,Contracts.IGameManager.Property)
+  fullName: Services.GameManager.Board.RegisterPurchaseProperty(Contracts.IGameManager.Player, Contracts.IGameManager.Property)
+  nameWithType: Board.RegisterPurchaseProperty(Player, Property)
+- uid: Services.GameManager.Board.RegisterPurchaseProperty*
+  name: RegisterPurchaseProperty
+  href: obj/api/Services.GameManager.Board.html#Services_GameManager_Board_RegisterPurchaseProperty_
+  commentId: Overload:Services.GameManager.Board.RegisterPurchaseProperty
+  isSpec: "True"
+  fullName: Services.GameManager.Board.RegisterPurchaseProperty
+  nameWithType: Board.RegisterPurchaseProperty

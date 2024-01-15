@@ -1,0 +1,226 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/Proyectos .NET/Juego/TuristaServerGame/Services",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "Pd7RtyavJ4EQJyAWq9mOzhhkD4asZEgkdtTm2KpQsfI="
+        }
+      },
+      "is_incremental": false,
+      "version": "",
+      "rawTitle": "<h1 id=\"placeholder\" sourcefile=\"api/index.md\" sourcestartlinenumber=\"2\" sourceendlinenumber=\"2\">PLACEHOLDER</h1>"
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "72+pTnch219dbQ/o+3oas4wnGYHJDv6R4YdzM9BDMd4="
+        }
+      },
+      "is_incremental": false,
+      "version": "",
+      "rawTitle": "<h1 id=\"add-your-introductions-here\" sourcefile=\"articles/intro.md\" sourcestartlinenumber=\"2\" sourceendlinenumber=\"2\">Add your introductions here!</h1>"
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html",
+          "hash": "A6Q9WXyf1SdYvRELkXidg8d36fysgiKlmJcaluHRHaY="
+        }
+      },
+      "is_incremental": false,
+      "version": "",
+      "rawTitle": "<h1 id=\"getting-started\" sourcefile=\"docs/getting-started.md\" sourcestartlinenumber=\"1\" sourceendlinenumber=\"1\">Getting Started</h1>"
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/introduction.html",
+          "hash": "sw1ufAAyV2zEkSMxgGdvIrL9eNybaD69PBbxuMzQVuY="
+        }
+      },
+      "is_incremental": false,
+      "version": "",
+      "rawTitle": "<h1 id=\"introduction\" sourcefile=\"docs/introduction.md\" sourcestartlinenumber=\"1\" sourceendlinenumber=\"1\">Introduction</h1>"
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html",
+          "hash": "9XAWFIglQANS5iqvMCZYhs45Hnu8F5WZgoy4I/Y0E7g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "+6BcBzV9WRb6JWigvjsj2pRhYDkTG/Fw5rm/Fh/XHao="
+        }
+      },
+      "is_incremental": false,
+      "version": "",
+      "rawTitle": "<h1 id=\"this-is-the-homepage\" sourcefile=\"index.md\" sourcestartlinenumber=\"5\" sourceendlinenumber=\"5\">This is the <strong>HOMEPAGE</strong>.</h1>"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Services.DataBaseManager.PlayerManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "obj/api/Services.DataBaseManager.PlayerManager.html",
+          "hash": "N1JreOEsBaB85S5YDtnURl6F46H9IWZs9IhY01ZEE3I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Services.DataBaseManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "obj/api/Services.DataBaseManager.html",
+          "hash": "6gzJ0A/t2Es0LoembDH2I4dBN4R4dvm6XyMmv/ZldXE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Services.GameManager.Board.yml",
+      "output": {
+        ".html": {
+          "relative_path": "obj/api/Services.GameManager.Board.html",
+          "hash": "aXcnML+jatJLVymMuRvrvTooygJas30JCDbUJ8bq8us="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Services.GameManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "obj/api/Services.GameManager.html",
+          "hash": "fxSEK54HUgyOy95/q8dzAYymAhK6K/Y9LTcCsx/NmQA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "obj/api/toc.html",
+          "hash": "EJILz74SRmRI+cZZOQtoBHKt6yc8ay07qkRYYXaaVfo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "BNKWAIu3DMl77TfeZcs29N56Vexb4L7sAnQRF+JnHqI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because config changed.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ConfigChanged"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 5,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 4,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

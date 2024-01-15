@@ -6,6 +6,8 @@ using EASendMail;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.ServiceModel;
@@ -37,7 +39,6 @@ namespace Services.DataBaseManager
             }
         }
 
-        private readonly object LockObject = new object();
 
         /// <summary>
         /// Actualiza la información de juego de un jugador, asignando una nueva pieza y número de turno.
@@ -51,35 +52,27 @@ namespace Services.DataBaseManager
             int result = 0;
             int turn = 0;
 
-            Monitor.Enter(LockObject);
-            try
+            if (CheckPieceAvailability(game, playersPiece.Name))
             {
-                if (CheckPieceAvailability(game, playersPiece.Name))
+                foreach (Player playerInGame in CurrentGames[game.IdGame].Players)
                 {
-                    foreach (Player playerInGame in CurrentGames[game.IdGame].Players)
+                    if (playerInGame.IdPlayer == idPlayer)
                     {
-                        if (playerInGame.IdPlayer == idPlayer)
+                        try
                         {
-                            try
-                            {
-                                playerInGame.Piece = playersPiece;
-                                result = 1;
-                            }
-                            catch (TimeoutException exception)
-                            {
-                                _ilog.Error(exception.ToString());
-                            }
-
-                            playerInGame.Piece.PartNumber = turn;
-                            break;
+                            playerInGame.Piece = playersPiece;
+                            result = 1;
                         }
-                        turn++;
+                        catch (TimeoutException exception)
+                        {
+                            _ilog.Error(exception.ToString());
+                        }
+
+                        playerInGame.Piece.PartNumber = turn;
+                        break;
                     }
+                    turn++;
                 }
-            }
-            finally
-            {
-                Monitor.Exit(LockObject);
             }
 
             return result;
@@ -92,17 +85,24 @@ namespace Services.DataBaseManager
         /// <param name="piece">Nombre de la pieza seleccionada.</param>
         /// <param name="idPlayer">Identificador único del jugador que seleccionó la pieza.</param>
         public void SelectedPiece(Game game, string piece, int idPlayer)
-        {            
-            foreach (Player playerInGame in CurrentGames[game.IdGame].PlayersInGame)
+        {
+            try
             {
-                try
+                foreach (Player playerInGame in CurrentGames[game.IdGame].PlayersInGame)
                 {
-                    playerInGame.GameManagerCallback.BlockPiece(piece, idPlayer);
+                    try
+                    {
+                        playerInGame.GameManagerCallback.BlockPiece(piece, idPlayer);
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                    }
                 }
-                catch (TimeoutException exception)
-                {
-                    _ilog.Error(exception.ToString());
-                }
+            }
+            catch (KeyNotFoundException exception)
+            {
+                _ilog.Error(exception.ToString());
             }
         }
 
@@ -242,7 +242,6 @@ namespace Services.DataBaseManager
         {
             try
             {
-                
                 SmtpMail mail = new SmtpMail("TryIt");
                 mail.From = "yusgus02@gmail.com";
                 mail.To = GetFriendEmail(friendId);
@@ -319,11 +318,23 @@ namespace Services.DataBaseManager
         /// <returns>Dirección de correo electrónico del amigo.</returns>
         private string GetFriendEmail(int idFriend)
         {
-            string friendEmail;
-            using (var Context = new TuristaMundialEntitiesDB())
+            string friendEmail = "";
+
+            try
             {
-                var friend = Context.PlayerSet.Where(P => P.Id == idFriend).First();
-                friendEmail = friend.eMail;
+                using (var Context = new TuristaMundialEntitiesDB())
+                {
+                    var friend = Context.PlayerSet.Where(P => P.Id == idFriend).First();
+                    friendEmail = friend.eMail;
+                }
+            }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
             }
 
             return friendEmail;

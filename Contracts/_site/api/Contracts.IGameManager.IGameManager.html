@@ -1,0 +1,694 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IGameManager
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IGameManager
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Contracts.IGameManager.IGameManager">
+  
+  
+  <h1 id="Contracts_IGameManager_IGameManager" data-uid="Contracts.IGameManager.IGameManager" class="text-break">Interface IGameManager
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Contracts.IGameManager.html">Contracts.IGameManager</a></h6>
+  <h6><strong>Assembly</strong>: Contracts.dll</h6>
+  <h5 id="Contracts_IGameManager_IGameManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ServiceContract(CallbackContract = typeof(IGameManagerCallback))]
+public interface IGameManager</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_AddGame_Contracts_IGameManager_Game_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.AddGame(Contracts.IGameManager.Game)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L20">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_AddGame_" data-uid="Contracts.IGameManager.IGameManager.AddGame*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_AddGame_Contracts_IGameManager_Game_" data-uid="Contracts.IGameManager.IGameManager.AddGame(Contracts.IGameManager.Game)">AddGame(Game)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract]
+void AddGame(Game game)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Contracts.IGameManager.Game.html">Game</a></td>
+        <td><span class="parametername">game</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_AddGuestToGame_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.AddGuestToGame(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L26">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_AddGuestToGame_" data-uid="Contracts.IGameManager.IGameManager.AddGuestToGame*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_AddGuestToGame_System_Int32_System_Int32_" data-uid="Contracts.IGameManager.IGameManager.AddGuestToGame(System.Int32,System.Int32)">AddGuestToGame(Int32, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract]
+void AddGuestToGame(int idGame, int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_AddPlayerToGame_System_Int32_Contracts_IGameManager_Player_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.AddPlayerToGame(System.Int32%2CContracts.IGameManager.Player)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L23">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_AddPlayerToGame_" data-uid="Contracts.IGameManager.IGameManager.AddPlayerToGame*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_AddPlayerToGame_System_Int32_Contracts_IGameManager_Player_" data-uid="Contracts.IGameManager.IGameManager.AddPlayerToGame(System.Int32,Contracts.IGameManager.Player)">AddPlayerToGame(Int32, Player)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract]
+void AddPlayerToGame(int game, Player player)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">game</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Contracts.IGameManager.Player.html">Player</a></td>
+        <td><span class="parametername">player</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_CheckReadyToStartGame_Contracts_IGameManager_Game_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.CheckReadyToStartGame(Contracts.IGameManager.Game)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L50">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_CheckReadyToStartGame_" data-uid="Contracts.IGameManager.IGameManager.CheckReadyToStartGame*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_CheckReadyToStartGame_Contracts_IGameManager_Game_" data-uid="Contracts.IGameManager.IGameManager.CheckReadyToStartGame(Contracts.IGameManager.Game)">CheckReadyToStartGame(Game)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract(IsOneWay = true)]
+void CheckReadyToStartGame(Game game)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Contracts.IGameManager.Game.html">Game</a></td>
+        <td><span class="parametername">game</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_CheckTakenPieces_Contracts_IGameManager_Game_System_Int32_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.CheckTakenPieces(Contracts.IGameManager.Game%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L59">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_CheckTakenPieces_" data-uid="Contracts.IGameManager.IGameManager.CheckTakenPieces*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_CheckTakenPieces_Contracts_IGameManager_Game_System_Int32_" data-uid="Contracts.IGameManager.IGameManager.CheckTakenPieces(Contracts.IGameManager.Game,System.Int32)">CheckTakenPieces(Game, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract(IsOneWay = true)]
+void CheckTakenPieces(Game game, int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Contracts.IGameManager.Game.html">Game</a></td>
+        <td><span class="parametername">game</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_InactivateBeginGameControls_System_Int32_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.InactivateBeginGameControls(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L56">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_InactivateBeginGameControls_" data-uid="Contracts.IGameManager.IGameManager.InactivateBeginGameControls*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_InactivateBeginGameControls_System_Int32_" data-uid="Contracts.IGameManager.IGameManager.InactivateBeginGameControls(System.Int32)">InactivateBeginGameControls(Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract(IsOneWay = true)]
+void InactivateBeginGameControls(int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_InitializeGame_Contracts_IGameManager_Game_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.InitializeGame(Contracts.IGameManager.Game)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L38">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_InitializeGame_" data-uid="Contracts.IGameManager.IGameManager.InitializeGame*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_InitializeGame_Contracts_IGameManager_Game_" data-uid="Contracts.IGameManager.IGameManager.InitializeGame(Contracts.IGameManager.Game)">InitializeGame(Game)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract(IsOneWay = true)]
+void InitializeGame(Game game)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Contracts.IGameManager.Game.html">Game</a></td>
+        <td><span class="parametername">game</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_InviteFriendToGame_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.InviteFriendToGame(System.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L62">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_InviteFriendToGame_" data-uid="Contracts.IGameManager.IGameManager.InviteFriendToGame*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_InviteFriendToGame_System_String_System_Int32_" data-uid="Contracts.IGameManager.IGameManager.InviteFriendToGame(System.String,System.Int32)">InviteFriendToGame(String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract]
+void InviteFriendToGame(string codeGame, int friendId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">codeGame</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">friendId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_SelectedPiece_Contracts_IGameManager_Game_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.SelectedPiece(Contracts.IGameManager.Game%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L44">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_SelectedPiece_" data-uid="Contracts.IGameManager.IGameManager.SelectedPiece*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_SelectedPiece_Contracts_IGameManager_Game_System_String_System_Int32_" data-uid="Contracts.IGameManager.IGameManager.SelectedPiece(Contracts.IGameManager.Game,System.String,System.Int32)">SelectedPiece(Game, String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract(IsOneWay = true)]
+void SelectedPiece(Game game, string piece, int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Contracts.IGameManager.Game.html">Game</a></td>
+        <td><span class="parametername">game</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">piece</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_SendMessage_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.SendMessage(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L32">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_SendMessage_" data-uid="Contracts.IGameManager.IGameManager.SendMessage*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_SendMessage_System_Int32_System_String_" data-uid="Contracts.IGameManager.IGameManager.SendMessage(System.Int32,System.String)">SendMessage(Int32, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract(IsOneWay = true)]
+void SendMessage(int idGame, string message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_StartGame_Contracts_IGameManager_Game_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.StartGame(Contracts.IGameManager.Game)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L35">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_StartGame_" data-uid="Contracts.IGameManager.IGameManager.StartGame*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_StartGame_Contracts_IGameManager_Game_" data-uid="Contracts.IGameManager.IGameManager.StartGame(Contracts.IGameManager.Game)">StartGame(Game)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract(IsOneWay = true)]
+void StartGame(Game game)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Contracts.IGameManager.Game.html">Game</a></td>
+        <td><span class="parametername">game</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_UnCheckReadyToStartGame_Contracts_IGameManager_Game_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.UnCheckReadyToStartGame(Contracts.IGameManager.Game)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L53">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_UnCheckReadyToStartGame_" data-uid="Contracts.IGameManager.IGameManager.UnCheckReadyToStartGame*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_UnCheckReadyToStartGame_Contracts_IGameManager_Game_" data-uid="Contracts.IGameManager.IGameManager.UnCheckReadyToStartGame(Contracts.IGameManager.Game)">UnCheckReadyToStartGame(Game)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract(IsOneWay = true)]
+void UnCheckReadyToStartGame(Game game)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Contracts.IGameManager.Game.html">Game</a></td>
+        <td><span class="parametername">game</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_UnSelectedPiece_Contracts_IGameManager_Game_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.UnSelectedPiece(Contracts.IGameManager.Game%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L47">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_UnSelectedPiece_" data-uid="Contracts.IGameManager.IGameManager.UnSelectedPiece*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_UnSelectedPiece_Contracts_IGameManager_Game_System_String_System_Int32_" data-uid="Contracts.IGameManager.IGameManager.UnSelectedPiece(Contracts.IGameManager.Game,System.String,System.Int32)">UnSelectedPiece(Game, String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract(IsOneWay = true)]
+void UnSelectedPiece(Game game, string piece, int idPlayer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Contracts.IGameManager.Game.html">Game</a></td>
+        <td><span class="parametername">game</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">piece</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_UpdatePlayerGame_Contracts_IGameManager_Game_System_Int32_Contracts_IGameManager_Piece_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.UpdatePlayerGame(Contracts.IGameManager.Game%2CSystem.Int32%2CContracts.IGameManager.Piece)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L41">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_UpdatePlayerGame_" data-uid="Contracts.IGameManager.IGameManager.UpdatePlayerGame*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_UpdatePlayerGame_Contracts_IGameManager_Game_System_Int32_Contracts_IGameManager_Piece_" data-uid="Contracts.IGameManager.IGameManager.UpdatePlayerGame(Contracts.IGameManager.Game,System.Int32,Contracts.IGameManager.Piece)">UpdatePlayerGame(Game, Int32, Piece)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract]
+int UpdatePlayerGame(Game game, int idPlayer, Piece playersPiece)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Contracts.IGameManager.Game.html">Game</a></td>
+        <td><span class="parametername">game</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idPlayer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Contracts.IGameManager.Piece.html">Piece</a></td>
+        <td><span class="parametername">playersPiece</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager_UpdatePlayers_System_Int32_.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager.UpdatePlayers(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L29">View Source</a>
+  </span>
+  <a id="Contracts_IGameManager_IGameManager_UpdatePlayers_" data-uid="Contracts.IGameManager.IGameManager.UpdatePlayers*"></a>
+  <h4 id="Contracts_IGameManager_IGameManager_UpdatePlayers_System_Int32_" data-uid="Contracts.IGameManager.IGameManager.UpdatePlayers(System.Int32)">UpdatePlayers(Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[OperationContract(IsOneWay = true)]
+void UpdatePlayers(int idGame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">idGame</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/MiguelCam0/TuristaServerGame/new/MigCamo/apiSpec/new?filename=Contracts_IGameManager_IGameManager.md&amp;value=---%0Auid%3A%20Contracts.IGameManager.IGameManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/MiguelCam0/TuristaServerGame/blob/MigCamo/Contracts/IGameManager/IGameManager.cs/#L17" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

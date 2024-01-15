@@ -5,7 +5,9 @@ using log4net;
 using Services.GameManager;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Data.Entity.Migrations;
+using System.Data.SqlClient;
 using System.Linq;
 using System.ServiceModel;
 using System.Web.UI.WebControls;
@@ -327,11 +329,22 @@ namespace Services.DataBaseManager
                     {
                         playerInGame.GameLogicManagerCallback.UpdateTurns(CurrentGames[idGame].Players);
                     }
+                    catch (NullReferenceException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                        DeclareLosingPlayer(playerInGame, idGame);
+                    }
                     catch (TimeoutException exception)
                     {
                         _ilog.Error(exception.ToString());
                         DeclareLosingPlayer(playerInGame, idGame);
                     }
+                    catch (CommunicationException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                        DeclareLosingPlayer(playerInGame, idGame);
+                    }
+                    
                 }
             }
 
@@ -474,27 +487,27 @@ namespace Services.DataBaseManager
 
             foreach (Player playerInGame in CurrentGames[idGame].PlayersInGame)
             {
-                playerInGame.GameLogicManagerCallback.MovePlayerPieceOnBoard(player, CurrentBoards[idGame].GetProperty(playerPosition));
-
-                if (playerInGame.IdPlayer == player.IdPlayer)
+                try
                 {
-                    Property currentProperty = CurrentBoards[idGame].board[playerPosition];
-                    if (currentProperty.Owner == null)
+                    playerInGame.GameLogicManagerCallback.MovePlayerPieceOnBoard(player, CurrentBoards[idGame].GetProperty(playerPosition));
+
+                    if (playerInGame.IdPlayer == player.IdPlayer)
                     {
-                        try
+                        Property currentProperty = CurrentBoards[idGame].board[playerPosition];
+                        if (currentProperty.Owner == null)
                         {
                             playerInGame.GameLogicManagerCallback.ShowCard(CurrentBoards[idGame].GetProperty(playerPosition));
                         }
-                        catch (TimeoutException exception)
+                        else if (currentProperty.Owner.IdPlayer != player.IdPlayer && currentProperty.IsMortgaged == false)
                         {
-                            _ilog.Error(exception.ToString());
-                            DeclareLosingPlayer(player, idGame);
+                            MakeRentalPayment(currentProperty.Owner.IdPlayer, player.IdPlayer, currentProperty.Taxes, idGame);
                         }
                     }
-                    else if (currentProperty.Owner.IdPlayer != player.IdPlayer && currentProperty.IsMortgaged == false)
-                    {
-                        MakeRentalPayment(currentProperty.Owner.IdPlayer, player.IdPlayer, currentProperty.Taxes, idGame);
-                    }
+                }
+                catch (TimeoutException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                    DeclareLosingPlayer(player, idGame);
                 }
             }
         }
@@ -637,13 +650,28 @@ namespace Services.DataBaseManager
         /// <param name="idPlayer">Jugador que se declara como ganador.</param>
         private void RegisterWinner(int idPlayer)
         {
-            using (var context = new TuristaMundialEntitiesDB())
+            try
             {
-                var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
-                player.Wins++;
-                player.Games++;
-                context.PlayerSet.AddOrUpdate(player);
-                context.SaveChanges();
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
+                    player.Wins++;
+                    player.Games++;
+                    context.PlayerSet.AddOrUpdate(player);
+                    context.SaveChanges();
+                }
+            }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            catch (InvalidOperationException exception)
+            {
+                _ilog.Error(exception.ToString());
             }
         }
 
@@ -652,12 +680,27 @@ namespace Services.DataBaseManager
         /// <param name="idPlayer">Jugador que termino una partida.</param>
         private void AddGameToProfile(int idPlayer)
         {
-            using (var context = new TuristaMundialEntitiesDB())
+            try
             {
-                var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
-                player.Games++;
-                context.PlayerSet.AddOrUpdate(player);
-                context.SaveChanges();
+                using (var context = new TuristaMundialEntitiesDB())
+                {
+                    var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
+                    player.Games++;
+                    context.PlayerSet.AddOrUpdate(player);
+                    context.SaveChanges();
+                }
+            }
+            catch (EntityException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            catch (InvalidOperationException exception)
+            {
+                _ilog.Error(exception.ToString());
             }
         }
 
