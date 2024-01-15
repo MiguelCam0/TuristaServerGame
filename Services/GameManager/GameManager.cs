@@ -23,11 +23,23 @@ namespace Services.DataBaseManager
         /// Agrega un nuevo juego a la colección de juegos actuales.
         /// </summary>
         /// <param name="game">Objeto idGame que representa el juego a agregar.</param>
-        public void AddGame(Game game)
+        public int AddGame(Game game)
         {
-            CurrentGames.Add(game.IdGame, game);
-            CurrentGames[game.IdGame].Players = new Queue<Player>();
-            CurrentGames[game.IdGame].PlayersInGame = new List<Player>();
+            int result = 0;
+            try
+            {
+                if(game != null && game.IdGame > 0)
+                {
+                    CurrentGames.Add(game.IdGame, game);
+                    CurrentGames[game.IdGame].Players = new Queue<Player>();
+                    CurrentGames[game.IdGame].PlayersInGame = new List<Player>();
+                    result = 1;
+                }
+            }catch (Exception exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            return result;
         }
 
         /// <summary>
@@ -35,11 +47,26 @@ namespace Services.DataBaseManager
         /// </summary>
         /// <param name="idGame">Identificador del juego al que se agregará el jugador.</param>
         /// <param name="player">Objeto Player que representa al jugador a agregar.</param>
-        public void AddPlayerToGame(int idGame, Player player)
+        public int AddPlayerToGame(int idGame, Player player)
         {
-            player.GameManagerCallback = OperationContext.Current.GetCallbackChannel<IGameManagerCallback>();
-            CurrentGames[idGame].Players.Enqueue(player);
-            CurrentGames[idGame].PlayersInGame.Add(player);
+            int result = 0;
+            try
+            {
+                if (player != null && player.IdPlayer > 0)
+                {
+                    if(!CurrentGames[idGame].PlayersInGame.Any(existingPlayer => existingPlayer.IdPlayer == player.IdPlayer))
+                    {
+                        player.GameManagerCallback = OperationContext.Current.GetCallbackChannel<IGameManagerCallback>();
+                        CurrentGames[idGame].Players.Enqueue(player);
+                        CurrentGames[idGame].PlayersInGame.Add(player);
+                        result = 1;
+                    }
+                }
+            }catch (Exception exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            return result;
         }
 
         /// <summary>
@@ -48,18 +75,21 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador del juego cuyos jugadores se actualizarán.</param>
         public void UpdatePlayers(int idGame)
         {
-            foreach (Player playerInGame in CurrentGames[idGame].Players)
+            if (CurrentGames.ContainsKey(idGame))
             {
-                try
+                foreach (Player playerInGame in CurrentGames[idGame].Players)
                 {
-                    playerInGame.GameManagerCallback.UpdateGame();
-                    playerInGame.GameManagerCallback.AddVisualPlayers();
+                    try
+                    {
+                        playerInGame.GameManagerCallback.UpdateGame();
+                        playerInGame.GameManagerCallback.AddVisualPlayers();
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                    }
                 }
-                catch(TimeoutException exception)
-                {
-                    _ilog.Error(exception.ToString());
-                }
-            }
+            } 
         }
 
         /// <summary>
@@ -68,22 +98,27 @@ namespace Services.DataBaseManager
         /// <param name="game">Objeto Game que representa el juego a iniciar.</param>
         public void StartGame(Game game)
         {
-            foreach (Player playerInGame in CurrentGames[game.IdGame].PlayersInGame)
+            if (game != null && game.IdGame > 0 && CurrentGames[game.IdGame].Status != Game.GameSituation.Ongoing)
             {
-                try
-                {
-                    CurrentGames[game.IdGame].Status = Game.GameSituation.Ongoing;
-                    playerInGame.GameManagerCallback.MoveToGame(game);
-                }
-                catch (TimeoutException exception)
-                {
-                    _ilog.Error(exception.ToString());
-                }
-            }
 
-            Board board = new Board();
-            CurrentBoards.Add(game.IdGame, board);
-            UpdateQueu(game.IdGame);
+                foreach (Player playerInGame in CurrentGames[game.IdGame].PlayersInGame)
+                {
+                    try
+                    {
+                        playerInGame.GameManagerCallback.MoveToGame(game);
+                        CurrentGames[game.IdGame].Status = Game.GameSituation.Ongoing;
+
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                    }
+                }
+                Board board = new Board();
+                CurrentBoards.Add(game.IdGame, board);
+                UpdateQueu(game.IdGame);
+            }
+            
         }
 
         /// <summary>
@@ -92,18 +127,24 @@ namespace Services.DataBaseManager
         /// <param name="game">Objeto Game que representa el juego a inicializar.</param>
         public void InitializeGame(Game game)
         {
-            foreach (Player playerInGame in CurrentGames[game.IdGame].PlayersInGame)
+            if(game != null && game.IdGame > 0)
             {
-                try
+                foreach (Player playerInGame in CurrentGames[game.IdGame].PlayersInGame)
                 {
-                    playerInGame.GameManagerCallback.PreparePieces(game, CurrentGames[game.IdGame].PlayersInGame);
-                    playerInGame.GameLogicManagerCallback.LoadFriends(CurrentGames[game.IdGame].Players);
+                    try
+                    {
+                        playerInGame.GameManagerCallback.PreparePieces(game, CurrentGames[game.IdGame].PlayersInGame);
+                        if (playerInGame.GameLogicManagerCallback != null)
+                        {
+                            playerInGame.GameLogicManagerCallback.LoadFriends(CurrentGames[game.IdGame].Players);
+                        }
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                    }
                 }
-                catch (TimeoutException exception)
-                {
-                    _ilog.Error(exception.ToString());
-                }
-            }
+            } 
         }
     }
 }

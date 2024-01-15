@@ -6,6 +6,7 @@ using Services.GameManager;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Data.SqlClient;
 using System.Linq;
 using System.ServiceModel;
 using System.Web.UI.WebControls;
@@ -264,7 +265,10 @@ namespace Services.DataBaseManager
             {
                 try
                 {
-                    playerInGame.GameLogicManagerCallback.LoadFriends(CurrentGames[idGame].Players);
+                    if(playerInGame.GameLogicManagerCallback != null)
+                    {
+                        playerInGame.GameLogicManagerCallback.LoadFriends(CurrentGames[idGame].Players);
+                    }
                 }
                 catch (TimeoutException exception)
                 {
@@ -325,12 +329,19 @@ namespace Services.DataBaseManager
                 {
                     try
                     {
-                        playerInGame.GameLogicManagerCallback.UpdateTurns(CurrentGames[idGame].Players);
+                        if(playerInGame.GameLogicManagerCallback != null)
+                        {
+                            playerInGame.GameLogicManagerCallback.UpdateTurns(CurrentGames[idGame].Players);
+                        }    
                     }
                     catch (TimeoutException exception)
                     {
                         _ilog.Error(exception.ToString());
                         DeclareLosingPlayer(playerInGame, idGame);
+                    }
+                    catch(NullReferenceException exception)
+                    {
+                        _ilog.Error(exception.ToString());
                     }
                 }
             }
@@ -756,33 +767,18 @@ namespace Services.DataBaseManager
         /// <param name="idGame">Identificador único del juego.</param>
         public void ExpelPlayer(int idPlayer, int idGame)
         {
-            var playersCopy = CurrentGames[idGame].Players.ToList();
-
-            foreach (var playerInGame in playersCopy)
+            DateTime date = DateTime.Now;
+            using(var context = new TuristaMundialEntitiesDB())
             {
                 try
                 {
-                    if (playerInGame.IdPlayer == idPlayer)
-                    {
-                        playerInGame.VotesToExpel++;
-                        if (playerInGame.VotesToExpel == CurrentGames[idGame].Players.Count - (1 + GetNumberLosersInGame(idGame)))
-                        {
-                            playerInGame.GameLogicManagerCallback.ExitToGame();
-                            DeclareLosingPlayer(playerInGame, idGame);
-
-                            if (CurrentGames[idGame].Players.Peek().IdPlayer == idPlayer)
-                            {
-                                AdvanceTurn(idGame);
-                                UpdateQueu(idGame);
-                            }
-                        }
-                    }
-                    playerInGame.GameLogicManagerCallback.LoadFriends(CurrentGames[idGame].Players);
+                    var playerInfo = context.PlayerSet.Where(player => player.Id == idPlayer).First();
+                    playerInfo.BanEnd = date;
+                    context.SaveChanges();
                 }
-                catch (TimeoutException exception)
+                catch (SqlException exception)
                 {
                     _ilog.Error(exception.ToString());
-                    DeclareLosingPlayer(playerInGame, idGame);
                 }
             }
         }

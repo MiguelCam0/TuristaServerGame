@@ -11,6 +11,9 @@ using System.Runtime.InteropServices;
 using Contracts.IGameManager;
 using EASendMail;
 using System.Data.Entity.Validation;
+using System.Runtime.CompilerServices;
+using System.Net.NetworkInformation;
+using System.Text.RegularExpressions;
 
 namespace Services.DataBaseManager
 {
@@ -70,16 +73,25 @@ namespace Services.DataBaseManager
 
             try
             {
-                using (var context = new TuristaMundialEntitiesDB())
+                if (CheckAlredyExitsPlayer(player.eMail) == 0)
                 {
-                    context.PlayerSet.Add(player);
-                    band = context.SaveChanges();
+                    using (var context = new TuristaMundialEntitiesDB())
+                    {
+                        player.BanEnd = null;
+                        context.PlayerSet.Add(player);
+                        band = context.SaveChanges();
+                    }
                 }
-
             }
             catch (SqlException exception)
             {
                 _ilog.Error(exception.ToString());
+                band = -1;
+            }
+            catch(DbEntityValidationException exception)
+            {
+                _ilog.Error(exception.ToString());
+                band = -1;
             }
 
             return band;
@@ -177,30 +189,33 @@ namespace Services.DataBaseManager
         public int SendEmail(String verifyCode, String userEmail)
         {
             int result = 0;
-
-            try
+            string pattern = @"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|""(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*"")@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]";
+            if(Regex.IsMatch(userEmail, pattern))
             {
-                SmtpMail mail = new SmtpMail("TryIt");
-                mail.From = "yusgus02@gmail.com";
-                mail.To = userEmail;
-                mail.Subject = "Codigo de verificacion";
-                mail.TextBody = "Tu codigo de verificacion es: " + verifyCode;
+                try
+                {
+                    SmtpMail mail = new SmtpMail("TryIt");
+                    mail.From = "yusgus02@gmail.com";
+                    mail.To = userEmail;
+                    mail.Subject = "Codigo de verificacion";
+                    mail.TextBody = "Tu codigo de verificacion es: " + verifyCode;
 
-                SmtpServer emailServer = new SmtpServer("smtp.gmail.com");
+                    SmtpServer emailServer = new SmtpServer("smtp.gmail.com");
 
-                emailServer.User = "yusgus02@gmail.com";
-                emailServer.Password = "nopk fxne wkiy lvpg";
-                emailServer.Port = 587;
-                emailServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+                    emailServer.User = "yusgus02@gmail.com";
+                    emailServer.Password = "nopk fxne wkiy lvpg";
+                    emailServer.Port = 587;
+                    emailServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
 
-                SmtpClient reciber = new SmtpClient();
-                reciber.SendMail(emailServer, mail);
-
-            }
-            catch (Exception exception) 
-            {
-                _ilog.Error(exception.ToString());
-                result = 1;
+                    SmtpClient reciber = new SmtpClient();
+                    reciber.SendMail(emailServer, mail);
+                    result = 1;
+                }
+                catch (Exception exception)
+                {
+                    _ilog.Error(exception.ToString());
+                    result = -1;
+                }
             }
 
             return result;
@@ -213,20 +228,28 @@ namespace Services.DataBaseManager
         /// <returns>Objeto Player que contiene la información del jugador.</returns>
         public Player GetPlayerData(int idPlayer)
         {
-            Player playerInfo = new Player();
+            Player playerInfo = null;
 
             try
             {
                 using (var context = new TuristaMundialEntitiesDB())
                 {
-                    var player = context.PlayerSet.Where(p => p.Id == idPlayer).First();
-                    playerInfo.Name = player.Nickname;
-                    playerInfo.Games = (int)player.Games;
-                    playerInfo.GamesWin = (int)player.Wins;
-                    playerInfo.Description = player.Description;
+                    var player = context.PlayerSet.Where(p => p.Id == idPlayer).FirstOrDefault();
+                    if(player != null)
+                    {
+                        playerInfo = new Player();
+                        playerInfo.Name = player.Nickname;
+                        playerInfo.Games = (int)player.Games;
+                        playerInfo.GamesWin = (int)player.Wins;
+                        playerInfo.Description = player.Description;
+                    }
                 }
             }
             catch (SqlException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+            catch (ArgumentNullException exception)
             {
                 _ilog.Error(exception.ToString());
             }
@@ -243,17 +266,45 @@ namespace Services.DataBaseManager
             {
                 using (var context = new TuristaMundialEntitiesDB())
                 {
-                    var player = context.PlayerSet.Where(playerInfo => playerInfo.Id == idPlayer).First();
-                    player.Description = Description;
-                    result = context.SaveChanges();
+                    var player = context.PlayerSet.Where(playerInfo => playerInfo.Id == idPlayer).FirstOrDefault();
+                    if(player != null && Description != null)
+                    {
+                        player.Description = Description;
+                        result = context.SaveChanges();
+                    }
                 }
             }
             catch (SqlException exception)
             {
                 _ilog.Error(exception.ToString());
             }
-            
+            catch (ArgumentNullException exception)
+            {
+                _ilog.Error(exception.ToString());
+            }
+
             return result;  
+        }
+
+        private int CheckAlredyExitsPlayer(string eMail)
+        {
+            int result = 0;
+            using (var context = new TuristaMundialEntitiesDB())
+            {
+                try
+                {
+                    var playerInfo = context.PlayerSet.Where(player => player.eMail == eMail).FirstOrDefault();
+                    if (playerInfo != null)
+                    {
+                        result = playerInfo.Id;
+                    }
+                }
+                catch (SqlException exception)
+                {
+                    _ilog.Error(exception.ToString());
+                }
+            }
+            return result;
         }
     }
 }

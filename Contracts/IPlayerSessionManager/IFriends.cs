@@ -23,8 +23,8 @@ namespace Contracts.ISessionManager
         [OperationContract]
         int RejectFriendRequest(int IdRequest);
 
-        [OperationContract(IsOneWay = true)]
-        void UpdatePlayerSession(int idPlayer);
+        [OperationContract]
+        int UpdatePlayerSession(int idPlayer);
 
     }
 
