@@ -26,15 +26,18 @@ namespace Services.DataBaseManager
         /// <param name="message">Mensaje a enviar a los jugadores.</param>
         public void SendMessage(int idGame, string message)
         {
-            foreach (Player playerInGame in CurrentGames[idGame].Players) 
+            if (!message.Equals(""))
             {
-                try
+                foreach (Player playerInGame in CurrentGames[idGame].Players)
                 {
-                    playerInGame.GameManagerCallback.GetMessage(message);
-                }
-                catch (TimeoutException exception)
-                {
-                    _ilog.Error(exception.ToString());
+                    try
+                    {
+                        playerInGame.GameManagerCallback.GetMessage(message);
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        _ilog.Error(exception.ToString());
+                    }
                 }
             }
         }
